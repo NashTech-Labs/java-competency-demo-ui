@@ -1,0 +1,73 @@
+@import "../../../../assets/sass/core";
+
+header {
+  .mainToolbar {
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+    .toolbar-spacer {
+      flex: 1 1 auto;
+    }
+
+    .logobox {
+      position: absolute;
+      width: 168px;
+      left: 16px;
+      top: 9px;
+
+      .divider {
+        position: absolute;
+        left: 102%;
+        font-size: 150%;
+        font-weight: 150;
+        top: -7%;
+      }
+
+      .logo-title {
+        position: absolute;
+        left: 108%;
+      }
+    }
+  }
+
+  .user-profile {
+    position: absolute;
+    right: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    .vertical-line-box {
+      height: 5rem;
+      margin-right: 1rem;
+      border-left: 0.1rem solid $label-normal;
+    }
+
+    .user-profile-image {
+      background: $primary-color;
+      position: absolute;
+      width: 31px;
+      height: 31px;
+      left: -27px;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: $header-color;
+      border-radius: 50%;
+    }
+
+    .user-profile-name {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+
+      span {
+        margin-left: 1rem;
+        font-size: 1rem;
+      }
+    }
+  }
+}
