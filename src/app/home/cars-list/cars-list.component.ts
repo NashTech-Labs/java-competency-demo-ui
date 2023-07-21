@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-cars-list',
@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent {
+
+  @Input() fromCarBrandsComponentToCarsListComponent:any;
 
 }

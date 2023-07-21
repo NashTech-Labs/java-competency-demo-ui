@@ -7,4 +7,10 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  brandsNameFromCarBrandsComponent:any;
+
+  receivedBrandsNameFromCarBrandsComponent($event: any) {
+    this.brandsNameFromCarBrandsComponent = $event;
+  }
+
 }

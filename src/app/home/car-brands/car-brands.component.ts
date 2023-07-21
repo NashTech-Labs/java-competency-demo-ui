@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { BrandsList } from 'src/assets/data/brandsListJson'
 import {Router} from "@angular/router";
 
@@ -9,8 +9,9 @@ import {Router} from "@angular/router";
 })
 export class CarBrandsComponent {
   data:Array<any> = BrandsList;
+  @Output() brandsNameToHome = new EventEmitter<Array<any>>();
 
   onButtonClick(brandName:any) {
-    console.log(brandName);
+    this.brandsNameToHome.emit(brandName);
   }
 }

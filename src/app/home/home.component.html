@@ -9,4 +9,5 @@
     </mat-toolbar>
 </header>
 <router-outlet></router-outlet>
-<app-car-brands></app-car-brands>
+<app-car-brands (brandsNameToHome)="receivedBrandsNameFromCarBrandsComponent($event)"></app-car-brands>
+<app-cars-list [fromCarBrandsComponentToCarsListComponent] = "brandsNameFromCarBrandsComponent"></app-cars-list>

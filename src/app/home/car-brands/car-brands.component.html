@@ -1,4 +1,6 @@
-<div *ngFor = "let brands of data">
+<div style="width: 100%; display: flex; flex-direction: row; overflow: auto">
+  <div style="min-width: 200px" *ngFor = "let brands of data">
+    <br>
     <mat-card>
       <mat-card-header>
           <button mat-button (click)="onButtonClick(brands.brand_name)">{{ brands.brand_name }}</button>
@@ -6,3 +8,4 @@
     </mat-card>
     <br>
   </div>
+</div>
