@@ -1,31 +1,23 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import { AuthProcessComponent } from './core/components/auth/auth-process/auth-process.component';
-import { AuthVerifyComponent } from './core/components/auth/auth-verify/auth-verify.component';
-import { AuthGuard } from './core/guards/auth.guard';
-
+import {HomeComponent} from "./home/home.component";
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth-verify',
+    redirectTo: '/azure',
     pathMatch: 'full',
   },
   {
-    path: 'auth-verify',
-    component: AuthVerifyComponent
-  },
-  {
-    path: 'auth-process/:userid/:tenantId/:uuid',
-    component: AuthProcessComponent
+    path: 'azure',
+    component: HomeComponent
   },
   {
     path: '',
     loadChildren: () =>
-    import('./dashboard/dashboard.module').then(
-      (m) => m.DashboardModule
-    ),  
-    canActivate: [AuthGuard],
+    import('./home/home.module').then(
+      (m) => m.HomeModule
+    )
   }
  ];
 

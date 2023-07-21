@@ -8,17 +8,12 @@ import {CookieModule} from 'ngx-cookie';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from "@angular/common/http";
 import {AgGridModule} from "ag-grid-angular";
-import { AuthProcessComponent } from './core/components/auth/auth-process/auth-process.component';
-import { AuthVerifyComponent } from './core/components/auth/auth-verify/auth-verify.component';
-import { httpInterceptorProviders } from './core/http-interceptors';
 import { MaterialModule } from './shared/module/material.module';
-
+import { HomeModule } from "./home/home.module";
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AuthVerifyComponent,
-    AuthProcessComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,9 +24,10 @@ import { MaterialModule } from './shared/module/material.module';
     BrowserAnimationsModule,
     CookieModule.forRoot(),
     AgGridModule,
-    MaterialModule
-    ],
-  providers: [DatePipe, httpInterceptorProviders],
+    MaterialModule,
+    HomeModule
+  ],
+  providers: [DatePipe],
   bootstrap: [AppComponent]
 })
 export class AppModule {
