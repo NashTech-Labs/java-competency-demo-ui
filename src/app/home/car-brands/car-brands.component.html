@@ -1,1 +1,8 @@
-<p>car-brands works!</p>
+<div *ngFor = "let brands of data">
+    <mat-card>
+      <mat-card-header>
+          <button mat-button (click)="onButtonClick(brands.brand_name)">{{ brands.brand_name }}</button>
+      </mat-card-header>
+    </mat-card>
+    <br>
+  </div>
