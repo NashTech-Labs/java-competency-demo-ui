@@ -1,4 +1,7 @@
-mat-card {
-    max-height: 500px;
-    float: left;
-  }
+.content {
+  padding: 16px;
+}
+
+.content > mat-card {
+  width: 200px;
+}

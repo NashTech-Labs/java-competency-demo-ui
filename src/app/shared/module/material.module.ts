@@ -12,6 +12,7 @@ import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
 import {MatLineModule} from "@angular/material/core";
 import { MatCardModule } from '@angular/material/card';
+import { FlexLayoutModule } from "@angular/flex-layout";
 
 
 @NgModule({
@@ -30,6 +31,7 @@ import { MatCardModule } from '@angular/material/card';
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    FlexLayoutModule,
   ],
   exports:[
       CommonModule,
@@ -45,6 +47,7 @@ import { MatCardModule } from '@angular/material/card';
       MatDialogModule,
       MatFormFieldModule,
       MatInputModule,
+      FlexLayoutModule,
   ]
 })
 export class MaterialModule { }
