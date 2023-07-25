@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
     selector: 'app-carsdata-card',
@@ -7,11 +7,13 @@ import {Component, Input} from '@angular/core';
 })
 export class CarsdataCardComponent {
 
-    @Input() carCompanyName: string = '';
-    @Input() carModel: string = '';
-    @Input() carPrice: string = '';
-    @Input() carMileage: string = '';
-    @Input() manufacturingYear: string = '';
-    @Input() carLocation: string = '';
-    @Input() carColor: string = '';
+    // Input properties to receive data from the parent component.
+    // These properties will be bound to corresponding attributes in the HTML template.
+    @Input() carCompanyName: string = '';       // Holds the name of the car's manufacturing company.
+    @Input() carModel: string = '';             // Holds the model name of the car.
+    @Input() carPrice: string = '';             // Holds the price of the car.
+    @Input() carMileage: string = '';           // Holds the mileage information of the car.
+    @Input() manufacturingYear: string = '';    // Holds the manufacturing year of the car.
+    @Input() carLocation: string = '';          // Holds the location information of the car.
+    @Input() carColor: string = '';             // Holds the color of the car.
 }

@@ -14,4 +14,5 @@ export class CarBrandsComponent {
     onButtonClick(brandName: any) {
         this.brandsNameToHome.emit(brandName);
     }
+
 }

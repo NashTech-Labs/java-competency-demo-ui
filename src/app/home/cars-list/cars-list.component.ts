@@ -1,6 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {CardService} from "../services/service.service";
-
+import { Component, Input, OnInit } from '@angular/core';
+import { CardService } from '../services/service.service';
 
 @Component({
     selector: 'app-cars-list',
@@ -8,28 +7,29 @@ import {CardService} from "../services/service.service";
     styleUrls: ['./cars-list.component.scss']
 })
 export class CarsListComponent implements OnInit {
-
     cars: any;
     pageNumber = 1;
 
-    constructor(private carsData: CardService) {
-    }
+    constructor(private carsData: CardService) {}
 
     ngOnInit() {
         this.getData();
     }
 
+    // Fetches data from the CardService based on the current page number.
     private getData() {
         this.carsData.getData(this.pageNumber).subscribe((data) => {
             this.cars = data;
         });
     }
 
+    // Navigates to the next page of cars.
     nextPage() {
         this.pageNumber++;
         this.getData();
     }
 
+    // Navigates to the previous page of cars if not on the first page.
     previousPage() {
         if (this.pageNumber > 1) {
             this.pageNumber--;
