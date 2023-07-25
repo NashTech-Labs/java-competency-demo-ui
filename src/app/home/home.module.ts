@@ -7,17 +7,24 @@ import { HomeComponent } from "./home.component";
 import {  MaterialModule } from '../shared/module/material.module';
 
 import { HomeRoutingModule } from './home-routing.module';
+import { CarsdataCardComponent } from './cars-list/carsdata-card/carsdata-card.component';
+import {HttpClientModule} from "@angular/common/http";
+import { PaginationComponent } from './pagination/pagination.component';
+
 
 
 @NgModule({
   declarations: [CarBrandsComponent,
     CarsListComponent,
     DataNotFoundComponent,
-    HomeComponent],
+    HomeComponent,
+    CarsdataCardComponent,
+    PaginationComponent],
   imports: [
     CommonModule,
     HomeRoutingModule,
-    MaterialModule
+    MaterialModule,
+    HttpClientModule
   ],
 })
 export class HomeModule { }
