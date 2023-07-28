@@ -1,10 +1,10 @@
 export interface CarsDetails {
-    brand_id: string;
+    brand_id: number;
     brand_name: string;
     model: string;
-    year: Date;
+    year: number;
     color: string;
-    mileage: string;
+    mileage: number;
     price: string;
     location: string;
 }

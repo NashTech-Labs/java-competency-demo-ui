@@ -9,7 +9,7 @@ import { CarsDetails } from "src/app/shared/module/cars-details.model";
   styleUrls: ["./car-brands.component.scss"],
 })
 export class CarBrandsComponent implements OnInit {
-  data: Array<any> = BrandsList;
+  data: Array<CarsDetails> = BrandsList;
   brandsName: string = "";
   constructor(private homeService: HomeService) {
     this.homeService.getBrandsName.subscribe(
@@ -18,8 +18,12 @@ export class CarBrandsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-
-  onButtonClick(name: string) {
+  
+  /**
+   * Sends Selected Brands Name to CarsListComponent
+   * @param name : name of selected car brand
+   */
+  onBrandClick(name: string) {
     this.homeService.setBrandsName(name);
   }
 }
