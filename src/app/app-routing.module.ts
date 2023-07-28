@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { HomeComponent } from "./home/home.component";
 import { CarsListComponent } from "./home/cars-list/cars-list.component";
+import { CarBrandsComponent } from "./home/car-brands/car-brands.component";
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: "azure",
     component: HomeComponent,
+  },
+  {
+    path: "azure/car-brands",
+    component: CarBrandsComponent,
   },
   {
     path: "azure/car-list",
