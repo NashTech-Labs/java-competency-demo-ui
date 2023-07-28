@@ -1,23 +1,24 @@
-.logo img {
+.nashTechLogo img {
   width: 60px;
   height: 60px;
 }
+
 .white-toolbar {
   background-color: white;
 }
 
-.centered-links {
+.navLinks {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.centered-links a + a{
-  margin-left: 40px;
+.navLinks a + a {
+  margin-left: 100px;
 }
 
-.active {
-  color: red !important;
+.custom-link.active {
+  color: #d73b1e;
 }
 
 .centered-content {
@@ -29,7 +30,6 @@
 
 .custom-link {
   font-size: 18px;
-  margin-right: 80px
+  text-decoration: none;
+  color: black;
 }
-
-

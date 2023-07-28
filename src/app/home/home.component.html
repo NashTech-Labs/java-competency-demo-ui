@@ -1,16 +1,26 @@
 <header>
-    <mat-toolbar class="mat-elevation-z1 white-toolbar toolbar-link" >
-        <div class="logo">
-            <img src="assets/images/NashTech logo.png" alt="logo" />
-            <span class="divider">|</span>
-            <span class="logo-title">NashTech</span>
-        </div>
-        <div class="centered-content">
-            <div class="centered-links" >
-                <a class="custom-link" mat-button routerLink="azure" routerLinkActive="active" >AZURE</a>
-                <a class="custom-link" mat-button routerLink="gcp" routerLinkActive="active" >GCP</a>
-            </div>
-        </div>
-    </mat-toolbar>
+  <mat-toolbar class="mat-elevation-z1 white-toolbar">
+    <div class="nashTechLogo">
+      <img [src]="nashTechLogoUrl" alt="nashTechLogo" />
+    </div>
+    <div class="centered-content">
+      <div class="navLinks">
+        <a
+          class="custom-link"
+          mat-button-no-ripple
+          [routerLink]="azureLink"
+          routerLinkActive="active"
+          >AZURE</a
+        >
+        <a
+          class="custom-link"
+          mat-button-no-ripple
+          [routerLink]="gcpLink"
+          routerLinkActive="active"
+          >GCP</a
+        >
+      </div>
+    </div>
+  </mat-toolbar>
 </header>
 <router-outlet></router-outlet>

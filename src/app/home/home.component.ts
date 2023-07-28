@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-home',
@@ -7,4 +8,8 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
 
+  nashTechLogoUrl: string = environment.nashTechLogoUrl;
+
+  azureLink: string = "azure";
+  gcpLink: string = "gcp";
 }

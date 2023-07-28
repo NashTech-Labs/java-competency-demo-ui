@@ -1,7 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 import {HomeComponent} from "./home/home.component";
-import {CarBrandsComponent} from "./home/car-brands/car-brands.component";
 
 const routes: Routes = [
   {
@@ -11,11 +10,7 @@ const routes: Routes = [
   },
   {
     path: 'azure',
-    component: CarBrandsComponent
-  },
-  {
-    path: 'gcp',
-    component: CarBrandsComponent
+    component: HomeComponent
   },
   {
     path: '',
