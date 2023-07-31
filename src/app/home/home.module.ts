@@ -10,14 +10,17 @@ import { HomeRoutingModule } from './home-routing.module';
 
 
 @NgModule({
-  declarations: [CarBrandsComponent,
-    CarsListComponent,
-    DataNotFoundComponent,
-    HomeComponent],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MaterialModule
-  ],
+    declarations: [CarBrandsComponent,
+        CarsListComponent,
+        DataNotFoundComponent,
+        HomeComponent],
+    imports: [
+        CommonModule,
+        HomeRoutingModule,
+        MaterialModule
+    ],
+    exports: [
+        HomeComponent
+    ]
 })
 export class HomeModule { }
