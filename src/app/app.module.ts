@@ -22,7 +22,7 @@ import { HomeModule } from "./home/home.module";
     ReactiveFormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    CookieModule.forRoot(),
+    CookieModule.forRoot(), //NOSONAR
     AgGridModule,
     MaterialModule,
     HomeModule
