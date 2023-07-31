@@ -1,4 +1,35 @@
-.logo img {
-  width: 70px;
-  height: 70px;
+.nashTechLogo img {
+  width: 60px;
+  height: 60px;
+}
+
+.toolbar {
+  background-color: white;
+}
+
+.navLinks {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navLinks a + a {
+  margin-left: 100px;
+}
+
+.custom-link.active {
+  color: #d73b1e;
+}
+
+.centered-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.custom-link {
+  font-size: 18px;
+  text-decoration: none;
+  color: black;
 }
