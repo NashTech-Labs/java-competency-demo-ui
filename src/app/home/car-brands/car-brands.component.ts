@@ -1,7 +1,8 @@
 import { Component, OnInit } from "@angular/core";
-import { BrandsList } from "src/assets/data/brandsListJson";
-import { HomeService } from "../home.service";
-import { CarsDetails } from "src/app/shared/module/cars-details.model";
+import { CarsDetails } from "../../shared/module/cars-details.model";
+import {CarsListService} from "../card-list-service/cars-list.service";
+import {Subscription} from "rxjs";
+import {BrandsList} from "../../../assets/data/brandsListJson";
 
 @Component({
   selector: "app-car-brands",
@@ -9,10 +10,11 @@ import { CarsDetails } from "src/app/shared/module/cars-details.model";
   styleUrls: ["./car-brands.component.scss"],
 })
 export class CarBrandsComponent implements OnInit {
-  data: Array<CarsDetails> = BrandsList;
+  data$ = this.carsService.getBrandName();
   brandsName: string = "";
-  constructor(private homeService: HomeService) {
-    this.homeService.getBrandsName.subscribe(
+
+  constructor(private carsService: CarsListService) {
+    this.carsService.getBrandsName.subscribe(
       (name) => (this.brandsName = name),
     );
   }
@@ -24,6 +26,6 @@ export class CarBrandsComponent implements OnInit {
    * @param name : name of selected car brand
    */
   onBrandClick(name: string) {
-    this.homeService.setBrandsName(name);
+    this.carsService.setBrandsName(name);
   }
 }
