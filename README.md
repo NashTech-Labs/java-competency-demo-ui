@@ -26,10 +26,10 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
 
-
 ## Local running Steps
-1)  building the docker file from the root folder 
-docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest .
 
-2) Run from local
-docker run --env API_URL="https://webapi-dev.appname.com" -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest
+1.  building the docker file from the root folder
+    docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest .
+
+2.  Run from local
+    docker run --env API_URL="https://webapi-dev.appname.com" -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest

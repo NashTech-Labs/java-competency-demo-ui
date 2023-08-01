@@ -1,15 +1,21 @@
-import {Component} from '@angular/core';
-import {Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from '@angular/router';
+import { Component } from "@angular/core";
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from "@angular/router";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  selector: "app-root",
+  templateUrl: "./app.component.html",
+  styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = 'shrink-analyzer-ui';
+  title = "shrink-analyzer-ui";
   loading = false;
-
 
   constructor(private router: Router) {
     this.router.events.subscribe((e: Event) => {
@@ -17,7 +23,7 @@ export class AppComponent {
     });
   }
 
-// Shows and hides the loading spinner during RouterEvent changes
+  // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
       this.loading = true;
@@ -26,7 +32,7 @@ export class AppComponent {
       this.loading = false;
     }
 
-// Set loading state to false in both of the below events to hide the spinner in case a request fails
+    // Set loading state to false in both of the below events to hide the spinner in case a request fails
     if (event instanceof NavigationCancel) {
       this.loading = false;
     }

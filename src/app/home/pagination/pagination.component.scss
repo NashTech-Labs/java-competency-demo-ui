@@ -1,5 +1,7 @@
 .pagination {
-  text-align: center;
+  display:flex;
+  justify-content: center;
+  align-items: center;
   height: 50px;
   width: 50px;
   margin-right: 20px;
@@ -15,5 +17,3 @@
   padding-left: 5px;
   font-size: 25px;
 }
-
-

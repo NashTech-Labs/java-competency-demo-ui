@@ -9,7 +9,7 @@ spec:
     - port: 8080
       targetPort: 80
   type: LoadBalancer
---- 
+---
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -25,10 +25,10 @@ spec:
         app: shrink-analyzer-ui
     spec:
       containers:
-      - name: shrink-analyzer-ui
-        image: us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest
-        ports:
-        - containerPort: 80
-        env:
-          - name: API_URL
-            value: "https://webapi-kubernetes-testing.appname.com"        
+        - name: shrink-analyzer-ui
+          image: us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: API_URL
+              value: "https://webapi-kubernetes-testing.appname.com"

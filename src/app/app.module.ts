@@ -1,20 +1,18 @@
-import {BrowserModule} from '@angular/platform-browser';
-import {NgModule} from '@angular/core';
-import {AppRoutingModule} from './app-routing.module';
-import {AppComponent} from './app.component';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {DatePipe} from '@angular/common';
-import {CookieModule} from 'ngx-cookie';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from "@angular/common/http";
-import {AgGridModule} from "ag-grid-angular";
-import { MaterialModule } from './shared/module/material.module';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule } from "@angular/core";
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { DatePipe } from "@angular/common";
+import { CookieModule } from "ngx-cookie";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import { HttpClientModule } from "@angular/common/http";
+import { AgGridModule } from "ag-grid-angular";
+import { MaterialModule } from "./shared/module/material.module";
 import { HomeModule } from "./home/home.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -25,10 +23,9 @@ import { HomeModule } from "./home/home.module";
     CookieModule.forRoot(),
     AgGridModule,
     MaterialModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}

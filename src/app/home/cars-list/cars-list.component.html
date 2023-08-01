@@ -1,27 +1,26 @@
 <div class="container my-5">
-    <div class="row">
-        <div class="col"></div>
-        <div class="col-sm-7 carsPage">
+  <div class="row">
+    <div class="col"></div>
+    <div class="col-sm-7 carsPage">
+      <!-- Car Company Name -->
+      <h1>Mahindra Car Models</h1>
 
-            <!-- Car Company Name -->
-            <h1>Mahindra Car Models</h1>
+      <!-- Car models -->
+      <app-carsdata-card
+        *ngFor="let car of cars"
+        [carCompanyName]="car.brand"
+        [carModel]="car.model"
+        [carPrice]="car.carPrice"
+        [carMileage]="car.mileage"
+        [manufacturingYear]="car.year"
+        [carLocation]="car.location"
+        [carColor]="car.color"
+      ></app-carsdata-card>
 
-            <!-- Car models -->
-            <app-carsdata-card
-                    *ngFor="let car of cars"
-                    [carCompanyName]="car.brand"
-                    [carModel]="car.model"
-                    [carPrice]="car.carPrice"
-                    [carMileage]="car.mileage"
-                    [manufacturingYear]="car.year"
-                    [carLocation]="car.location"
-                    [carColor]="car.color"
-            ></app-carsdata-card>
-
-            <div class="text-center my-5">
-                <app-pagination></app-pagination>
-            </div>
-        </div>
-        <div class="col"></div>
+      <div class="text-center my-5">
+        <app-pagination></app-pagination>
+      </div>
     </div>
+    <div class="col"></div>
+  </div>
 </div>
