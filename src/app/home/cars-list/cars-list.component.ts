@@ -41,8 +41,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.carsData.getBrandsName.subscribe((msg) => (this.brandsName = msg));
-    this.getData();
-  }
+    this.getData();  }
 
   /**
    * Fetches data from the CardService based on the current page number.
@@ -51,6 +50,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   private getData() {
     this.dataSubscription = this.carsData.getData(this.pageNumber).subscribe((data) => {
       this.cars = data;
+      console.log(this.cars);
     });
   }
 

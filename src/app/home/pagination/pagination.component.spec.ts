@@ -1,21 +1,40 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { PaginationComponent } from "./pagination.component";
+import { CarsListComponent } from "../cars-list/cars-list.component";
 
-import { PaginationComponent } from './pagination.component';
+describe("PaginationComponent", () => {
+    let component: PaginationComponent;
+    let fixture: ComponentFixture<PaginationComponent>;
+    let carsDataMock: jasmine.SpyObj<CarsListComponent>;
 
-describe('PaginationComponent', () => {
-  let component: PaginationComponent;
-  let fixture: ComponentFixture<PaginationComponent>;
+    beforeEach(async () => {
+        const carsDataSpy = jasmine.createSpyObj("CarsListComponent", [
+            "nextPage",
+            "previousPage",
+        ]);
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [PaginationComponent]
+        await TestBed.configureTestingModule({
+            declarations: [PaginationComponent],
+            providers: [{ provide: CarsListComponent, useValue: carsDataSpy }],
+        }).compileComponents();
+
+        carsDataMock = TestBed.inject(CarsListComponent) as jasmine.SpyObj<
+            CarsListComponent
+        >;
     });
-    fixture = TestBed.createComponent(PaginationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(PaginationComponent);
+        component = fixture.componentInstance;
+    });
+
+    it("should call nextPage() in CarsListComponent when increaseCount is called", () => {
+        component.increaseCount();
+        expect(carsDataMock.nextPage).toHaveBeenCalledTimes(1);
+    });
+
+    it("should call previousPage() in CarsListComponent when decreaseCount is called", () => {
+        component.decreaseCount();
+        expect(carsDataMock.previousPage).toHaveBeenCalledTimes(1);
+    });
 });
