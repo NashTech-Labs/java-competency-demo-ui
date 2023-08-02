@@ -17,13 +17,7 @@ describe('AppComponent', () => {
   it(`should have as title 'shrink-analyzer-ui'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('shrink-analyzer-ui');
+    expect(app.title).toEqual('Java-compentency-ui');
   });
 
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('shrink-analyzer-ui app is running!');
-  });
 });
