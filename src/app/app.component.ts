@@ -14,7 +14,7 @@ import {
   styleUrls: ["./app.component.scss"],
 })
 export class AppComponent {
-  title = "shrink-analyzer-ui";
+  title = "Java-compentency-ui";
   loading = false;
 
   constructor(private router: Router) {
