@@ -1,30 +1,26 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { CarBrandsComponent } from './car-brands/car-brands.component';
-import { CarsListComponent } from './cars-list/cars-list.component';
-import { DataNotFoundComponent } from './data-not-found/data-not-found.component';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CarBrandsComponent } from "./car-brands/car-brands.component";
+import { CarsListComponent } from "./cars-list/cars-list.component";
+import { DataNotFoundComponent } from "./data-not-found/data-not-found.component";
 import { HomeComponent } from "./home.component";
-import {  MaterialModule } from '../shared/module/material.module';
-
-import { HomeRoutingModule } from './home-routing.module';
-import { CarsdataCardComponent } from './cars-list/carsdata-card/carsdata-card.component';
-import { PaginationComponent } from './pagination/pagination.component';
-
+import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
+import { MaterialModule } from "../shared/module/material.module";
+import { HomeRoutingModule } from "./home-routing.module";
+import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
+import { PaginationComponent } from "./pagination/pagination.component";
 
 @NgModule({
-    declarations: [CarBrandsComponent,
-        CarsListComponent,
-        DataNotFoundComponent,
-        HomeComponent,
-        CarsdataCardComponent,
-        PaginationComponent],
-    imports: [
-        CommonModule,
-        HomeRoutingModule,
-        MaterialModule
-    ],
-    exports: [
-        HomeComponent
-    ]
+  declarations: [
+    CarBrandsComponent,
+    CarsListComponent,
+    DataNotFoundComponent,
+    PageNotFoundComponent,
+    HomeComponent,
+    CarsdataCardComponent,
+    PaginationComponent,
+  ],
+  imports: [CommonModule, HomeRoutingModule, MaterialModule],
+  exports: [HomeComponent],
 })
-export class HomeModule { }
+export class HomeModule {}

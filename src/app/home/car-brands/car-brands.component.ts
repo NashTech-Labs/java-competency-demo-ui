@@ -1,8 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { CarsDetails } from "../../shared/module/cars-details.model";
-import {CarsListService} from "../card-list-service/cars-list.service";
-import {Subscription} from "rxjs";
-import {BrandsList} from "../../../assets/data/brandsListJson";
+import { CarsListService } from "../card-list-service/cars-list.service";
 
 @Component({
   selector: "app-car-brands",
@@ -20,7 +17,7 @@ export class CarBrandsComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  
+
   /**
    * Sends Selected Brands Name to CarsListComponent
    * @param name : name of selected car brand

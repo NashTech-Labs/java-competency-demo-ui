@@ -1,6 +1,6 @@
-import {Component, OnDestroy, OnInit} from "@angular/core";
-import {Subscription} from "rxjs";
-import {CarsListService} from "../card-list-service/cars-list.service";
+import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Subscription } from "rxjs";
+import { CarsListService } from "../card-list-service/cars-list.service";
 @Component({
   selector: "app-cars-list",
   templateUrl: "./cars-list.component.html",
@@ -21,7 +21,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * An array of cars fetched from the CardService based on the current page number.
    * The cars are of type 'Car', which conforms to the Car interface.
    */
-  cars:any;
+  cars: any;
 
   /**
    * Subscription to store the subscription of the getData() method.
@@ -32,8 +32,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * Creates an instance of CarsListComponent.
    * @param carsData - The CardService instance used to fetch car data.
    */
-  constructor(private carsData: CarsListService) {
-  }
+  constructor(private carsData: CarsListService) {}
 
   /**
    * Lifecycle hook called after the component has been initialized.
@@ -41,17 +40,20 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   ngOnInit(): void {
     this.carsData.getBrandsName.subscribe((msg) => (this.brandsName = msg));
-    this.getData();  }
+    this.getData();
+  }
 
   /**
    * Fetches data from the CardService based on the current page number.
    * The fetched data is stored in the 'cars' property.
    */
   private getData() {
-    this.dataSubscription = this.carsData.getData(this.pageNumber).subscribe((data) => {
-      this.cars = data;
-      console.log(this.cars);
-    });
+    this.dataSubscription = this.carsData
+      .getData(this.pageNumber)
+      .subscribe((data) => {
+        this.cars = data;
+        console.log(this.cars);
+      });
   }
 
   /**
