@@ -1,17 +1,14 @@
-<div class="content">
+<div class="content container">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div
       fxFlex="25%"
       fxFlex.xs="100%"
       fxFlex.sm="33%"
-      *ngFor="let carBrand of data"
+      *ngFor="let carBrand of data$ | async"
     >
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
-          <button
-            mat-button
-            (click)="onBrandClick(carBrand.brand_name)"
-          >
+          <button mat-button (click)="onBrandClick(carBrand.brand_name)">
             {{ carBrand["brand_name"] }}
           </button>
         </mat-card-header>

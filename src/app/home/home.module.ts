@@ -7,6 +7,8 @@ import { HomeComponent } from "./home.component";
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { MaterialModule } from "../shared/module/material.module";
 import { HomeRoutingModule } from "./home-routing.module";
+import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
+import { PaginationComponent } from "./pagination/pagination.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import { HomeRoutingModule } from "./home-routing.module";
     DataNotFoundComponent,
     PageNotFoundComponent,
     HomeComponent,
+    CarsdataCardComponent,
+    PaginationComponent,
   ],
   imports: [CommonModule, HomeRoutingModule, MaterialModule],
   exports: [HomeComponent],
