@@ -1,4 +1,4 @@
-# ShrinkAnalyzerUi
+# JavaCompentencyDemoUI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.0.2.
 
@@ -29,7 +29,7 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 
 ## Local running Steps
 1)  building the docker file from the root folder 
-docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest .
+docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui:latest .
 
 2) Run from local
-docker run --env API_URL="https://webapi-dev.appname.com" -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/shrink-analyzer-ui:latest
+docker run --env API_URL="https://webapi-dev.appname.com" -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui:latest

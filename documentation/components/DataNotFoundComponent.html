@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>shrink-analyzer-ui documentation</title>
+        <title>java-competency-demo-ui documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">shrink-analyzer-ui documentation</a>
+            <a href="../" class="navbar-brand">java-competency-demo-ui documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -135,29 +135,32 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
 
 @Component({
-  selector: &#x27;app-data-not-found&#x27;,
-  templateUrl: &#x27;./data-not-found.component.html&#x27;,
-  styleUrls: [&#x27;./data-not-found.component.scss&#x27;]
+  selector: &quot;app-data-not-found&quot;,
+  templateUrl: &quot;./data-not-found.component.html&quot;,
+  styleUrls: [&quot;./data-not-found.component.scss&quot;],
 })
-export class DataNotFoundComponent {
-
-}
+export class DataNotFoundComponent {}
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
-    &lt;div class&#x3D;&quot;centered-content&quot;&gt;
-      &lt;p class&#x3D;&quot;oops&quot;&gt;Oops !&lt;/p&gt;
-      &lt;p class&#x3D;&quot;messages&quot;&gt;DATA NOT FOUND&lt;/p&gt;
-      &lt;p class&#x3D;&quot;message&quot;&gt;The data you have been searching for has not been generated&lt;/p&gt;
-      &lt;p class&#x3D;&quot;generate&quot;&gt;Click on the below button to generate the Data.&lt;/p&gt;
-      &lt;button mat-raised-button color&#x3D;&quot;warn&quot; class&#x3D;&quot;generate-button&quot;&gt;GENERATE DATA&lt;/button&gt;
-    &lt;/div&gt;
-   &lt;/div&gt;</code></pre>
+  &lt;div class&#x3D;&quot;centered-content&quot;&gt;
+    &lt;p class&#x3D;&quot;oops&quot;&gt;Oops !&lt;/p&gt;
+    &lt;p class&#x3D;&quot;messages&quot;&gt;DATA NOT FOUND&lt;/p&gt;
+    &lt;p class&#x3D;&quot;message&quot;&gt;
+      The data you have been searching for has not been generated
+    &lt;/p&gt;
+    &lt;p class&#x3D;&quot;generate&quot;&gt;Click on the below button to generate the Data.&lt;/p&gt;
+    &lt;button mat-raised-button color&#x3D;&quot;warn&quot; class&#x3D;&quot;generate-button&quot;&gt;
+      GENERATE DATA
+    &lt;/button&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="styleData">
@@ -165,46 +168,46 @@ export class DataNotFoundComponent {
                     <code>./data-not-found.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">.container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-  }
-  
-  .centered-content {
-    text-align: center;
-  }
-  
-  .oops {
-    font-weight: bold;
-    color: red;
-    font-size: 50px;
-    /* font-family: Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.centered-content {
+  text-align: center;
+}
+
+.oops {
+  font-weight: bold;
+  color: red;
+  font-size: 50px;
+  /* font-family: Arial, sans-serif;
     line-height: 1.2; */
-  }
-  
-  .red {
-    color: red;
-  }
-  
-  
-  .generate,.messages {
-    font-weight: bold;
-    color: black;
-  }
-  
-  .generate-button {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-    font-size: 18px;
-    padding: 10px 20px;
-    /* border: none; */
-    border-radius: 4px;
-    cursor: pointer; 
-    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
-  } 
-  </code></pre>
+}
+
+.red {
+  color: red;
+}
+
+.generate,
+.messages {
+  font-weight: bold;
+  color: black;
+}
+
+.generate-button {
+  background-color: red;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px 20px;
+  /* border: none; */
+  border-radius: 4px;
+  cursor: pointer;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="tree">
@@ -232,8 +235,8 @@ export class DataNotFoundComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">    <div class="centered-content">      <p class="oops">Oops !</p>      <p class="messages">DATA NOT FOUND</p>      <p class="message">The data you have been searching for has not been generated</p>      <p class="generate">Click on the below button to generate the Data.</p>      <button mat-raised-button color="warn" class="generate-button">GENERATE DATA</button>    </div>   </div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'}];
+        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="centered-content">    <p class="oops">Oops !</p>    <p class="messages">DATA NOT FOUND</p>    <p class="message">      The data you have been searching for has not been generated    </p>    <p class="generate">Click on the below button to generate the Data.</p>    <button mat-raised-button color="warn" class="generate-button">      GENERATE DATA    </button>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsdataCardComponent', 'selector': 'app-carsdata-card'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PaginationComponent', 'selector': 'app-pagination'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'DataNotFoundComponent'};
 </script>

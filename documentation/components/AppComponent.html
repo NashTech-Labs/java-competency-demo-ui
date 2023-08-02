@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>shrink-analyzer-ui documentation</title>
+        <title>java-competency-demo-ui documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">shrink-analyzer-ui documentation</a>
+            <a href="../" class="navbar-brand">java-competency-demo-ui documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -179,7 +179,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/app.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/app.component.ts:18</a></div>
                             </td>
                         </tr>
 
@@ -246,8 +246,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="21"
-                            class="link-to-prism">src/app/app.component.ts:21</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="27"
+                            class="link-to-prism">src/app/app.component.ts:27</a></div>
                 </td>
             </tr>
 
@@ -319,7 +319,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="11" class="link-to-prism">src/app/app.component.ts:11</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/app.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -345,12 +345,12 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;shrink-analyzer-ui&#x27;</code>
+                        <i>Default value : </i><code>&quot;Java-compentency-ui&quot;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/app.component.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/app.component.ts:17</a></div>
                         </td>
                     </tr>
 
@@ -363,18 +363,24 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {Component} from &#x27;@angular/core&#x27;;
-import {Event, NavigationCancel, NavigationEnd, NavigationError, NavigationStart, Router} from &#x27;@angular/router&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+import {
+  Event,
+  NavigationCancel,
+  NavigationEnd,
+  NavigationError,
+  NavigationStart,
+  Router,
+} from &quot;@angular/router&quot;;
 
 @Component({
-  selector: &#x27;app-root&#x27;,
-  templateUrl: &#x27;./app.component.html&#x27;,
-  styleUrls: [&#x27;./app.component.scss&#x27;]
+  selector: &quot;app-root&quot;,
+  templateUrl: &quot;./app.component.html&quot;,
+  styleUrls: [&quot;./app.component.scss&quot;],
 })
 export class AppComponent {
-  title &#x3D; &#x27;shrink-analyzer-ui&#x27;;
+  title &#x3D; &quot;Java-compentency-ui&quot;;
   loading &#x3D; false;
-
 
   constructor(private router: Router) {
     this.router.events.subscribe((e: Event) &#x3D;&gt; {
@@ -382,7 +388,7 @@ export class AppComponent {
     });
   }
 
-// Shows and hides the loading spinner during RouterEvent changes
+  // Shows and hides the loading spinner during RouterEvent changes
   navigationInterceptor(event: Event): void {
     if (event instanceof NavigationStart) {
       this.loading &#x3D; true;
@@ -391,7 +397,7 @@ export class AppComponent {
       this.loading &#x3D; false;
     }
 
-// Set loading state to false in both of the below events to hide the spinner in case a request fails
+    // Set loading state to false in both of the below events to hide the spinner in case a request fails
     if (event instanceof NavigationCancel) {
       this.loading &#x3D; false;
     }
@@ -406,9 +412,9 @@ export class AppComponent {
     <div class="tab-pane fade " id="templateData">
         <pre class="line-numbers"><code class="language-html">&lt;router-outlet&gt;&lt;/router-outlet&gt;
 &lt;div *ngIf&#x3D;&quot;loading&quot; class&#x3D;&quot;loader-container&quot;&gt;
-    &lt;div class&#x3D;&quot;spinner-border&quot;&gt;
-        &lt;span class&#x3D;&quot;sr-only&quot;&gt;&lt;/span&gt;
-    &lt;/div&gt;
+  &lt;div class&#x3D;&quot;spinner-border&quot;&gt;
+    &lt;span class&#x3D;&quot;sr-only&quot;&gt;&lt;/span&gt;
+  &lt;/div&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -417,7 +423,7 @@ export class AppComponent {
                 <p class="comment">
                     <code>./app.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">@import &#x27;../assets/sass/core&#x27;;
+                <pre class="line-numbers"><code class="language-scss">@import &quot;../assets/sass/core&quot;;
 
 .loader-container {
   height: 100vh;
@@ -465,8 +471,8 @@ export class AppComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><router-outlet></router-outlet><div *ngIf="loading" class="loader-container">    <div class="spinner-border">        <span class="sr-only"></span>    </div></div></div>'
-    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'}];
+        var COMPONENT_TEMPLATE = '<div><router-outlet></router-outlet><div *ngIf="loading" class="loader-container">  <div class="spinner-border">    <span class="sr-only"></span>  </div></div></div>'
+    var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsdataCardComponent', 'selector': 'app-carsdata-card'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PaginationComponent', 'selector': 'app-pagination'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'AppComponent'};
 </script>

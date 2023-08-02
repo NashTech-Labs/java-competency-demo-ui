@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>shrink-analyzer-ui documentation</title>
+        <title>java-competency-demo-ui documentation</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
@@ -14,7 +14,7 @@
     <body>
 
         <div class="navbar navbar-default navbar-fixed-top d-block d-sm-none">
-            <a href="../" class="navbar-brand">shrink-analyzer-ui documentation</a>
+            <a href="../" class="navbar-brand">java-competency-demo-ui documentation</a>
             <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
         </div>
 
@@ -66,13 +66,13 @@
 <title>cluster_AppModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 534,-268 534,-70 8,-70"/>
 </g>
-<g id="clust4" class="cluster">
-<title>cluster_AppModule_imports</title>
-<polygon fill="none" stroke="black" points="146,-78 146,-130 526,-130 526,-78 146,-78"/>
-</g>
 <g id="clust6" class="cluster">
 <title>cluster_AppModule_bootstrap</title>
 <polygon fill="none" stroke="black" points="204,-208 204,-260 328,-260 328,-208 204,-208"/>
+</g>
+<g id="clust4" class="cluster">
+<title>cluster_AppModule_imports</title>
+<polygon fill="none" stroke="black" points="146,-78 146,-130 526,-130 526,-78 146,-78"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_AppModule_declarations</title>
@@ -231,23 +231,21 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {BrowserModule} from &#x27;@angular/platform-browser&#x27;;
-import {NgModule} from &#x27;@angular/core&#x27;;
-import {AppRoutingModule} from &#x27;./app-routing.module&#x27;;
-import {AppComponent} from &#x27;./app.component&#x27;;
-import {BrowserAnimationsModule} from &#x27;@angular/platform-browser/animations&#x27;;
-import {DatePipe} from &#x27;@angular/common&#x27;;
-import {CookieModule} from &#x27;ngx-cookie&#x27;;
-import {FormsModule, ReactiveFormsModule} from &#x27;@angular/forms&#x27;;
-import {HttpClientModule} from &quot;@angular/common/http&quot;;
-import {AgGridModule} from &quot;ag-grid-angular&quot;;
-import { MaterialModule } from &#x27;./shared/module/material.module&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { BrowserModule } from &quot;@angular/platform-browser&quot;;
+import { NgModule } from &quot;@angular/core&quot;;
+import { AppRoutingModule } from &quot;./app-routing.module&quot;;
+import { AppComponent } from &quot;./app.component&quot;;
+import { BrowserAnimationsModule } from &quot;@angular/platform-browser/animations&quot;;
+import { DatePipe } from &quot;@angular/common&quot;;
+import { CookieModule } from &quot;ngx-cookie&quot;;
+import { FormsModule, ReactiveFormsModule } from &quot;@angular/forms&quot;;
+import { HttpClientModule } from &quot;@angular/common/http&quot;;
+import { AgGridModule } from &quot;ag-grid-angular&quot;;
+import { MaterialModule } from &quot;./shared/module/material.module&quot;;
 import { HomeModule } from &quot;./home/home.module&quot;;
 
 @NgModule({
-  declarations: [
-    AppComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     HttpClientModule,
@@ -258,13 +256,12 @@ import { HomeModule } from &quot;./home/home.module&quot;;
     CookieModule.forRoot(), //NOSONAR
     AgGridModule,
     MaterialModule,
-    HomeModule
+    HomeModule,
   ],
   providers: [DatePipe],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 </code></pre>
     </div>
 </div>

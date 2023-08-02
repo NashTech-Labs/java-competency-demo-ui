@@ -27,7 +27,7 @@ FROM nginx-base AS final
 #RUN ["chmod", "+xxx", "docker-entrypoint.d/40-entrypoint.sh"]
 #RUN chmod -rwxrwxr-x docker-entrypoint.sh
 # Copy the outputs from the build.
-COPY --from=node-build /app/dist/shrink-analyzer-ui /usr/share/nginx/html
+COPY --from=node-build /app/dist/java-competency-demo-ui /usr/share/nginx/html
 COPY --from=node-build /var/log/app_engine /var/log/app_engine
 
 CMD ["/bin/sh",  "-c",  "envsubst < /usr/share/nginx/html/assets/envconfig.template.js > /usr/share/nginx/html/assets/envconfig.js && exec nginx -g 'daemon off;'"]
