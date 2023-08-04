@@ -1,28 +1,28 @@
 <header>
-    <mat-toolbar class="mat-elevation-z1 toolbar">
-        <div class="nashTechLogo">
-            <img [src]="nashTechLogoUrl" alt="NashTech logo"/>
-        </div>
-        <div class="centered-content">
-            <div class="navLinks">
-                {{Title}}
-            </div>
-        </div>
-        <div class="navLinks align-text-bottom descreption">
-            {{Description}}
-        </div>
-    </mat-toolbar>
+  <mat-toolbar class="mat-elevation-z1 toolbar">
+    <div class="nashTechLogo">
+      <img [src]="nashTechLogoUrl" alt="NashTech logo" />
+    </div>
+    <div class="centered-content">
+      <div class="navLinks">
+        {{ Title }}
+      </div>
+    </div>
+    <div class="navLinks align-text-bottom descreption">
+      {{ Description }}
+    </div>
+  </mat-toolbar>
 </header>
 <div class="my-5">
-    <a
-            *ngFor="let cloudItem of cloudOptions"
-            class="custom-link m-2 data-resouce"
-            mat-button-no-ripple
-            [routerLink]="cloudItem.path"
-            routerLinkActive="active"
-    >
-        {{ cloudItem.label }}
-    </a>
+  <a
+    *ngFor="let cloudItem of cloudOptions"
+    class="custom-link m-2 data-resouce"
+    mat-button-no-ripple
+    [routerLink]="cloudItem.path"
+    routerLinkActive="active"
+  >
+    {{ cloudItem.label }}
+  </a>
 </div>
 
 <!--<app-car-brands></app-car-brands>-->
