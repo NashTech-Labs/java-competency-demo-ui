@@ -1,8 +1,18 @@
-<div class="container my-5">
+<div class="container">
+  <div class="row">
+    <div class="col" [style.display]="showcarList ? 'none' : 'block'">
+      <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <mat-spinner color="warn"></mat-spinner>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
   <div class="row">
     <div class="col"></div>
     <div class="col-sm-7 carsPage">
-      <!-- Car Company Name -->
+      <!-- Car brands Name -->
       <h1>{{ brandsName }}</h1>
 
       <!-- Car models -->
@@ -18,7 +28,7 @@
       ></app-carsdata-card>
 
       <div class="text-center my-5">
-        <app-pagination></app-pagination>
+        <app-pagination *ngIf="showcarList"></app-pagination>
       </div>
     </div>
     <div class="col"></div>

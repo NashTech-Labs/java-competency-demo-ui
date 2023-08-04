@@ -10,6 +10,9 @@ import { constants } from "../constants/constants";
   styleUrls: ["./home.component.scss"],
 })
 export class HomeComponent {
+   Title:string='Nah-Tech wheels'
+  Description:string='Driving Innovation with Nash Tech.'
+
   /**
    * The URL for the NashTech logo, obtained from the constants file.
    */
@@ -19,7 +22,8 @@ export class HomeComponent {
    * An array of cloud options with their labels and paths.
    */
   cloudOptions = [
-    { label: "AZURE", path: "azure" },
+    { label: "Azure", path: "azure" },
     { label: "GCP", path: "gcp" },
   ];
+
 }
