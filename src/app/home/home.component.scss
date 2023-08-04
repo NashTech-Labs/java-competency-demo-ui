@@ -28,8 +28,32 @@
   width: 100%;
 }
 
+.descreption {
+  margin-top: 30px;
+  font-size: 18px;
+}
+
+@media screen and (max-width: 1084px) {
+  .descreption {
+    font-size: 14px;
+    /* Adjust the font size as per your requirements */
+  }
+}
+
+@media screen and (max-width: 581px) {
+  .descreption {
+    font-size: 10px;
+    /* Adjust the font size as per your requirements */
+  }
+}
+
 .custom-link {
   font-size: 18px;
   text-decoration: none;
   color: black;
+}
+
+.data-resouce {
+  font-size: 25px;
+  color: red;
 }

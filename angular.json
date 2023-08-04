@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "shrink-analyzer-ui": {
+    "java-competency-demo-ui": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/shrink-analyzer-ui",
+            "outputPath": "dist/java-competency-demo-ui",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": [
@@ -68,10 +68,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "shrink-analyzer-ui:build:production"
+              "browserTarget": "java-competency-demo-ui:build:production"
             },
             "development": {
-              "browserTarget": "shrink-analyzer-ui:build:development"
+              "browserTarget": "java-competency-demo-ui:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -79,7 +79,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "shrink-analyzer-ui:build"
+            "browserTarget": "java-competency-demo-ui:build"
           }
         },
         "test": {
