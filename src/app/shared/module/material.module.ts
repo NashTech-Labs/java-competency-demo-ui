@@ -13,7 +13,8 @@ import { MatListModule } from "@angular/material/list";
 import { MatLineModule } from "@angular/material/core";
 import { MatCardModule } from "@angular/material/card";
 import { FlexLayoutModule } from "@angular/flex-layout";
-
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
+import { MatChipsModule } from "@angular/material/chips";
 @NgModule({
   declarations: [],
   imports: [
@@ -31,6 +32,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
   ],
   exports: [
     CommonModule,
@@ -47,6 +50,8 @@ import { FlexLayoutModule } from "@angular/flex-layout";
     MatFormFieldModule,
     MatInputModule,
     FlexLayoutModule,
+    MatProgressSpinnerModule,
+    MatChipsModule,
   ],
 })
 export class MaterialModule {}

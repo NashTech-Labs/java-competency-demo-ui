@@ -1,5 +1,7 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
+import { CarBrandsComponent } from "./car-brands/car-brands.component";
+import { CarsListComponent } from "./cars-list/cars-list.component";
 import { HomeComponent } from "./home.component";
 
 const routes: Routes = [
@@ -7,26 +9,21 @@ const routes: Routes = [
     path: "",
     component: HomeComponent,
     children: [
+      { path: "azure", component: CarBrandsComponent },
+      { path: "gcp", component: CarBrandsComponent },
+      {
+        path: "gcp/carList/:brandName",
+        component: CarsListComponent,
+      },
+      {
+        path: "azure/carList/:brandName",
+        component: CarsListComponent,
+      },
       {
         path: "",
-        loadChildren: () =>
-          import("./car-brands/car-brands.component").then(
-            (m) => m.CarBrandsComponent,
-          ),
+        redirectTo: "/home/azure",
+        pathMatch: "full",
       },
-      //   {
-      //     path:'rfid-exit-read',
-      //     loadChildren: () => import('../modules/rfid-exit-road/rfid-exit-road.module').then((m) => m.RfidExitRoadModule),
-      //   },
-      //   {
-      //     path:'epc-read-list',
-      //     loadChildren: () => import('../modules/epc-read-list/epc-read-list.module').then((m) => m.EpcReadListModule),
-      //   },
-      //   {
-      //     path:'management-performance',
-      //     loadChildren: () => import('../modules/management-performance/management-performance.module').then((m) => m.ManagementPerformanceModule)
-      //
-      //   }
     ],
   },
 ];

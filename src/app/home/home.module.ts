@@ -9,8 +9,6 @@ import { MaterialModule } from "../shared/module/material.module";
 import { HomeRoutingModule } from "./home-routing.module";
 import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
 import { PaginationComponent } from "./pagination/pagination.component";
-import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -22,7 +20,7 @@ import {MatChipsModule} from "@angular/material/chips";
     CarsdataCardComponent,
     PaginationComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MaterialModule, MatProgressSpinnerModule, MatChipsModule],
+  imports: [CommonModule, HomeRoutingModule, MaterialModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}

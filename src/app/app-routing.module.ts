@@ -1,20 +1,20 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
-import { HomeComponent } from "./home/home.component";
+import { PageNotFoundComponent } from "./home/page-not-found/page-not-found.component";
 
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "/azure",
+    redirectTo: "home/azure",
     pathMatch: "full",
   },
   {
-    path: "azure",
-    component: HomeComponent,
+    path: "home",
+    loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
   },
   {
-    path: "",
-    loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
+    path: "**",
+    component: PageNotFoundComponent,
   },
 ];
 

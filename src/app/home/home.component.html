@@ -8,15 +8,29 @@
         {{ Title }}
       </div>
     </div>
-    <div class="navLinks align-text-bottom descreption">
+    <div class="navLinks align-text-bottom description">
       {{ Description }}
     </div>
   </mat-toolbar>
 </header>
 <div class="my-5">
+  <!--  <mat-chip-listbox aria-label="Fish selection">-->
+  <!--    <mat-chip-->
+  <!--      *ngFor="let cloudItem of cloudOptions"-->
+  <!--      [routerLink]="cloudItem.path"-->
+  <!--      routerLinkActive="active"-->
+  <!--      ><img-->
+  <!--        matChipAvatar-->
+  <!--        src="{{-->
+  <!--        cloudItem.icon-->
+  <!--        }}"-->
+  <!--        alt="Photo of a Shiba Inu"-->
+  <!--      />{{ cloudItem.label }}</mat-chip-->
+  <!--    >-->
+  <!--  </mat-chip-listbox>-->
   <a
     *ngFor="let cloudItem of cloudOptions"
-    class="custom-link m-2 data-resouce"
+    class="custom-link m-2 data-resource"
     mat-button-no-ripple
     [routerLink]="cloudItem.path"
     routerLinkActive="active"
