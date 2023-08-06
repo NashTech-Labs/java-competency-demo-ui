@@ -3,6 +3,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { CarBrandsComponent } from "./car-brands/car-brands.component";
 import { CarsListComponent } from "./cars-list/cars-list.component";
 import { HomeComponent } from "./home.component";
+import { DataNotFoundComponent } from "./data-not-found/data-not-found.component";
 
 const routes: Routes = [
   {
@@ -18,6 +19,10 @@ const routes: Routes = [
       {
         path: "azure/carList/:brandName",
         component: CarsListComponent,
+      },
+      {
+        path: "noData",
+        component: DataNotFoundComponent,
       },
       {
         path: "",
