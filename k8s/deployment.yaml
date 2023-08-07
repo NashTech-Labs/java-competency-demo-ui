@@ -16,7 +16,7 @@ spec:
         - name: java-competency-demo-ui
           image: ghcr.io/deepak1067/java-competency-demo-ui-img:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8080
       imagePullSecrets:
         - name: ghcr-secret
 ---
