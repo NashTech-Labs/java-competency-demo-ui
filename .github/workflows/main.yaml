@@ -51,5 +51,5 @@ jobs:
         run: |
           kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}"
 
-        with:
-          args: apply -f k8s/
+      - name: Apply Kubernetes manifests
+        run: kubectl apply -f k8s/
