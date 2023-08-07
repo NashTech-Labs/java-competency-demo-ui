@@ -1,5 +1,6 @@
 import { Component } from "@angular/core";
 import { constants } from "../constants/constants";
+import { AvailableCloudOptions } from "../shared/module/cloud-item-details.model";
 
 /**
  * Represents the HomeComponent, the landing page of the application.
@@ -21,8 +22,20 @@ export class HomeComponent {
   /**
    * An array of cloud options with their labels and paths.
    */
-  cloudOptions = [
-    { label: "Azure", path: "./azure", icon: constants.azureIcon },
-    { label: "GCP", path: "./gcp", icon: constants.gcpIcon },
+  cloudOptions: AvailableCloudOptions[] = [
+    {
+      label: "Azure",
+      path: "./azure",
+      icon: constants.azureIcon,
+      color: "accent",
+      isSelected: true,
+    },
+    {
+      label: "GCP",
+      path: "./gcp",
+      icon: constants.gcpIcon,
+      color: "accent",
+      isSelected: false,
+    },
   ];
 }
