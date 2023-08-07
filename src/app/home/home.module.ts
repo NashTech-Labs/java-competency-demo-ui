@@ -1,5 +1,5 @@
 import { NgModule } from "@angular/core";
-import { CommonModule } from "@angular/common";
+import { CommonModule, NgOptimizedImage } from "@angular/common";
 import { CarBrandsComponent } from "./car-brands/car-brands.component";
 import { CarsListComponent } from "./cars-list/cars-list.component";
 import { DataNotFoundComponent } from "./data-not-found/data-not-found.component";
@@ -20,7 +20,7 @@ import { PaginationComponent } from "./pagination/pagination.component";
     CarsdataCardComponent,
     PaginationComponent,
   ],
-  imports: [CommonModule, HomeRoutingModule, MaterialModule],
+  imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage],
   exports: [HomeComponent],
 })
 export class HomeModule {}

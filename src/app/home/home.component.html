@@ -14,28 +14,28 @@
   </mat-toolbar>
 </header>
 <div class="my-5">
-  <!--  <mat-chip-listbox aria-label="Fish selection">-->
-  <!--    <mat-chip-->
-  <!--      *ngFor="let cloudItem of cloudOptions"-->
-  <!--      [routerLink]="cloudItem.path"-->
-  <!--      routerLinkActive="active"-->
-  <!--      ><img-->
-  <!--        matChipAvatar-->
-  <!--        src="{{-->
-  <!--        cloudItem.icon-->
-  <!--        }}"-->
-  <!--        alt="Photo of a Shiba Inu"-->
-  <!--      />{{ cloudItem.label }}</mat-chip-->
-  <!--    >-->
-  <!--  </mat-chip-listbox>-->
-  <a
-    *ngFor="let cloudItem of cloudOptions"
-    class="custom-link m-2 data-resource"
-    mat-button-no-ripple
-    [routerLink]="cloudItem.path"
-    routerLinkActive="active"
-  >
-    {{ cloudItem.label }}
-  </a>
+    <mat-chip-listbox aria-label="Cloud Selection">
+      <mat-chip
+        *ngFor="let cloudItem of cloudOptions"
+        [routerLink]="cloudItem.path"
+        routerLinkActive="active"
+        ><img
+          matChipAvatar
+          src="{{
+          cloudItem.icon
+          }}"
+          alt="Icon of Cloud Item"
+        />{{ cloudItem.label }}</mat-chip
+      >
+    </mat-chip-listbox>
+<!--  <a-->
+<!--    *ngFor="let cloudItem of cloudOptions"-->
+<!--    class="custom-link m-2 data-resource"-->
+<!--    mat-button-no-ripple-->
+<!--    [routerLink]="cloudItem.path"-->
+<!--    routerLinkActive="active"-->
+<!--  >-->
+<!--    {{ cloudItem.label }}-->
+<!--  </a>-->
 </div>
 <router-outlet></router-outlet>
