@@ -17,6 +17,9 @@ COPY package*.json ./
 # Install app dependencies
 RUN npm install --cache /tmp/cache --no-cache --production
 
+# Install the Angular CLI globally
+RUN npm install -g @angular/cli
+
 # Copy the rest of the app source code
 COPY . .
 
