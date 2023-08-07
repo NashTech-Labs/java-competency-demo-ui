@@ -1,0 +1,55 @@
+name: Build and Deploy to GKE
+
+on:
+  push:
+    branches:
+      - feature/cicd-gke-deployment
+  workflow_dispatch:
+
+env:
+  IMAGE_NAME: ghcr.io/deepak1067/java-competency-demo-ui
+  PROJECT_ID: ${{ secrets.PROJECT_ID }}
+  GKE_CLUSTER: cluster-java-competency
+  GKE_ZONE: asia-southeast1-a
+
+jobs:
+  build-and-push-image:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Docker
+        run: |
+          curl -fsSL https://get.docker.com -o get-docker.sh
+          sudo sh get-docker.sh
+
+      - name: Log in to GitHub Artifact Registry
+        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
+
+
+      - name: Build and push Docker image
+        run: |
+          docker build -t "${{ env.IMAGE_NAME }}:${{ github.sha }}" .
+          docker push "${{ env.IMAGE_NAME }}:${{ github.sha }}"
+
+
+  deploy-to-gke:
+    needs: build-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: kubectl - Google Cloud GKE cluster.
+        uses: ameydev/gke-kubectl-action@master
+        env:
+          PROJECT_ID: ${{ secrets.PROJECT_ID }}
+          APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_AUTH }}
+          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
+          ZONE_NAME: asia-southeast1-a
+      - name: Create image pull secret
+        run: |
+          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}"
+
+        with:
+          args: apply -f k8s/
