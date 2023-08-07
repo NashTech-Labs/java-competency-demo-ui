@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from "@angular/core/testing";
 import { CarsListComponent } from "./cars-list.component";
-import { CarsListService } from "../card-list-service/cars-list.service";
+import { CarsListService } from "../services/cars-list.service";
 import { of } from "rxjs";
 import { PaginationComponent } from "../pagination/pagination.component";
 
@@ -23,7 +23,9 @@ describe("CarsListComponent", () => {
       providers: [{ provide: CarsListService, useValue: cardServiceSpy }],
     }).compileComponents();
 
-    cardService = TestBed.inject(CarsListService) as jasmine.SpyObj<CarsListService>;
+    cardService = TestBed.inject(
+      CarsListService,
+    ) as jasmine.SpyObj<CarsListService>;
   });
 
   /**

@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
-import { CarsListService } from "../card-list-service/cars-list.service";
+import { CarsListService } from "../services/cars-list.service";
+import { ActivatedRoute } from "@angular/router";
 
 /**
  * Represents the CarBrandsComponent that displays a list of car brands.
@@ -25,10 +26,13 @@ export class CarBrandsComponent implements OnInit {
    * Creates an instance of CarBrandsComponent.
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
-  constructor(private carsService: CarsListService) {
+  constructor(
+    private route: ActivatedRoute,
+    private carsService: CarsListService,
+  ) {
     // Subscribe to getBrandsName to update brandsName when it changes in the service.
     this.carsService.getBrandsName.subscribe(
-        (name) => (this.brandsName = name),
+      (name) => (this.brandsName = name),
     );
   }
 
