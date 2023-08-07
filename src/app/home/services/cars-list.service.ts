@@ -12,9 +12,9 @@ import { CarsDetails } from "../../shared/module/cars-details.model";
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
   private apiUrl =
-    "https://my.api.mockaroo.com/jitin_cars_data.json?key=e579fe10";
+    "\n" + "https://my.api.mockaroo.com/car_schema.json?key=5678b980";
   private apiUrlBrand =
-    "https://my.api.mockaroo.com/model_random.json?key=dcbc8750";
+    "\n" + "https://my.api.mockaroo.com/car_schema.json?key=5678b980";
 
   /**
    * Observable to get the brands' names.
