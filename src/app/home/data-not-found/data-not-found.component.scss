@@ -1,13 +1,12 @@
-.container {
+.data-not-found {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+   overflow: hidden;
 }
 
 .centered-content {
   text-align: center;
-  margin-bottom: 100px;
 }
 
 .oops {
