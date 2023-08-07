@@ -1,5 +1,7 @@
 import { Component } from "@angular/core";
 import { constants } from "../constants/constants";
+import {ThemePalette} from "@angular/material/core";
+
 
 /**
  * Represents the HomeComponent, the landing page of the application.
@@ -9,9 +11,14 @@ import { constants } from "../constants/constants";
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })
+
+
 export class HomeComponent {
   Title: string = "Java UI Demo";
   Description: string = "A Reactive Application";
+  color: ThemePalette
+
+
 
   /**
    * The URL for the NashTech logo, obtained from the constants file.
@@ -22,7 +29,10 @@ export class HomeComponent {
    * An array of cloud options with their labels and paths.
    */
   cloudOptions = [
-    { label: "Azure", path: "./azure", icon: constants.azureIcon },
-    { label: "GCP", path: "./gcp", icon: constants.gcpIcon },
+    { label: "Azure", path: "./azure", icon: constants.azureIcon, color: 'accent', isSelected:true },
+    { label: "GCP", path: "./gcp", icon: constants.gcpIcon, color: 'accent', isSelected:false  },
   ];
+
+
+
 }
