@@ -15,7 +15,7 @@ ARG CACHEBUST=1
 COPY package*.json ./
 
 # Install app dependencies
-RUN npm install --cache /tmp/cache --no-cache --production
+RUN npm install
 
 # Install the Angular CLI globally
 RUN npm install -g @angular/cli
