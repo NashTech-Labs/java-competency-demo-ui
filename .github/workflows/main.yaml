@@ -47,9 +47,13 @@ jobs:
           APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_AUTH }}
           CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
           ZONE_NAME: asia-southeast1-a
-      - name: Create image pull secret
-        run: |
-          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=default
+        with:
+          args: apply -f k8s/
 
-      - name: Apply Kubernetes manifests
-        run: kubectl apply -f k8s/
+
+#      - name: Create image pull secret
+#        run: |
+#          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=default
+#
+#      - name: Apply Kubernetes manifests
+#        run: kubectl apply -f k8s/
