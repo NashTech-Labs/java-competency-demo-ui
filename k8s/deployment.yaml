@@ -16,7 +16,7 @@ spec:
         - name: java-competency-demo-ui
           image: ghcr.io/deepak1067/java-competency-demo-ui
           ports:
-            - containerPort: 8080
+            - containerPort: 80
       imagePullSecrets:
         - name: ghcr-secret
 ---
@@ -30,5 +30,5 @@ spec:
   ports:
     - protocol: TCP
       port: 80
-      targetPort: 8080
+      targetPort: 80
   type: LoadBalancer
