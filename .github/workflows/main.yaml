@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/deepak1067/myrepo/java-competency-demo-ui:latest
+  IMAGE_NAME: ghcr.io/deepak1067/myrepo/demo-ui:latest
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
   GKE_CLUSTER: cluster-java-competency
   GKE_ZONE: asia-southeast1-a
