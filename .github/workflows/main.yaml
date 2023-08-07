@@ -50,7 +50,6 @@ jobs:
         with:
           args: apply -f k8s/
 
-
 #      - name: Create image pull secret
 #        run: |
 #          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=default
