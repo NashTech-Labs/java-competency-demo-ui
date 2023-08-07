@@ -9,8 +9,8 @@ on:
 env:
   IMAGE_NAME: ghcr.io/deepak1067/myrepo/demo-ui:latest
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
-  GKE_CLUSTER: cluster-java-competency
-  GKE_ZONE: asia-southeast1-a
+  GKE_CLUSTER: cluster-java-competency-new
+  GKE_ZONE: us-central1-a
 
 jobs:
   build-and-push-image:
@@ -45,8 +45,8 @@ jobs:
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_AUTH }}
-          CLUSTER_NAME: ${{ secrets.CLUSTER_NAME }}
-          ZONE_NAME: asia-southeast1-a
+          CLUSTER_NAME: cluster-java-competency-new
+          ZONE_NAME: us-central1-a
         with:
           args: apply -f k8s/
 
