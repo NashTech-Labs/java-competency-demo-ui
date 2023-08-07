@@ -34,8 +34,6 @@ jobs:
           docker build -t "${{ env.IMAGE_NAME }}" .
           docker push "${{ env.IMAGE_NAME }}"
           
-          
-
 
   deploy-to-gke:
     needs: build-and-push-image
