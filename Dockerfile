@@ -6,7 +6,7 @@
 FROM node:16 as build
 
 # Set the working directory inside the container
-#WORKDIR /app
+WORKDIR /app
 
 # Add a unique argument to invalidate cache when package.json changes
 ARG CACHEBUST=1
@@ -27,7 +27,7 @@ RUN npm run build --prod
 FROM nginx:latest
 
 # Copy the built Angular app from the previous stage to the Nginx web server directory
-COPY --from=build /dist/java-competency-demo-ui /usr/share/nginx/html
+COPY --from=build /app/dist/java-competency-demo-ui /usr/share/nginx/html
 
 # Expose port 80 to access the app
 EXPOSE 80
