@@ -8,6 +8,9 @@ FROM node:16 as build
 # Set the working directory inside the container
 WORKDIR /app
 
+# Add a unique argument to invalidate cache when package.json changes
+ARG CACHEBUST=1
+
 # Copy package.json and package-lock.json to the container
 COPY package*.json ./
 
