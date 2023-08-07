@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: java-competency-demo-ui
-          image: ghcr.io/deepak1067/java-competency-demo-ui-img:latest
+          image: ghcr.io/deepak1067/myrepo/java-competency-demo-ui:latest
           ports:
             - containerPort: 8080
       imagePullSecrets:
