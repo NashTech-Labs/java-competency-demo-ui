@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 env:
-  IMAGE_NAME: ghcr.io/deepak1067/myrepo/demo-ui:latest
+  IMAGE_NAME: ghcr.io/deepak1067/myrepo/demo-ui:${{ github.sha }}
   PROJECT_ID: ${{ secrets.PROJECT_ID }}
   GKE_CLUSTER: cluster-java-competency
   GKE_ZONE: asia-southeast1-a
@@ -31,8 +31,8 @@ jobs:
 
       - name: Build and push Docker image
         run: |
-          docker build -t "${{ env.IMAGE_NAME }}" .
-          docker push "${{ env.IMAGE_NAME }}"
+          docker build -t "${{ env.IMAGE_NAME }}:${{ github.sha }}" .
+          docker push "${{ env.IMAGE_NAME }}:${{ github.sha }}"
           
 
   deploy-to-gke:

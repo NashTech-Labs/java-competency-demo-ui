@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: demo-ui
-          image: ghcr.io/deepak1067/myrepo/demo-ui:latest
+          image: ghcr.io/deepak1067/myrepo/demo-ui:${{ github.sha }}
           ports:
             - containerPort: 8080
       imagePullSecrets:
