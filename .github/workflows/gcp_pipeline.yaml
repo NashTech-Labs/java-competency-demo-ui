@@ -3,7 +3,7 @@ name: Build and Deploy to GKE
 on:
   push:
     branches:
-      - feature/cicd-gke-deployment
+      - main
   workflow_dispatch:
 
 env:
