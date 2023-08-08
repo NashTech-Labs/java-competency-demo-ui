@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: demo-ui
+  name: java-competency-demo-ui
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: demo-ui
+      app: java-competency-demo-ui
   template:
     metadata:
       labels:
-        app: demo-ui
+        app: java-competency-demo-ui
     spec:
       containers:
-        - name: demo-ui
+        - name: java-competency-demo-ui
           image: ghcr.io/deepak1067/myrepo/demo-ui:latest
           ports:
             - containerPort: 8080
@@ -23,10 +23,10 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: demo-ui-service
+  name: java-competency-demo-ui-service
 spec:
   selector:
-    app: demo-ui
+    app: java-competency-demo-ui
   ports:
     - protocol: TCP
       port: 80

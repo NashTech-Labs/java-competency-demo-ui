@@ -26,7 +26,7 @@ jobs:
           sudo sh get-docker.sh
 
       - name: Log in to GitHub Artifact Registry
-        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u deepak1067 --password-stdin
+        run: echo "${{ secrets.TOKEN_GITHUB }}" | docker login ghcr.io -u ${{ secrets.USERNAME_GITHUB }} --password-stdin
 
 
       - name: Build and push Docker image
@@ -45,15 +45,8 @@ jobs:
         env:
           PROJECT_ID: ${{ secrets.PROJECT_ID }}
           APPLICATION_CREDENTIALS: ${{ secrets.GCLOUD_AUTH }}
-          CLUSTER_NAME: cluster-java-competency-new
-          ZONE_NAME: us-central1-a
+          CLUSTER_NAME: ${{ env.GKE_CLUSTER }}
+          ZONE_NAME: ${{ env.GKE_ZONE }}
         with:
           args: apply -f k8s/
 
-
-#      - name: Create image pull secret
-#        run: |
-#          kubectl create secret docker-registry ghcr-secret --docker-server=ghcr.io --docker-username=deepak1067 --docker-password="${{ secrets.TOKEN_GITHUB }}" --namespace=default
-#
-#      - name: Apply Kubernetes manifests
-#        run: kubectl apply -f k8s/
