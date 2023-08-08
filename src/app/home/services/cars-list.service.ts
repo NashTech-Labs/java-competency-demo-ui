@@ -14,7 +14,7 @@ export class CarsListService {
   private apiUrl =
     "\n" + "https://my.api.mockaroo.com/car_schema.json?key=5678b980";
   private apiUrlBrand =
-    "\n" + "https://my.api.mockaroo.com/car_schema.json?key=5678b980";
+    "\n" + "https://my.api.mockaroo.com/car_schema.json?key=22df7bc0";
 
   /**
    * Observable to get the brands' names.

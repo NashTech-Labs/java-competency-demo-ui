@@ -3,8 +3,7 @@ import { CarsListService } from "../services/cars-list.service";
 import { ActivatedRoute } from "@angular/router";
 
 /**
- * Represents the CarBrandsComponent that displays a list of car brands.
- * This component fetches brand names from the CarsListService and allows the user to select a brand.
+ * Component to display car brands and handle brand selection.
  */
 @Component({
   selector: "app-car-brands",
@@ -13,9 +12,9 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class CarBrandsComponent implements OnInit {
   /**
-   * Observable that holds the brand names fetched from the CarsListService.
+   * Holds the data received from the service.
    */
-  data$ = this.carsService.getBrandName();
+  data: any;
 
   /**
    * Holds the selected brand name.
@@ -23,27 +22,43 @@ export class CarBrandsComponent implements OnInit {
   brandsName: string = "";
 
   /**
-   * Creates an instance of CarBrandsComponent.
-   * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
+   * Flag to control the visibility of the brand loader (spinner).
+   */
+  brandLoader: boolean = false;
+
+  /**
+   * Constructor of the component.
+   *
+   * @param route The activated route to access route parameters.
+   * @param carsService The service to fetch car brand data.
    */
   constructor(
-    private route: ActivatedRoute,
-    private carsService: CarsListService,
-  ) {
-    // Subscribe to getBrandsName to update brandsName when it changes in the service.
-    this.carsService.getBrandsName.subscribe(
-      (name) => (this.brandsName = name),
-    );
+      private route: ActivatedRoute,
+      private carsService: CarsListService
+  ) {}
+
+  /**
+   * Lifecycle hook. Called when the component is initialized.
+   */
+  ngOnInit(): void {
+    this.getBrandName();
   }
 
   /**
-   * Lifecycle hook called after the component is initialized.
+   * Fetches the car brand name from the service.
    */
-  ngOnInit(): void {}
+  getBrandName() {
+    this.carsService.getBrandName().subscribe((name) => {
+      this.data = name;
+      this.brandLoader = true;
+      console.log(name);
+    });
+  }
 
   /**
-   * Sends the selected car brand name to the CarsListComponent.
-   * @param {string} name - The name of the selected car brand.
+   * Handles the click event when a brand name is selected.
+   *
+   * @param name The selected brand name.
    */
   onBrandClick(name: string) {
     this.carsService.setBrandsName(name);
