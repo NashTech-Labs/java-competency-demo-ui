@@ -1,12 +1,12 @@
-<div class="container">
-  <div class="row">
-    <div class="col" [style.display]="showcarList ? 'none' : 'block'">
-      <div class="d-flex align-items-center justify-content-center min-vh-100">
-        <mat-spinner color="warn"></mat-spinner>
-      </div>
-    </div>
-  </div>
-</div>
+<!--<div class="container">-->
+<!--  <div class="row">-->
+<!--    <div class="col" [style.display]="showcarList ? 'none' : 'block'">-->
+<!--      <div class="d-flex align-items-center justify-content-center min-vh-100">-->
+<!--        <mat-spinner color="warn"></mat-spinner>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
 
 <div class="container" id="cars-list">
   <div class="row">
@@ -15,9 +15,14 @@
       <!-- Car brands Name -->
       <h1>{{ brandsName }} Car Models</h1>
 
+        <div *ngFor="let car of cars | paginate:{
+       itemsPerPage: tableSize,
+        currentPage: page,
+         totalItems: count
+       }; let i=index">
+
       <!-- Car models -->
       <app-carsdata-card
-        *ngFor="let car of cars"
         [carCompanyName]="car.brand_name"
         [carModel]="car.model"
         [carPrice]="car.price"
@@ -27,9 +32,20 @@
         [carColor]="car.color"
       ></app-carsdata-card>
 
+        </div>
       <div class="text-center my-5">
-        <app-pagination *ngIf="showcarList"></app-pagination>
+
+
+        <pagination-controls
+                class="twik"
+                *ngIf="showcarList"
+                previousLabel="Prev"
+                nextLabel="Next"
+                (pageChange)="onTableDataChange($event)"
+        />
+
       </div>
+
     </div>
     <div class="col"></div>
   </div>
