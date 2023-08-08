@@ -9,7 +9,7 @@ import { MaterialModule } from "../shared/module/material.module";
 import { HomeRoutingModule } from "./home-routing.module";
 import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
 import { PaginationComponent } from "./pagination/pagination.component";
-import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
+import {MatChipsModule} from "@angular/material/chips";
 
 @NgModule({
   declarations: [
@@ -21,7 +21,7 @@ import {MatLegacyChipsModule} from "@angular/material/legacy-chips";
     CarsdataCardComponent,
     PaginationComponent,
   ],
-    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatLegacyChipsModule],
+    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatChipsModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}

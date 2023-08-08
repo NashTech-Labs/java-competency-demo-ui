@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
-import { ActivatedRoute } from "@angular/router";
 
 /**
  * Represents the CarBrandsComponent that displays a list of car brands.
@@ -27,7 +26,6 @@ export class CarBrandsComponent implements OnInit {
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
   constructor(
-    private route: ActivatedRoute,
     private carsService: CarsListService,
   ) {
     // Subscribe to getBrandsName to update brandsName when it changes in the service.
@@ -39,7 +37,9 @@ export class CarBrandsComponent implements OnInit {
   /**
    * Lifecycle hook called after the component is initialized.
    */
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // why Empty ?
+  }
 
   /**
    * Sends the selected car brand name to the CarsListComponent.
