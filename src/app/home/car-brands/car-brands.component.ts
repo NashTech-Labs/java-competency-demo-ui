@@ -24,6 +24,7 @@ export class CarBrandsComponent implements OnInit {
 
   /**
    * Creates an instance of CarBrandsComponent.
+   * @param route
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
   constructor(
