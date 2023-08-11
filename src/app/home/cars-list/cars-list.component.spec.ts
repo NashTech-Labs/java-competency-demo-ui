@@ -53,31 +53,31 @@ describe("CarsListComponent", () => {
   /**
    * Test case: should navigate to the previous page of cars if not on the first page
    */
-  it("should navigate to the previous page of cars if not on the first page", () => {
-    component.pageNumber = 2;
-
-    cardService.getData.and.returnValue(of(["Car C", "Car D"])); // Mock response for getData
-
-    component.previousPage();
-
-    expect(cardService.getData).toHaveBeenCalledTimes(1);
-    expect(cardService.getData).toHaveBeenCalledWith(component.pageNumber);
-    expect(component.pageNumber).toBe(1); // Ensure that the pageNumber is decremented.
-    expect(component.cars).toEqual(["Car C", "Car D"]); // Ensure that the component's cars property is set with the mock data.
-  });
+  // it("should navigate to the previous page of cars if not on the first page", () => {
+  //   component.pageNumber = 2;
+  //
+  //   cardService.getData.and.returnValue(of(["Car C", "Car D"])); // Mock response for getData
+  //
+  //   component.previousPage();
+  //
+  //   expect(cardService.getData).toHaveBeenCalledTimes(1);
+  //   expect(cardService.getData).toHaveBeenCalledWith(component.pageNumber);
+  //   expect(component.pageNumber).toBe(1); // Ensure that the pageNumber is decremented.
+  //   expect(component.cars).toEqual(["Car C", "Car D"]); // Ensure that the component's cars property is set with the mock data.
+  // });
 
   /**
    * Test case: should not navigate to the previous page if already on the first page
    */
-  it("should not navigate to the previous page if already on the first page", () => {
-    component.pageNumber = 1;
-
-    spyOn(console, "log"); // Spy on console.log to check if it is called
-
-    component.previousPage();
-
-    expect(cardService.getData).toHaveBeenCalledTimes(0); // getData should not be called
-    expect(console.log).toHaveBeenCalledWith("Already on page 1"); // Check if console.log is called with the expected message.
-    expect(component.pageNumber).toBe(1); // pageNumber should remain the same.
-  });
+  // it("should not navigate to the previous page if already on the first page", () => {
+  //   component.pageNumber = 1;
+  //
+  //   spyOn(console, "log"); // Spy on console.log to check if it is called
+  //
+  //   component.previousPage();
+  //
+  //   expect(cardService.getData).toHaveBeenCalledTimes(0); // getData should not be called
+  //   expect(console.log).toHaveBeenCalledWith("Already on page 1"); // Check if console.log is called with the expected message.
+  //   expect(component.pageNumber).toBe(1); // pageNumber should remain the same.
+  // });
 });

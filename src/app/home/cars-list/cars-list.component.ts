@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { CarsListService } from "../services/cars-list.service";
 
@@ -8,6 +8,7 @@ import { CarsListService } from "../services/cars-list.service";
   styleUrls: ["./cars-list.component.scss"],
 })
 export class CarsListComponent implements OnInit, OnDestroy {
+  @Input("brandName") brandName = "";
   /**
    * Determines if the car list should be shown.
    */
@@ -16,7 +17,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   /**
    * The car brand name selected in car-brands component.
    */
-  brandsName: string = "";
+  selectedCarBrand: string = "";
 
   /**
    * The current page number for paginated data.
@@ -38,27 +39,40 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * Creates an instance of CarsListComponent.
    * @param carsData - The CardService instance used to fetch car data.
    */
-  constructor(private carsData: CarsListService) {}
+  constructor(private carsDataService: CarsListService) {}
 
   /**
    * Lifecycle hook called after the component has been initialized.
    * It triggers the initial data fetch.
    */
   ngOnInit(): void {
-    this.carsData.getBrandsName.subscribe((msg) => (this.brandsName = msg));
-    this.getData();
+    this.carsDataService.getBrandsName.subscribe(
+      (msg) => (this.selectedCarBrand = msg),
+    );
+    if (this.selectedCarBrand.length == 0)
+      this.selectedCarBrand = this.brandName;
+    this.getCarModels(this.selectedCarBrand);
   }
 
   /**
    * Fetches data from the CardService based on the current page number.
    * The fetched data is stored in the 'cars' property.
    */
-  private getData() {
-    this.dataSubscription = this.carsData
-      .getData(this.pageNumber)
+  // private getData() {
+  //   this.dataSubscription = this.carsData
+  //     .getData(this.pageNumber)
+  //     .subscribe((data) => {
+  //       this.cars = data;
+  //       console.log(this.cars);
+  //       this.showcarList = true;
+  //     });
+  // }
+
+  private getCarModels(brandsName: string) {
+    this.dataSubscription = this.carsDataService
+      .getCarModels(brandsName)
       .subscribe((data) => {
         this.cars = data;
-        console.log(this.cars);
         this.showcarList = true;
       });
   }
@@ -69,7 +83,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   nextPage() {
     this.pageNumber++;
-    this.getData();
+    // this.getData();
   }
 
   /**
@@ -77,14 +91,14 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * Decrements the 'pageNumber' property and fetches the new data.
    * If already on the first page (pageNumber === 1), logs a message to the console.
    */
-  previousPage() {
-    if (this.pageNumber > 1) {
-      this.pageNumber--;
-      this.getData();
-    } else {
-      console.log("Already on page 1");
-    }
-  }
+  // previousPage() {
+  //   if (this.pageNumber > 1) {
+  //     this.pageNumber--;
+  //     this.getData();
+  //   } else {
+  //     console.log("Already on page 1");
+  //   }
+  // }
 
   /**
    * Lifecycle hook called when the component is about to be destroyed.

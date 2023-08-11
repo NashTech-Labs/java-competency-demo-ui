@@ -1,7 +1,7 @@
-import { Injectable } from "@angular/core";
+import { Injectable, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable } from "rxjs";
-import { CarsDetails } from "../../shared/module/cars-details.model";
+import { BehaviorSubject, Observable, tap } from "rxjs";
+import { CarBrand, CarDetails } from "../../shared/module/cars-details.model";
 
 /**
  * Service responsible for handling data related to the cars list.
@@ -11,10 +11,8 @@ import { CarsDetails } from "../../shared/module/cars-details.model";
 })
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
-  private apiUrl =
-    "\n" + "https://my.api.mockaroo.com/car_schema.json?key=5678b980";
-  private apiUrlBrand =
-    "\n" + "http://34.30.6.79:80/v1/data/brands";
+  private carModelsUrl = "http://34.30.6.79/v1/data/cars/";
+  private brandUrl = "http://34.30.6.79:80/v1/data/brands";
 
   /**
    * Observable to get the brands' names.
@@ -33,7 +31,7 @@ export class CarsListService {
    * @returns {Observable<any>} An Observable that emits the data fetched from the API.
    */
   getData(pageNumber: number): Observable<any> {
-    const url = `${this.apiUrl}&page_number=${pageNumber}`;
+    const url = `${this.carModelsUrl}&page_number=${pageNumber}`;
     return this.http.get(url);
   }
 
@@ -49,7 +47,11 @@ export class CarsListService {
    * Gets the brand names from the mock API.
    * @returns {Observable<CarsDetails[]>} An Observable that emits the brand names data.
    */
-  getBrandName(): Observable<CarsDetails[]> {
-    return this.http.get<CarsDetails[]>(this.apiUrlBrand);
+  getBrandName(): Observable<CarBrand[]> {
+    return this.http.get<CarBrand[]>(this.brandUrl);
+  }
+
+  getCarModels(carBrandName: string) {
+    return this.http.get<CarDetails[]>(this.carModelsUrl.concat(carBrandName));
   }
 }

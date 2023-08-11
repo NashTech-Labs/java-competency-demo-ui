@@ -31,6 +31,6 @@ export class PaginationComponent {
    * Calls the previousPage() method in the CarsListComponent to go back to the previous page.
    */
   decreaseCount() {
-    this.carsData.previousPage(); // Call the previousPage() method in the CarsListComponent.
+    // this.carsData.previousPage(); // Call the previousPage() method in the CarsListComponent.
   }
 }
