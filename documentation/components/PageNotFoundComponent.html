@@ -38,7 +38,7 @@
   <li class="breadcrumb-item">Components</li>
   <li class="breadcrumb-item"
   >
-  DataNotFoundComponent</li>
+  PageNotFoundComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -69,7 +69,7 @@
     <h3>File</h3>
 </p>
 <p class="comment">
-    <code>src/app/home/data-not-found/data-not-found.component.ts</code>
+    <code>src/app/home/page-not-found/page-not-found.component.ts</code>
 </p>
 
 
@@ -95,21 +95,21 @@
 
             <tr>
                 <td class="col-md-3">selector</td>
-                <td class="col-md-9"><code>app-data-not-found</code></td>
+                <td class="col-md-9"><code>app-page-not-found</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">styleUrls</td>
-                <td class="col-md-9"><code>./data-not-found.component.scss</code></td>
+                <td class="col-md-9"><code>./page-not-found.component.scss</code></td>
             </tr>
 
 
 
             <tr>
                 <td class="col-md-3">templateUrl</td>
-                <td class="col-md-9"><code>./data-not-found.component.html</code></td>
+                <td class="col-md-9"><code>./page-not-found.component.html</code></td>
             </tr>
 
 
@@ -123,40 +123,165 @@
     </table>
 </section>
 
+    <section data-compodoc="block-index">
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#goToDashboard" >goToDashboard</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
 
 
 
 
+        </tbody>
+    </table>
+</section>
+
+    <section data-compodoc="block-constructor">
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(router: Router)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="9" class="link-to-prism">src/app/home/page-not-found/page-not-found.component.ts:9</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                    <code>Router</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
+
+
+
+    <section data-compodoc="block-methods">
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="goToDashboard"></a>
+                    <span class="name">
+                        <span ><b>goToDashboard</b></span>
+                        <a href="#goToDashboard"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>goToDashboard()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="12"
+                            class="link-to-prism">src/app/home/page-not-found/page-not-found.component.ts:12</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &quot;@angular/core&quot;;
+import { Router } from &quot;@angular/router&quot;;
 
 @Component({
-  selector: &quot;app-data-not-found&quot;,
-  templateUrl: &quot;./data-not-found.component.html&quot;,
-  styleUrls: [&quot;./data-not-found.component.scss&quot;],
+  selector: &quot;app-page-not-found&quot;,
+  templateUrl: &quot;./page-not-found.component.html&quot;,
+  styleUrls: [&quot;./page-not-found.component.scss&quot;],
 })
-export class DataNotFoundComponent {}
+export class PageNotFoundComponent {
+  constructor(private router: Router) {}
+
+  goToDashboard() {
+    this.router.navigate([&quot;/home/azure&quot;]);
+  }
+}
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;container&quot; id&#x3D;&quot;page-not-found&quot;&gt;
   &lt;div class&#x3D;&quot;centered-content&quot;&gt;
-    &lt;p class&#x3D;&quot;oops&quot;&gt;Oops !&lt;/p&gt;
-    &lt;p class&#x3D;&quot;messages&quot;&gt;DATA NOT FOUND&lt;/p&gt;
-    &lt;p class&#x3D;&quot;message&quot;&gt;
-      The data you have been searching for has not been generated
-    &lt;/p&gt;
-    &lt;p class&#x3D;&quot;generate&quot;&gt;Click on the below button to generate the Data.&lt;/p&gt;
-    &lt;button mat-raised-button color&#x3D;&quot;warn&quot; class&#x3D;&quot;generate-button&quot;&gt;
-      GENERATE DATA
+    &lt;p class&#x3D;&quot;wrong&quot;&gt;404&lt;/p&gt;
+    &lt;p class&#x3D;&quot;messages&quot;&gt;Page Not Found&lt;/p&gt;
+    &lt;button
+      mat-raised-button
+      color&#x3D;&quot;warn&quot;
+      class&#x3D;&quot;go-to-dashboard&quot;
+      (click)&#x3D;&quot;goToDashboard()&quot;
+    &gt;
+      GO TO DASHBOARD
     &lt;/button&gt;
   &lt;/div&gt;
 &lt;/div&gt;
@@ -165,13 +290,14 @@ export class DataNotFoundComponent {}
 
     <div class="tab-pane fade " id="styleData">
                 <p class="comment">
-                    <code>./data-not-found.component.scss</code>
+                    <code>./page-not-found.component.scss</code>
                 </p>
                 <pre class="line-numbers"><code class="language-scss">.container {
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
+  overflow: hidden;
 }
 
 .centered-content {
@@ -179,16 +305,12 @@ export class DataNotFoundComponent {}
   margin-bottom: 100px;
 }
 
-.oops {
+.wrong {
   font-weight: bold;
   color: red;
   font-size: 50px;
   font-family: Arial, sans-serif;
   line-height: 1.2;
-}
-
-.red {
-  color: red;
 }
 
 .generate,
@@ -203,7 +325,6 @@ export class DataNotFoundComponent {}
   font-weight: bold;
   font-size: 18px;
   padding: 10px 20px;
-  /* border: none; */
   border-radius: 4px;
   cursor: pointer;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
@@ -236,10 +357,10 @@ export class DataNotFoundComponent {}
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="container">  <div class="centered-content">    <p class="oops">Oops !</p>    <p class="messages">DATA NOT FOUND</p>    <p class="message">      The data you have been searching for has not been generated    </p>    <p class="generate">Click on the below button to generate the Data.</p>    <button mat-raised-button color="warn" class="generate-button">      GENERATE DATA    </button>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="container" id="page-not-found">  <div class="centered-content">    <p class="wrong">404</p>    <p class="messages">Page Not Found</p>    <button      mat-raised-button      color="warn"      class="go-to-dashboard"      (click)="goToDashboard()"    >      GO TO DASHBOARD    </button>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsdataCardComponent', 'selector': 'app-carsdata-card'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PaginationComponent', 'selector': 'app-pagination'}];
     var DIRECTIVES = [];
-    var ACTUAL_COMPONENT = {'name': 'DataNotFoundComponent'};
+    var ACTUAL_COMPONENT = {'name': 'PageNotFoundComponent'};
 </script>
 <script src="../js/tree.js"></script>
 
@@ -285,7 +406,7 @@ export class DataNotFoundComponent {}
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
-            var COMPODOC_CURRENT_PAGE_URL = 'DataNotFoundComponent.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'PageNotFoundComponent.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
