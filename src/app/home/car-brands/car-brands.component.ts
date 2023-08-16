@@ -27,15 +27,7 @@ export class CarBrandsComponent implements OnInit {
    * @param route
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
-  constructor(
-    private route: ActivatedRoute,
-    private carsService: CarsListService,
-  ) {
-    // Subscribe to getBrandsName to update brandsName when it changes in the service.
-    this.carsService.getBrandsName.subscribe(
-      (name) => (this.brandsName = name),
-    );
-  }
+  constructor(private carsService: CarsListService) {}
 
   /**
    * Lifecycle hook called after the component is initialized.

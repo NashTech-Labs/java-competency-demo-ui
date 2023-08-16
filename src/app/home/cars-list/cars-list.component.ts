@@ -22,7 +22,13 @@ export class CarsListComponent implements OnInit, OnDestroy {
   /**
    * The current page number for paginated data.
    */
-  pageNumber: number = 1;
+  page: number = 1;
+
+  /** The total count of items in the list. */
+  count: number = 0;
+
+  /** The number of items to display per page. */
+  tableSize: number = 10;
 
   /**
    * An array of cars fetched from the CardService based on the current page number.
@@ -54,20 +60,6 @@ export class CarsListComponent implements OnInit, OnDestroy {
     this.getCarModels(this.selectedCarBrand);
   }
 
-  /**
-   * Fetches data from the CardService based on the current page number.
-   * The fetched data is stored in the 'cars' property.
-   */
-  // private getData() {
-  //   this.dataSubscription = this.carsData
-  //     .getData(this.pageNumber)
-  //     .subscribe((data) => {
-  //       this.cars = data;
-  //       console.log(this.cars);
-  //       this.showcarList = true;
-  //     });
-  // }
-
   private getCarModels(brandsName: string) {
     this.dataSubscription = this.carsDataService
       .getCarModels(brandsName)
@@ -78,27 +70,14 @@ export class CarsListComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Navigates to the next page of cars.
-   * Increments the 'pageNumber' property and fetches the new data.
+   * Event handler for page changes in pagination.
+   *
+   * @param event - The page change event.
    */
-  nextPage() {
-    this.pageNumber++;
-    // this.getData();
+  onTableDataChange(event: any) {
+    this.page = event;
+    this.getCarModels(this.selectedCarBrand);
   }
-
-  /**
-   * Navigates to the previous page of cars if not on the first page.
-   * Decrements the 'pageNumber' property and fetches the new data.
-   * If already on the first page (pageNumber === 1), logs a message to the console.
-   */
-  // previousPage() {
-  //   if (this.pageNumber > 1) {
-  //     this.pageNumber--;
-  //     this.getData();
-  //   } else {
-  //     console.log("Already on page 1");
-  //   }
-  // }
 
   /**
    * Lifecycle hook called when the component is about to be destroyed.

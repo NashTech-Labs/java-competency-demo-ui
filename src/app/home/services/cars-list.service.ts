@@ -1,6 +1,6 @@
 import { Injectable, Input } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { BehaviorSubject, Observable, tap } from "rxjs";
+import { BehaviorSubject, Observable } from "rxjs";
 import { CarBrand, CarDetails } from "../../shared/module/cars-details.model";
 
 /**
@@ -51,7 +51,7 @@ export class CarsListService {
     return this.http.get<CarBrand[]>(this.brandUrl);
   }
 
-  getCarModels(carBrandName: string) {
+  getCarModels(carBrandName: string): Observable<CarDetails[]> {
     return this.http.get<CarDetails[]>(this.carModelsUrl.concat(carBrandName));
   }
 }
