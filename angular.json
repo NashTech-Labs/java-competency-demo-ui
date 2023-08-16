@@ -85,6 +85,7 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
+            "codeCoverage": true,
             "polyfills": [
               "zone.js",
               "zone.js/testing"
@@ -99,7 +100,8 @@
               "@angular/material/prebuilt-themes/indigo-pink.css",
               "src/styles.scss"
             ],
-            "scripts": ["src/assets/envconfig.js"]
+            "scripts": ["src/assets/envconfig.js"],
+            "karmaConfig": "karma.conf.js"
           }
         }
       }

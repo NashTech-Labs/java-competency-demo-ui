@@ -3,6 +3,7 @@ import { CarsListComponent } from "./cars-list.component";
 import { CarsListService } from "../services/cars-list.service";
 import { of } from "rxjs";
 import { PaginationComponent } from "../pagination/pagination.component";
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 /**
  * Test suite for CarsListComponent.
@@ -21,6 +22,7 @@ describe("CarsListComponent", () => {
     await TestBed.configureTestingModule({
       declarations: [CarsListComponent, PaginationComponent],
       providers: [{ provide: CarsListService, useValue: cardServiceSpy }],
+      schemas: [NO_ERRORS_SCHEMA]
     }).compileComponents();
 
     cardService = TestBed.inject(

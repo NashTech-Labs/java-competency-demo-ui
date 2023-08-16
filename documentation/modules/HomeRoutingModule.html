@@ -80,33 +80,35 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { RouterModule, Routes } from &quot;@angular/router&quot;;
+import { CarBrandsComponent } from &quot;./car-brands/car-brands.component&quot;;
+import { CarsListComponent } from &quot;./cars-list/cars-list.component&quot;;
 import { HomeComponent } from &quot;./home.component&quot;;
+import { DataNotFoundComponent } from &quot;./data-not-found/data-not-found.component&quot;;
 
 const routes: Routes &#x3D; [
   {
     path: &quot;&quot;,
     component: HomeComponent,
     children: [
+      { path: &quot;azure&quot;, component: CarBrandsComponent },
+      { path: &quot;gcp&quot;, component: CarBrandsComponent },
+      {
+        path: &quot;gcp/carList/:brandName&quot;,
+        component: CarsListComponent,
+      },
+      {
+        path: &quot;azure/carList/:brandName&quot;,
+        component: CarsListComponent,
+      },
+      {
+        path: &quot;noData&quot;,
+        component: DataNotFoundComponent,
+      },
       {
         path: &quot;&quot;,
-        loadChildren: () &#x3D;&gt;
-          &quot;import(\&quot;./car-brands/car-brands.component\&quot;).then(\
-            (m) &#x3D;&gt; m.CarBrandsComponent,\
-          )&quot;,
+        redirectTo: &quot;/home/azure&quot;,
+        pathMatch: &quot;full&quot;,
       },
-      //   {
-      //     path:&#x27;rfid-exit-read&#x27;,
-      //     loadChildren: () &#x3D;&gt; import(&#x27;../modules/rfid-exit-road/rfid-exit-road.module&#x27;).then((m) &#x3D;&gt; m.RfidExitRoadModule),
-      //   },
-      //   {
-      //     path:&#x27;epc-read-list&#x27;,
-      //     loadChildren: () &#x3D;&gt; import(&#x27;../modules/epc-read-list/epc-read-list.module&#x27;).then((m) &#x3D;&gt; m.EpcReadListModule),
-      //   },
-      //   {
-      //     path:&#x27;management-performance&#x27;,
-      //     loadChildren: () &#x3D;&gt; import(&#x27;../modules/management-performance/management-performance.module&#x27;).then((m) &#x3D;&gt; m.ManagementPerformanceModule)
-      //
-      //   }
     ],
   },
 ];

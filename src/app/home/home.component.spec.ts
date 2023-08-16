@@ -1,27 +1,29 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { MatToolbarModule } from "@angular/material/toolbar";
-import { HomeComponent } from "./home.component";
-import { CarsListComponent } from "./cars-list/cars-list.component";
-import { HttpClientModule } from "@angular/common/http";
-import { PaginationComponent } from "./pagination/pagination.component";
-import { RouterTestingModule } from "@angular/router/testing";
+import {ComponentFixture, TestBed} from '@angular/core/testing';
+import {MatToolbarModule} from '@angular/material/toolbar'; // Import the MatToolbarModule
 
-describe("HomeComponent", () => {
-  let component: HomeComponent;
-  let fixture: ComponentFixture<HomeComponent>;
+import {HomeComponent} from './home.component';
+import {CarsListComponent} from "./cars-list/cars-list.component";
+import {HttpClientModule} from '@angular/common/http';
+import {PaginationComponent} from "./pagination/pagination.component";
+import {RouterTestingModule} from '@angular/router/testing';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HomeComponent, CarsListComponent, PaginationComponent],
+describe('HomeComponent', () => {
+    let component: HomeComponent;
+    let fixture: ComponentFixture<HomeComponent>;
 
-      imports: [RouterTestingModule, HttpClientModule, MatToolbarModule], // Add the MatToolbarModule to the imports array
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [HomeComponent, CarsListComponent, PaginationComponent],
+            imports: [RouterTestingModule, HttpClientModule, MatToolbarModule],
+            schemas: [NO_ERRORS_SCHEMA]
+        });
+        fixture = TestBed.createComponent(HomeComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
     });
-    fixture = TestBed.createComponent(HomeComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
 
-  it("should create", () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

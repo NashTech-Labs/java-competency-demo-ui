@@ -12,7 +12,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   /**
    * Determines if the car list should be shown.
    */
-  showcarList: Boolean = false;
+  showcarList: boolean = false;
 
   /**
    * The car brand name selected in car-brands component.

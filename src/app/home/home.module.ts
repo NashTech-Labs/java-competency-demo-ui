@@ -8,7 +8,9 @@ import { PageNotFoundComponent } from "./page-not-found/page-not-found.component
 import { MaterialModule } from "../shared/module/material.module";
 import { HomeRoutingModule } from "./home-routing.module";
 import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
-import { NgxPaginationModule } from "ngx-pagination";
+import { PaginationComponent } from "./pagination/pagination.component";
+import {MatChipsModule} from "@angular/material/chips";
+
 @NgModule({
   declarations: [
     CarBrandsComponent,
@@ -17,14 +19,9 @@ import { NgxPaginationModule } from "ngx-pagination";
     PageNotFoundComponent,
     HomeComponent,
     CarsdataCardComponent,
+    PaginationComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MaterialModule,
-    NgOptimizedImage,
-    NgxPaginationModule,
-  ],
+    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatChipsModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}
