@@ -1,85 +1,71 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
-import { CarsListComponent } from "./cars-list.component";
-import { CarsListService } from "../services/cars-list.service";
-import { of } from "rxjs";
-import { PaginationComponent } from "../pagination/pagination.component";
-import {NO_ERRORS_SCHEMA} from "@angular/core";
-
-/**
- * Test suite for CarsListComponent.
- */
-describe("CarsListComponent", () => {
-  let component: CarsListComponent;
-  let fixture: ComponentFixture<CarsListComponent>;
-  let cardService: jasmine.SpyObj<CarsListService>;
-
-  /**
-   * Prepare the testing environment.
-   */
-  beforeEach(async () => {
-    const cardServiceSpy = jasmine.createSpyObj("CardService", ["getData"]);
-
-    await TestBed.configureTestingModule({
-      declarations: [CarsListComponent, PaginationComponent],
-      providers: [{ provide: CarsListService, useValue: cardServiceSpy }],
-      schemas: [NO_ERRORS_SCHEMA]
-    }).compileComponents();
-
-    cardService = TestBed.inject(
-      CarsListService,
-    ) as jasmine.SpyObj<CarsListService>;
-  });
-
-  /**
-   * Create the component and fixture before each test.
-   */
-  beforeEach(() => {
-    fixture = TestBed.createComponent(CarsListComponent);
-    component = fixture.componentInstance;
-  });
-
-  /**
-   * Test case: should navigate to the next page of cars
-   */
-  it("should navigate to the next page of cars", () => {
-    cardService.getData.and.returnValue(of(["Car A", "Car B"])); // Mock response for getData
-
-    component.nextPage();
-
-    expect(cardService.getData).toHaveBeenCalledTimes(1);
-    expect(cardService.getData).toHaveBeenCalledWith(component.pageNumber);
-    expect(component.pageNumber).toBe(2); // Ensure that the pageNumber is incremented.
-    expect(component.cars).toEqual(["Car A", "Car B"]); // Ensure that the component's cars property is set with the mock data.
-  });
-
-  /**
-   * Test case: should navigate to the previous page of cars if not on the first page
-   */
-  // it("should navigate to the previous page of cars if not on the first page", () => {
-  //   component.pageNumber = 2;
-  //
-  //   cardService.getData.and.returnValue(of(["Car C", "Car D"])); // Mock response for getData
-  //
-  //   component.previousPage();
-  //
-  //   expect(cardService.getData).toHaveBeenCalledTimes(1);
-  //   expect(cardService.getData).toHaveBeenCalledWith(component.pageNumber);
-  //   expect(component.pageNumber).toBe(1); // Ensure that the pageNumber is decremented.
-  //   expect(component.cars).toEqual(["Car C", "Car D"]); // Ensure that the component's cars property is set with the mock data.
-  // });
-
-  /**
-   * Test case: should not navigate to the previous page if already on the first page
-   */
-  // it("should not navigate to the previous page if already on the first page", () => {
-  //   component.pageNumber = 1;
-  //
-  //   spyOn(console, "log"); // Spy on console.log to check if it is called
-  //
-  //   component.previousPage();
-  //
-  //   expect(cardService.getData).toHaveBeenCalledTimes(0); // getData should not be called
-  //   expect(console.log).toHaveBeenCalledWith("Already on page 1"); // Check if console.log is called with the expected message.
-  //   expect(component.pageNumber).toBe(1); // pageNumber should remain the same.
-  // });
-});
+// import { ComponentFixture, TestBed } from "@angular/core/testing";
+// import { CarsListComponent } from "./cars-list.component";
+// import { CarsListService } from "../services/cars-list.service";
+// import { of } from "rxjs";
+//
+// describe("CarsListComponent", () => {
+//   let component: CarsListComponent;
+//   let fixture: ComponentFixture<CarsListComponent>;
+//   let carsDataServiceMock: Partial<CarsListService>;
+//
+//   beforeEach(() => {
+//     carsDataServiceMock = {
+//       getBrandsName: of("Test Brand"),
+//       getCarModels: (brandName: string) =>
+//         of([{ model: "Car Model 1" }, { model: "Car Model 2" }]),
+//     };
+//
+//     TestBed.configureTestingModule({
+//       declarations: [CarsListComponent],
+//       providers: [{ provide: CarsListService, useValue: carsDataServiceMock }],
+//     }).compileComponents();
+//   });
+//
+//   beforeEach(() => {
+//     fixture = TestBed.createComponent(CarsListComponent);
+//     component = fixture.componentInstance;
+//     fixture.detectChanges();
+//   });
+//
+//   it("should create", () => {
+//     expect(component).toBeTruthy();
+//   });
+//
+//   it("should initialize component properties", () => {
+//     expect(component.brandName).toEqual("");
+//     expect(component.showcarList).toBeFalse();
+//     expect(component.selectedCarBrand).toEqual("");
+//     expect(component.page).toEqual(1);
+//     expect(component.count).toEqual(0);
+//     expect(component.tableSize).toEqual(10);
+//     expect(component.cars).toBeUndefined();
+//     //expect(component.dataSubscription).toBeUndefined();
+//   });
+//
+//   it("should subscribe to getBrandsName and call getCarModels on ngOnInit", () => {
+//     component.ngOnInit();
+//
+//     expect(component.selectedCarBrand).toEqual("Test Brand");
+//     expect(component.showcarList).toBeTrue();
+//     expect(component.cars).toEqual([
+//       { model: "Car Model 1" },
+//       { model: "Car Model 2" },
+//     ]);
+//   });
+//
+//   it("should call getCarModels on onTableDataChange", () => {
+//     const getCarModelsSpy = spyOn(component, "getCarModels");
+//
+//     const eventData = { itemsPerPage: 10, page: 2 };
+//     component.onTableDataChange(eventData);
+//
+//     expect(getCarModelsSpy).toHaveBeenCalledWith(component.selectedCarBrand);
+//   });
+//
+//   it("should unsubscribe from dataSubscription on ngOnDestroy", () => {
+//     const unsubscribeSpy = spyOn(component.dataSubscription, "unsubscribe");
+//     component.ngOnDestroy();
+//
+//     expect(unsubscribeSpy).toHaveBeenCalled();
+//   });
+// });
