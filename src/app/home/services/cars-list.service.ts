@@ -11,7 +11,7 @@ import { CarDetails } from "../../shared/module/cars-details.model";
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
   private carModelsUrl = "http://34.30.6.79/v1/data/cars/";
-  private brandUrl = "http://52.149.247.168/v1/data/brands-sse";
+  private brandUrl = "http://52.149.247.168/v1/data/stream-sse";
 
   /**
    * Observable to get the brands' names.
@@ -60,6 +60,55 @@ export class CarsListService {
   getEventStream(): Observable<any> {
     return this.http.get(`${this.brandUrl}`, {
       responseType: "text",
+    });
+  }
+
+  // getEventSource(url: string): EventSource {
+  //   //const options = { withCredentials: true };
+  //   return new EventSource(url);
+  // }
+
+  listenToEventSource(eventSource: EventSource): Observable<MessageEvent> {
+    return new Observable<MessageEvent>((observer) => {
+      eventSource.onopen = (event) => {
+        console.log("Connection opened:", event);
+      };
+      eventSource.onmessage = (event) => {
+        observer.next(event);
+      };
+
+      eventSource.onerror = (error) => {
+        console.log("Error occured", error);
+        observer.error(error);
+      };
+
+      // eventSource.close = () => {
+      //   observer.complete();
+      // };
+    });
+  }
+
+  getEventSource(): EventSource {
+    return new EventSource("http://52.149.247.168/v1/data/stream-sse");
+  }
+
+  getBrandEvents(): Observable<any> {
+    const eventSource = this.getEventSource();
+
+    return new Observable((observer) => {
+      eventSource.onmessage = (event) => {
+        const eventData = JSON.parse(event.data);
+        observer.next(eventData);
+      };
+
+      eventSource.onerror = (error) => {
+        observer.error(error);
+      };
+
+      // Make sure to close the connection when unsubscribed
+      return () => {
+        eventSource.close();
+      };
     });
   }
 }

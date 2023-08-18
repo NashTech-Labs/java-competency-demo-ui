@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
+import { Subscription } from "rxjs";
 
 /**
  * Represents the CarBrandsComponent that displays a list of car brands.
@@ -12,7 +13,12 @@ import { CarBrand } from "../../shared/module/cars-details.model";
   styleUrls: ["./car-brands.component.scss"],
 })
 export class CarBrandsComponent implements OnInit, OnDestroy {
+  //brandEvents: any[] = [];
+  private eventSubscription!: Subscription;
   events: string[] = [];
+  //eventSource!: EventSource;
+  //eventSubscription!: Subscription;
+  //eventList: any[] = [];
   /**
    * Observable that holds the brand names fetched from the CarsListService.
    */
@@ -35,37 +41,46 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
    * Lifecycle hook called after the component is initialized.
    */
   ngOnInit(): void {
-    // this.carsService.getEventStream().subscribe({
-    //   next: (chunk: string) => {
-    //     console.log("chunk ", chunk);
-    //     const lines = chunk.split("\n");
-    //     console.log("lines ", lines);
-    //     let eventData = "";
-    //     for (const line of lines) {
-    //       if (line.startsWith("data:")) {
-    //         const dataLine = line.substring(5).trim();
-    //         if (dataLine) {
-    //           eventData = dataLine;
-    //           this.events.push(eventData);
-    //         }
-    //       }
-    //     }
-    //     console.log("this.events " + JSON.stringify(this.events));
-    //     const parsedObjects = this.events.map((jsonString) =>
-    //       JSON.parse(jsonString),
-    //     );
-    //
-    //     // Map the parsed objects to the CarBrand interface
-    //     this.carBrands = parsedObjects.map((parsedObject: any) => {
-    //       return {
-    //         brand: parsedObject.brand,
-    //       };
-    //     });
-    //   },
-    //   error: (error) => {
-    //     console.error("Error streaming events:", error);
-    //   },
-    // });
+    //const url = "http://52.149.247.168/v1/data/stream-sse";
+    //const options = { withCredentials: true };
+    const eventSource = new EventSource(
+      "http://52.149.247.168/v1/data/stream-sse",
+    );
+
+    eventSource.onopen = function (event) {
+      console.log("Connection opened");
+    };
+
+    eventSource.onmessage = function (event) {
+      console.log("Message received:", event.data);
+    };
+
+    eventSource.onerror = function (event) {
+      console.error("Error occurred:", event);
+      console.log("ReadyState:", eventSource.readyState);
+      console.log("Status:", event.target);
+    };
+
+    eventSource.close = () => {
+      console.log("Status: closed");
+    };
+
+    // For continous events
+    // this.eventSubscription = this.carsService
+    //   .getBrandEvents()
+    //   .subscribe((event: MessageEvent) => {
+    //     console.log("control is here");
+    //     const eventData = JSON.parse(event.data);
+    //     this.eventList.push(eventData);
+    //   });
+
+    // this.eventSubscription = this.carsService
+    //   .listenToEventSource(this.eventSource)
+    //   .subscribe((event: MessageEvent) => {
+    //     console.log("control is here");
+    //     const eventData = JSON.parse(event.data);
+    //     this.eventList.push(eventData);
+    //   });
   }
 
   /**
@@ -76,5 +91,12 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
     this.carsService.setBrandsName(name);
   }
 
-  ngOnDestroy() {}
+  ngOnDestroy() {
+    if (this.eventSubscription) {
+      this.eventSubscription.unsubscribe();
+    }
+    // if (this.eventSource) {
+    //   this.eventSource.close();
+    // }
+  }
 }
