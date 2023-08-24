@@ -7,13 +7,16 @@ import { AgGridModule } from "ag-grid-angular";
 import { MaterialModule } from "../../shared/module/material.module";
 
 @NgModule({
-  declarations: [TabBarComponent],
-  imports: [
-    CommonModule,
-    CloudOptionsRoutingModule,
-    MaterialModule,
-    SharedModule,
-    AgGridModule,
-  ],
+    declarations: [TabBarComponent],
+    imports: [
+        CommonModule,
+        CloudOptionsRoutingModule,
+        MaterialModule,
+        SharedModule,
+        AgGridModule,
+    ],
+    exports: [
+        TabBarComponent
+    ]
 })
 export class CloudOptionsModule {}
