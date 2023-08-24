@@ -1,17 +1,19 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-
-import { CloudOptionsRoutingModule } from './cloud-options-routing.module';
-import { TabBarComponent } from './tab-bar/tab-bar.component';
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { CloudOptionsRoutingModule } from "./cloud-options-routing.module";
+import { TabBarComponent } from "./tab-bar/tab-bar.component";
+import { SharedModule } from "src/app/shared/shared.module";
+import { AgGridModule } from "ag-grid-angular";
+import { MaterialModule } from "../../shared/module/material.module";
 
 @NgModule({
-  declarations: [
-    TabBarComponent
-  ],
+  declarations: [TabBarComponent],
   imports: [
     CommonModule,
-    CloudOptionsRoutingModule
-  ]
+    CloudOptionsRoutingModule,
+    MaterialModule,
+    SharedModule,
+    AgGridModule,
+  ],
 })
-export class CloudOptionsModule { }
+export class CloudOptionsModule {}
