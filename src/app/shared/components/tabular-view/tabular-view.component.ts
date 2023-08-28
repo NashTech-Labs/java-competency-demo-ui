@@ -62,9 +62,16 @@ export class TabularViewComponent {
         .map((header) => header.colId as string);
   }
 
+  // Add this property for pagination
+  pagination: boolean = true;
+
+  // Add this property for setting the number of rows per page
+  paginationPageSize: number = 10;
+
+
   onColumnSelectionChange(event: any, matSelect: MatSelect) {
     const newSelectedColumns = event.value;
-
+     console.log(event.value);
     if (newSelectedColumns.length >= 2) {
       this.columnIds = newSelectedColumns;
       const columnIds = this.tableHeaders

@@ -17,28 +17,8 @@ export class SidenavComponent {
     {
       path: '/dashboard',
       icon: 'SV',
-      label: 'Shrink Visibility'
-    },
-    {
-      path: '/dashboard/bulk-shrink-events',
-      icon: 'BS',
-      label: 'Bulk Shrink',
-    },
-    {
-      path: '/dashboard/rfid-exit-read',
-      icon: 'RR',
-      label: 'RFID Exit Read',
-    },
-    {
-      path: '/dashboard/epc-read-list',
-      icon: 'ER',
-      label: 'EPC Read List',
-    },
-    {
-      path: '/dashboard/management-performance',
-      icon: 'MP',
-      label: 'Management Performance',
-    },
+      label: 'Cloud Functions'
+    }
   ];
 
   constructor(private router:Router){
