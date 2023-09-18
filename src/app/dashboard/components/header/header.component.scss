@@ -1,0 +1,18 @@
+/* Add these styles to your component's SCSS stylesheet (header.component.scss) */
+.mainToolbar {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .logobox {
+    flex: 1; 
+  }
+  
+  .cart-icon-container {
+    margin-left: auto; 
+  }
+
+  .nashTechLogo img {
+    width: 60px;
+    height: 55px;
+  }

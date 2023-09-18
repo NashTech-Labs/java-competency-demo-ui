@@ -1,11 +1,12 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
 import { MatCardModule } from '@angular/material/card';
-import { MatTabsModule } from '@angular/material/tabs';
-import { MatToolbarModule } from '@angular/material/toolbar';
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { MatButtonModule } from "@angular/material/button";
+import { MatIconModule } from "@angular/material/icon";
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from "@angular/material/menu";
+import { MatTabsModule } from "@angular/material/tabs";
+import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatInputModule } from "@angular/material/input";
@@ -24,6 +25,8 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import { MatTreeModule } from '@angular/material/tree';
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
+import {FlexLayoutModule} from "@angular/flex-layout";
 
 @NgModule({
   declarations: [],
@@ -44,6 +47,16 @@ import { MatTreeModule } from '@angular/material/tree';
     MatButtonToggleModule,
     MatCheckboxModule,
     MatAutocompleteModule,
+    MatButtonModule,
+    MatBadgeModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
     MatChipsModule,
     MatSnackBarModule,
     MatSliderModule,
