@@ -67,6 +67,7 @@ import {FlexLayoutModule} from "@angular/flex-layout";
   exports:[
       CommonModule,
       MatTabsModule,
+      MatBadgeModule,
       MatSidenavModule,
       MatListModule,
       MatLineModule,
