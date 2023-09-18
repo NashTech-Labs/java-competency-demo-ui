@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { MatButtonModule } from "@angular/material/button";
 import { MatIconModule } from "@angular/material/icon";
+import { MatBadgeModule } from '@angular/material/badge';
 import { MatMenuModule } from "@angular/material/menu";
 import { MatTabsModule } from "@angular/material/tabs";
 import { MatToolbarModule } from "@angular/material/toolbar";
@@ -27,6 +28,7 @@ import { MatChipsModule } from "@angular/material/chips";
     MatCardModule,
     MatToolbarModule,
     MatIconModule,
+    MatBadgeModule,
     MatMenuModule,
     MatDialogModule,
     MatFormFieldModule,
@@ -43,6 +45,7 @@ import { MatChipsModule } from "@angular/material/chips";
     MatLineModule,
     MatCardModule,
     MatButtonModule,
+    MatBadgeModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
