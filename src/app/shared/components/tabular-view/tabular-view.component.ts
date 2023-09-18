@@ -39,26 +39,6 @@ export class TabularViewComponent {
 
   ngOnInit() {
     this.getCarData();
-    // this.shrinkService.getData().subscribe(
-    //     response =>{
-    //         this.tableRows = response;
-    //         console.log("component se response", this.tableRows);
-    //
-    //       if (this.tableRows.length > 0) {
-    //         this.tableHeaders = Object.keys(this.tableRows[0]).map(key => ({
-    //           headerName: key,
-    //           field: key
-    //         }));
-    //       }
-    //
-    //     },
-    //
-    // )
-    //
-    //
-    // this.columnIds = this.tableHeaders
-    //     .filter((header) => header.colId !== undefined)
-    //     .map((header) => header.colId as string);
   }
 
   // Add this property for pagination

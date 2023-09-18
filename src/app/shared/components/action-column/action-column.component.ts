@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 import { ICellRendererParams } from "ag-grid-community";
+import {CartService} from "../../../dashboard/service/cart.service";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: "app-action-column",
@@ -8,6 +10,9 @@ import { ICellRendererParams } from "ag-grid-community";
   styleUrls: ["./action-column.component.scss"],
 })
 export class ActionColumnComponent implements ICellRendererAngularComp {
+
+  constructor(private cartService : CartService , private httpClient : HttpClient) {
+  }
 
   selectedAction: string ='Organized Crime';
   bulkEventActions = [
@@ -33,10 +38,20 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  onUpdateAction(event:any , eventId:string){
-    this.bulkEventCellValue.data.Status = event.value
-    //post API call with event.value
-    //this.bulkShrinkEventsService.setExitEventLabel(eventId ,event.value).subscribe(()=>{})
+  addToCart(cartId: number, quantity: number, userId: number): void {
+    // Call the API to add to the cart
+    this.httpClient.post<any>('http://localhost:8081/api/cart/add', {
+      cartId: cartId,
+      quantity: quantity,
+      userId: userId
+    }).subscribe(response => {
+      if (response.success) {
+        console.log("response is" , response);
+        this.cartService.incrementCartItemCount();
+      } else {
+        console.error('Failed to add to cart:', response.message);
+      }
+    });
   }
 
 }

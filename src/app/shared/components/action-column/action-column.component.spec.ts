@@ -27,14 +27,6 @@ describe('ActionColumnComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should update status and call service on onUpdateAction', () => {
-    const eventId = 'EventId 1';
-    const event = { value: 'Employee' };
-
-    component.bulkEventCellValue = { data: { Status: 'Others' } };
-    component.onUpdateAction(event, eventId);
-    expect(component.bulkEventCellValue.data.Status).toBe(event.value);
-  });
 
   it('should initialize bulkEventCellValue on agInit', () => {
     const paramsMock = {data: {Status: 'InitialStatus'},};

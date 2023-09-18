@@ -4,7 +4,7 @@
   </button> 
   
   <mat-menu #menu="matMenu">
-    <a mat-menu-item [href]="bulkEventCellValue?.data['Video URL']" target=”_blank”>
+    <a mat-menu-item (click)="addToCart(1,1,2)">
       <div class="d-flex justify-content-between">
         <div class="me-1">
           <span class="ms-2 video-text">Add to Cart</span>
