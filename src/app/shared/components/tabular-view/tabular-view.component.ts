@@ -1,9 +1,11 @@
 import {Component, ViewChild} from '@angular/core';
-import {ColDef} from "ag-grid-community";
+import {ColDef, ColGroupDef} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {Router} from "@angular/router";
 import {MatSelect} from "@angular/material/select";
 import {ShrinkAnalyzerService} from "../../../dashboard/service/shrink-analyzer.service";
+import { Subscription } from 'rxjs';
+import { ActionColumnComponent } from '../action-column/action-column.component';
 
 @Component({
   selector: 'app-tabular-view',
@@ -16,17 +18,13 @@ export class TabularViewComponent {
   tableHeaders: ColDef[] = [];
   selectedColumns: string[] = [];
   columnIds: string[] = [];
-  public defaultColDef: ColDef = {
-    flex: 1,
-    minWidth: 100,
-    sortable: true,
-    filter: true,
-    floatingFilter: true,
-    resizable: true,
-    suppressMenu: true,
-    wrapHeaderText: true,
-    autoHeaderHeight: true
-  };
+  isLoading = false;
+
+  carDataSubscription$!: Subscription;
+  carData: string[] = [];
+
+  carColumnDef: ColDef [] = [];
+
   public autoGroupColumnDef: ColDef = {
     minWidth: 200,
   };
@@ -40,26 +38,27 @@ export class TabularViewComponent {
   constructor(private router: Router, private shrinkService:ShrinkAnalyzerService){}
 
   ngOnInit() {
-    this.shrinkService.getData().subscribe(
-        response =>{
-            this.tableRows = response;
-            console.log("component se response", this.tableRows);
-
-          if (this.tableRows.length > 0) {
-            this.tableHeaders = Object.keys(this.tableRows[0]).map(key => ({
-              headerName: key,
-              field: key
-            }));
-          }
-
-        },
-
-    )
-
-
-    this.columnIds = this.tableHeaders
-        .filter((header) => header.colId !== undefined)
-        .map((header) => header.colId as string);
+    this.getCarData();
+    // this.shrinkService.getData().subscribe(
+    //     response =>{
+    //         this.tableRows = response;
+    //         console.log("component se response", this.tableRows);
+    //
+    //       if (this.tableRows.length > 0) {
+    //         this.tableHeaders = Object.keys(this.tableRows[0]).map(key => ({
+    //           headerName: key,
+    //           field: key
+    //         }));
+    //       }
+    //
+    //     },
+    //
+    // )
+    //
+    //
+    // this.columnIds = this.tableHeaders
+    //     .filter((header) => header.colId !== undefined)
+    //     .map((header) => header.colId as string);
   }
 
   // Add this property for pagination
@@ -86,6 +85,34 @@ export class TabularViewComponent {
       matSelect.writeValue(columnsToKeep);
     }
   }
+
+  getCarData() {
+    this.isLoading = true;
+    this.carDataSubscription$ = this.shrinkService
+      .getData()
+      .subscribe((res) => {
+        if (res) {
+          this.carColumnDef = [
+            {field: 'brand_id', headerName:('Brand_Id'),  colId: 'brand_id',minWidth:180, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'brand_name', headerName: ('Brand_Name'), colId: 'brand_name', minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'model', headerName: ('Model'), colId: 'model', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'year', headerName: ('Year'), colId: 'year', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'color', headerName: ('Color'), colId: 'color',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'mileage', headerName: ('Mileage'), colId: 'mileage', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'price', headerName: ('Price'), colId: 'price',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'location', headerName: ('Location'), colId: 'location', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+            {field: 'Action', headerName: ('Action'), colId: 'Action',cellRenderer: ActionColumnComponent, floatingFilter: false}
+          ]
+
+          this.carData = res.map(item => {
+            return { ...item, ...this.carColumnDef };
+          });
+        }
+        
+        this.isLoading = false;
+      });
+    }
+
 
   onCellClicked( data: any, column : string | undefined): void {
     let value;

@@ -5,10 +5,11 @@ import { MaterialModule } from "./module/material.module";
 import { AgGridModule } from "ag-grid-angular";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
+import {ActionColumnComponent} from "./components/action-column/action-column.component";
 
 @NgModule({
-  declarations: [TabularViewComponent],
+  declarations: [TabularViewComponent,ActionColumnComponent],
     imports: [CommonModule, MaterialModule, AgGridModule, MatSelectModule, FormsModule],
-  exports: [TabularViewComponent],
+  exports: [TabularViewComponent,ActionColumnComponent],
 })
 export class SharedModule {}
