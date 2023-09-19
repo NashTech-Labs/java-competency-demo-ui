@@ -3,6 +3,7 @@ import { ICellRendererAngularComp } from "ag-grid-angular";
 import { ICellRendererParams } from "ag-grid-community";
 import {CartService} from "../../../dashboard/service/cart.service";
 import {HttpClient} from "@angular/common/http";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: "app-action-column",
@@ -11,7 +12,8 @@ import {HttpClient} from "@angular/common/http";
 })
 export class ActionColumnComponent implements ICellRendererAngularComp {
 
-  constructor(private cartService : CartService , private httpClient : HttpClient) {
+  constructor(private cartService : CartService , private httpClient : HttpClient,
+              private snackBar : MatSnackBar) {
   }
 
   selectedAction: string ='Organized Crime';
@@ -38,10 +40,10 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  addToCart(cartId: number, quantity: number, userId: number): void {
+  addToCart(productId: string, quantity: number, userId: string): void {
     // Call the API to add to the cart
-    this.httpClient.post<any>('http://localhost:8081/api/cart/add', {
-      cartId: cartId,
+    this.httpClient.post<any>('http://localhost:8081/cart/add', {
+      productId: productId,
       quantity: quantity,
       userId: userId
     }).subscribe(response => {
@@ -53,5 +55,16 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
       }
     });
   }
+
+  addToCartTest (){
+    this.cartService.incrementCartItemCount();
+    this.showSnackBar("Item has been added to the cart");
+  }
+
+  private showSnackBar (message : string){
+    this.snackBar.open(message , 'Close' , {
+      duration: 3000,
+    });
+    }
 
 }
