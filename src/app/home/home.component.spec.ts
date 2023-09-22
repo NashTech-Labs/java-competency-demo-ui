@@ -6,6 +6,7 @@ import {CarsListComponent} from "./cars-list/cars-list.component";
 import {HttpClientModule} from '@angular/common/http';
 import {PaginationComponent} from "./pagination/pagination.component";
 import {RouterTestingModule} from '@angular/router/testing';
+import {NO_ERRORS_SCHEMA} from "@angular/core";
 
 describe('HomeComponent', () => {
     let component: HomeComponent;
@@ -14,8 +15,8 @@ describe('HomeComponent', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             declarations: [HomeComponent, CarsListComponent, PaginationComponent],
-
-            imports: [RouterTestingModule, HttpClientModule, MatToolbarModule], // Add the MatToolbarModule to the imports array
+            imports: [RouterTestingModule, HttpClientModule, MatToolbarModule],
+            schemas: [NO_ERRORS_SCHEMA]
         });
         fixture = TestBed.createComponent(HomeComponent);
         component = fixture.componentInstance;

@@ -80,21 +80,21 @@
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { RouterModule, Routes } from &quot;@angular/router&quot;;
-import { HomeComponent } from &quot;./home/home.component&quot;;
+import { PageNotFoundComponent } from &quot;./home/page-not-found/page-not-found.component&quot;;
 
 const routes: Routes &#x3D; [
   {
     path: &quot;&quot;,
-    redirectTo: &quot;/azure&quot;,
+    redirectTo: &quot;home/azure&quot;,
     pathMatch: &quot;full&quot;,
   },
   {
-    path: &quot;azure&quot;,
-    component: HomeComponent,
+    path: &quot;home&quot;,
+    loadChildren: () &#x3D;&gt; &quot;import(\&quot;./home/home.module\&quot;).then((m) &#x3D;&gt; m.HomeModule)&quot;,
   },
   {
-    path: &quot;&quot;,
-    loadChildren: () &#x3D;&gt; &quot;import(\&quot;./home/home.module\&quot;).then((m) &#x3D;&gt; m.HomeModule)&quot;,
+    path: &quot;**&quot;,
+    component: PageNotFoundComponent,
   },
 ];
 

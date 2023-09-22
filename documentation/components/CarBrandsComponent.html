@@ -191,12 +191,12 @@ This component fetches brand names from the CarsListService and allows the user 
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(carsService: <a href="../injectables/CarsListService.html" target="_self">CarsListService</a>)</code>
+<code>constructor(route: ActivatedRoute, carsService: <a href="../injectables/CarsListService.html" target="_self">CarsListService</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:23</a></div>
                             </td>
                         </tr>
 
@@ -216,6 +216,20 @@ This component fetches brand names from the CarsListService and allows the user 
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                    <code>ActivatedRoute</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                        </td>
+                                                </tr>
                                                 <tr>
                                                         <td>carsService</td>
                                                   
@@ -272,8 +286,8 @@ This component fetches brand names from the CarsListService and allows the user 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="38"
-                            class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:38</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="42"
+                            class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:42</a></div>
                 </td>
             </tr>
 
@@ -311,8 +325,8 @@ This component fetches brand names from the CarsListService and allows the user 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="44"
-                            class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:44</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="48"
+                            class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:48</a></div>
                 </td>
             </tr>
 
@@ -399,7 +413,7 @@ This component fetches brand names from the CarsListService and allows the user 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:22</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:23</a></div>
                         </td>
                     </tr>
 
@@ -430,7 +444,7 @@ This component fetches brand names from the CarsListService and allows the user 
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:17</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/home/car-brands/car-brands.component.ts:18</a></div>
                         </td>
                     </tr>
 
@@ -450,7 +464,8 @@ This component fetches brand names from the CarsListService and allows the user 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &quot;@angular/core&quot;;
-import { CarsListService } from &quot;../card-list-service/cars-list.service&quot;;
+import { CarsListService } from &quot;../services/cars-list.service&quot;;
+import { ActivatedRoute } from &quot;@angular/router&quot;;
 
 /**
  * Represents the CarBrandsComponent that displays a list of car brands.
@@ -476,10 +491,13 @@ export class CarBrandsComponent implements OnInit {
    * Creates an instance of CarBrandsComponent.
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
-  constructor(private carsService: CarsListService) {
+  constructor(
+    private route: ActivatedRoute,
+    private carsService: CarsListService,
+  ) {
     // Subscribe to getBrandsName to update brandsName when it changes in the service.
     this.carsService.getBrandsName.subscribe(
-        (name) &#x3D;&gt; (this.brandsName &#x3D; name),
+      (name) &#x3D;&gt; (this.brandsName &#x3D; name),
     );
   }
 
@@ -500,7 +518,7 @@ export class CarBrandsComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;content container&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;div class&#x3D;&quot;content container&quot; id&#x3D;&quot;car-brands&quot;&gt;
   &lt;div fxLayout&#x3D;&quot;row wrap&quot; fxLayoutGap&#x3D;&quot;16px grid&quot;&gt;
     &lt;div
       fxFlex&#x3D;&quot;25%&quot;
@@ -510,8 +528,8 @@ export class CarBrandsComponent implements OnInit {
     &gt;
       &lt;mat-card class&#x3D;&quot;mat-elevation-z4&quot;&gt;
         &lt;mat-card-header&gt;
-          &lt;button mat-button (click)&#x3D;&quot;onBrandClick(carBrand.brand_name)&quot;&gt;
-            {{ carBrand[&quot;brand_name&quot;] }}
+          &lt;button routerLink&#x3D;&quot;./carList/{{carBrand.brand_name}}&quot;  (click)&#x3D;&quot;onBrandClick(carBrand.brand_name)&quot;&gt;
+            &lt;p&gt;{{ carBrand[&quot;brand_name&quot;] }}&lt;/p&gt;
           &lt;/button&gt;
         &lt;/mat-card-header&gt;
       &lt;/mat-card&gt;
@@ -525,7 +543,11 @@ export class CarBrandsComponent implements OnInit {
                 <p class="comment">
                     <code>./car-brands.component.scss</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss">.content {
+                <pre class="line-numbers"><code class="language-scss">#car-brands{
+  margin-top: 120px;
+}
+
+.content {
   padding-left: 16px;
   padding-right: 16px;
 }
@@ -533,11 +555,22 @@ export class CarBrandsComponent implements OnInit {
 mat-card {
   width: 200px;
   height: 100px;
-  margin-top: 40px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
+
 }
+
+button{
+  background-color: #FFFFFF;
+  border: none;
+  font-size: 18px;
+  color: #d73b1e;
+}
+
 </code></pre>
     </div>
 
@@ -566,7 +599,7 @@ mat-card {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><div class="content container">  <div fxLayout="row wrap" fxLayoutGap="16px grid">    <div      fxFlex="25%"      fxFlex.xs="100%"      fxFlex.sm="33%"      *ngFor="let carBrand of data$ | async"    >      <mat-card class="mat-elevation-z4">        <mat-card-header>          <button mat-button (click)="onBrandClick(carBrand.brand_name)">            {{ carBrand["brand_name"] }}          </button>        </mat-card-header>      </mat-card>    </div>  </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><div class="content container" id="car-brands">  <div fxLayout="row wrap" fxLayoutGap="16px grid">    <div      fxFlex="25%"      fxFlex.xs="100%"      fxFlex.sm="33%"      *ngFor="let carBrand of data$ | async"    >      <mat-card class="mat-elevation-z4">        <mat-card-header>          <button routerLink="./carList/{{carBrand.brand_name}}"  (click)="onBrandClick(carBrand.brand_name)">            <p>{{ carBrand["brand_name"] }}</p>          </button>        </mat-card-header>      </mat-card>    </div>  </div></div></div>'
     var COMPONENTS = [{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsdataCardComponent', 'selector': 'app-carsdata-card'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'PaginationComponent', 'selector': 'app-pagination'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'CarBrandsComponent'};
