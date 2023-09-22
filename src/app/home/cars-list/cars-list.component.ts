@@ -1,6 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { Subscription } from "rxjs";
 import { CarsListService } from "../services/cars-list.service";
+import { CarDetails } from "../../shared/module/cars-details.model";
 
 @Component({
   selector: "app-cars-list",
@@ -31,16 +32,17 @@ export class CarsListComponent implements OnInit, OnDestroy {
   tableSize: number = 10;
 
   /**
-   * An array of cars fetched from the CardService based on the current page number.
+   * An array of cars fetched from the CarService based on the current page number.
    * The cars are of type 'Car', which conforms to the Car interface.
    */
   cars: any;
+  carModelDetails: CarDetails[] = [];
 
   /**
    * Subscription to store the subscription of the getData() method.
    */
-  private dataSubscription!: Subscription;
-
+  //private subscription!: Subscription;
+  subscription!: Subscription;
   /**
    * Creates an instance of CarsListComponent.
    * @param carsData - The CardService instance used to fetch car data.
@@ -52,20 +54,21 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * It triggers the initial data fetch.
    */
   ngOnInit(): void {
-    this.carsDataService.getBrandsName.subscribe(
-      (msg) => (this.selectedCarBrand = msg),
-    );
     if (this.selectedCarBrand.length == 0)
       this.selectedCarBrand = this.brandName;
     this.getCarModels(this.selectedCarBrand);
   }
 
-  private getCarModels(brandsName: string) {
-    this.dataSubscription = this.carsDataService
-      .getCarModels(brandsName)
-      .subscribe((data) => {
-        this.cars = data;
-        this.showcarList = true;
+  private getCarModels(brandName: string) {
+    this.subscription = this.carsDataService
+      .subscribeToCarData(brandName)
+      .subscribe((carDetails) => {
+        // Data has been updated in carDataService, update the local array
+        this.carModelDetails.push(carDetails);
+        console.log(
+          "this.carModelDetails ",
+          JSON.stringify(this.carModelDetails),
+        );
       });
   }
 
@@ -84,8 +87,8 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * Unsubscribes from the dataSubscription to avoid memory leaks.
    */
   ngOnDestroy() {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
+    if (this.subscription) {
+      this.subscription.unsubscribe();
     }
   }
 }

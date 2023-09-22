@@ -1,7 +1,7 @@
 import { Injectable, Input, NgZone } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
-import { CarDetails } from "../../shared/module/cars-details.model";
+import { CarDetails, CarBrand } from "../../shared/module/cars-details.model";
 /**
  * Service responsible for handling data related to the cars list.
  */
@@ -10,12 +10,15 @@ import { CarDetails } from "../../shared/module/cars-details.model";
 })
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
-  private carModelsUrl = "http://34.30.6.79/v1/data/cars/";
-  private brandUrl = "http://52.149.247.168/v1/data/stream-sse";
+  private carModelsUrl = "http://34.31.253.72/v1/data/cars/";
+  private brandsUrlGCP = "http://34.31.253.72/v1/data/brands";
+  private brandsUrlGCPSSE = "http://34.173.146.220:80/v1/data/brands-sse";
+  private eventSource!: EventSource;
+  carModelDetails: CarDetails[] = [];
 
-  /**
-   * Observable to get the brands' names.
-   */
+  // /**
+  //  * Observable to get the brands' names.
+  //  */
   getBrandsName = this.brandsName.asObservable();
 
   /**
@@ -24,7 +27,8 @@ export class CarsListService {
    */
   constructor(
     private http: HttpClient,
-    private _zone: NgZone,
+
+    private zone: NgZone,
   ) {}
 
   /**
@@ -49,65 +53,43 @@ export class CarsListService {
    * Gets the brand names from the mock API.
    * @returns {Observable<CarsDetails[]>} An Observable that emits the brand names data.
    */
-  // getBrandName(): Observable<any> {
-  //   return this.http.get<any>(this.brandUrl);
-  // }
+  getCarBrands(): Observable<CarBrand[]> {
+    return this.http.get<CarBrand[]>(this.brandsUrlGCP);
+  }
 
   getCarModels(carBrandName: string): Observable<CarDetails[]> {
     return this.http.get<CarDetails[]>(this.carModelsUrl.concat(carBrandName));
   }
 
-  getEventStream(): Observable<any> {
-    return this.http.get(`${this.brandUrl}`, {
-      responseType: "text",
-    });
-  }
+  subscribeToCarData(carBrand: string): Observable<CarDetails> {
+    const url = `http://34.31.253.72/v1/data/cars/${carBrand}`; // Replace with your actual URL
 
-  // getEventSource(url: string): EventSource {
-  //   //const options = { withCredentials: true };
-  //   return new EventSource(url);
-  // }
+    this.eventSource = new EventSource(url);
 
-  listenToEventSource(eventSource: EventSource): Observable<MessageEvent> {
-    return new Observable<MessageEvent>((observer) => {
-      eventSource.onopen = (event) => {
-        console.log("Connection opened:", event);
+    return new Observable<CarDetails>((observer) => {
+      this.eventSource.onmessage = (event) => {
+        const carData = JSON.parse(event.data);
+
+        const carDetails: CarDetails = {
+          carId: carData.carId,
+          brand: carData.brand,
+          model: carData.model,
+          year: carData.year,
+          color: carData.color,
+          mileage: carData.mileage,
+          price: carData.price, // Format price as needed
+        };
+
+        this.carModelDetails.push(carDetails);
+        observer.next(carDetails);
       };
-      eventSource.onmessage = (event) => {
-        observer.next(event);
-      };
 
-      eventSource.onerror = (error) => {
-        console.log("Error occured", error);
+      this.eventSource.onerror = (error) => {
         observer.error(error);
       };
 
-      // eventSource.close = () => {
-      //   observer.complete();
-      // };
-    });
-  }
-
-  getEventSource(): EventSource {
-    return new EventSource("http://52.149.247.168/v1/data/stream-sse");
-  }
-
-  getBrandEvents(): Observable<any> {
-    const eventSource = this.getEventSource();
-
-    return new Observable((observer) => {
-      eventSource.onmessage = (event) => {
-        const eventData = JSON.parse(event.data);
-        observer.next(eventData);
-      };
-
-      eventSource.onerror = (error) => {
-        observer.error(error);
-      };
-
-      // Make sure to close the connection when unsubscribed
       return () => {
-        eventSource.close();
+        this.eventSource.close();
       };
     });
   }

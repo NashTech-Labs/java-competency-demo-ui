@@ -16,7 +16,7 @@
       <h1>{{ selectedCarBrand }} Car Models</h1>
       <div
         *ngFor="
-          let car of cars
+          let car of carModelDetails
             | paginate
               : {
                   itemsPerPage: tableSize,
@@ -28,12 +28,12 @@
       >
         <!-- Car models -->
         <app-carsdata-card
-          [carCompanyName]="car.brand_name"
+          [carCompanyName]="car.brand"
           [carModel]="car.model"
           [carPrice]="car.price"
           [carMileage]="car.mileage"
           [manufacturingYear]="car.year"
-          [carLocation]="car.location"
+
           [carColor]="car.color"
         ></app-carsdata-card>
       </div>
