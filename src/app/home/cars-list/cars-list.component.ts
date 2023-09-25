@@ -1,5 +1,4 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
 import { CarsListService } from "../services/cars-list.service";
 import { CarDetails } from "../../shared/module/cars-details.model";
 
@@ -35,14 +34,8 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * An array of cars fetched from the CarService based on the current page number.
    * The cars are of type 'Car', which conforms to the Car interface.
    */
-  cars: any;
   carModelDetails: CarDetails[] = [];
 
-  /**
-   * Subscription to store the subscription of the getData() method.
-   */
-  //private subscription!: Subscription;
-  subscription!: Subscription;
   /**
    * Creates an instance of CarsListComponent.
    * @param carsData - The CardService instance used to fetch car data.
@@ -60,16 +53,9 @@ export class CarsListComponent implements OnInit, OnDestroy {
   }
 
   private getCarModels(brandName: string) {
-    this.subscription = this.carsDataService
-      .subscribeToCarData(brandName)
-      .subscribe((carDetails) => {
-        // Data has been updated in carDataService, update the local array
-        this.carModelDetails.push(carDetails);
-        console.log(
-          "this.carModelDetails ",
-          JSON.stringify(this.carModelDetails),
-        );
-      });
+    this.carsDataService.getCarModels(brandName).subscribe((carDetails) => {
+      this.carModelDetails = carDetails;
+    });
   }
 
   /**
@@ -86,9 +72,5 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * Lifecycle hook called when the component is about to be destroyed.
    * Unsubscribes from the dataSubscription to avoid memory leaks.
    */
-  ngOnDestroy() {
-    if (this.subscription) {
-      this.subscription.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 }

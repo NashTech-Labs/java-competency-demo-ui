@@ -1,4 +1,4 @@
-import { Injectable, Input, NgZone } from "@angular/core";
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { BehaviorSubject, Observable } from "rxjs";
 import { CarDetails, CarBrand } from "../../shared/module/cars-details.model";
@@ -10,9 +10,9 @@ import { CarDetails, CarBrand } from "../../shared/module/cars-details.model";
 })
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
-  private carModelsUrl = "http://34.31.253.72/v1/data/cars/";
-  private brandsUrlGCP = "http://34.31.253.72/v1/data/brands";
-  private brandsUrlGCPSSE = "http://34.173.146.220:80/v1/data/brands-sse";
+  private carModelsUrlGCP = "http://35.193.88.251/v1/data/cars/";
+  private brandsUrlGCP = "http://35.193.88.251/v1/data/brands";
+  private brandsUrlGCPSSE = "http://35.193.88.251/v1/data/brands-sse";
   private eventSource!: EventSource;
   carModelDetails: CarDetails[] = [];
 
@@ -25,11 +25,7 @@ export class CarsListService {
    * Creates an instance of CarsListService.
    * @param {HttpClient} http - The HttpClient service to make HTTP requests.
    */
-  constructor(
-    private http: HttpClient,
-
-    private zone: NgZone,
-  ) {}
+  constructor(private http: HttpClient) {}
 
   /**
    * Method to fetch data from the mock API based on the provided page number.
@@ -37,7 +33,7 @@ export class CarsListService {
    * @returns {Observable<any>} An Observable that emits the data fetched from the API.
    */
   getData(pageNumber: number): Observable<any> {
-    const url = `${this.carModelsUrl}&page_number=${pageNumber}`;
+    const url = `${this.carModelsUrlGCP}&page_number=${pageNumber}`;
     return this.http.get(url);
   }
 
@@ -58,11 +54,13 @@ export class CarsListService {
   }
 
   getCarModels(carBrandName: string): Observable<CarDetails[]> {
-    return this.http.get<CarDetails[]>(this.carModelsUrl.concat(carBrandName));
+    return this.http.get<CarDetails[]>(
+      this.carModelsUrlGCP.concat(carBrandName),
+    );
   }
 
-  subscribeToCarData(carBrand: string): Observable<CarDetails> {
-    const url = `http://34.31.253.72/v1/data/cars/${carBrand}`; // Replace with your actual URL
+  subscribeToCarData(): Observable<CarDetails> {
+    const url = this.brandsUrlGCPSSE; // Replace with your actual URL
 
     this.eventSource = new EventSource(url);
 
