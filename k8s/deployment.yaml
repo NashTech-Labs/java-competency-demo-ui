@@ -14,11 +14,10 @@ spec:
     spec:
       containers:
         - name: java-competency-demo-ui
-          image: ghcr.io/deepak1067/myrepo/demo-ui:latest
+          image: us-central1-docker.pkg.dev/project-id/gcp-demo-app/gcp-deployment
           ports:
             - containerPort: 8080
-      imagePullSecrets:
-        - name: ghcr-secret
+          imagePullPolicy: Always
 ---
 apiVersion: v1
 kind: Service
