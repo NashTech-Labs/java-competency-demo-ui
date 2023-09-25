@@ -3,8 +3,7 @@ import { CarsListService } from "../services/cars-list.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
 
 /**
- * Represents the CarBrandsComponent that displays a list of car brands.
- * This component fetches brand names from the CarsListService and allows the user to select a brand.
+ * Component to display car brands and handle brand selection.
  */
 @Component({
   selector: "app-car-brands",
@@ -15,6 +14,15 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
   carBrands: CarBrand[] = [];
 
   /**
+   * Flag to control the visibility of the brand loader (spinner).
+   */
+  brandLoader: boolean = false;
+
+  /**
+   * Constructor of the component.
+   *
+   * @param route The activated route to access route parameters.
+   * @param carsService The service to fetch car brand data.
    * Creates an instance of CarBrandsComponent.
    * @param route
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
@@ -22,13 +30,13 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
   constructor(private carsService: CarsListService) {}
 
   /**
-   * Lifecycle hook called after the component is initialized.
+   * Lifecycle hook. Called when the component is initialized.
    */
   ngOnInit(): void {
     this.getCarBrands();
   }
 
-  /*
+  /**
    * Sends the selected car brand name to the CarsListComponent.
    * @param {string} name - The name of the selected car brand.
    */

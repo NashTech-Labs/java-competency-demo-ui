@@ -1,4 +1,13 @@
-<div class="content container" id="car-brands">
+<script src="../home.component.spec.ts"></script>
+
+<div class="col" [style.display]="brandLoader ? 'none' : 'block'">
+  <div class="d-flex align-items-center justify-content-center min-vh-95 shift">
+    <mat-spinner color="warn"></mat-spinner>
+  </div>
+</div>
+
+
+<div class="content container">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div
       fxFlex="25%"
@@ -16,3 +25,5 @@
     </div>
   </div>
 </div>
+
+

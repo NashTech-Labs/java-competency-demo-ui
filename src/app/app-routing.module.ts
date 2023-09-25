@@ -5,12 +5,17 @@ import { PageNotFoundComponent } from "./home/page-not-found/page-not-found.comp
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home/azure",
+    redirectTo: "home/gcp",
     pathMatch: "full",
   },
   {
     path: "home",
     loadChildren: () => import("./home/home.module").then((m) => m.HomeModule),
+  },
+  {
+    path: "dashboard",
+    loadChildren: () =>
+      import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
     path: "**",

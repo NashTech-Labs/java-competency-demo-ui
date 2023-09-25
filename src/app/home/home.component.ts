@@ -28,14 +28,14 @@ export class HomeComponent {
       path: "./azure",
       icon: constants.azureIcon,
       color: "accent",
-      isSelected: true,
+      isSelected: false,
     },
     {
       label: "GCP",
       path: "./gcp",
       icon: constants.gcpIcon,
       color: "accent",
-      isSelected: false,
+      isSelected: true,
     },
   ];
 }

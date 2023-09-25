@@ -1,10 +1,11 @@
 #car-brands{
-  margin-top: 120px;
+  margin-top: 500px;
 }
 
 .content {
   padding-left: 16px;
   padding-right: 16px;
+  margin-top: 150px;
 }
 
 mat-card {
@@ -16,7 +17,6 @@ mat-card {
   display: flex;
   align-items: center;
   justify-content: center;
-
 }
 
 button{
@@ -26,3 +26,6 @@ button{
   color: #d73b1e;
 }
 
+.shift{
+  margin-top: 250px;
+}

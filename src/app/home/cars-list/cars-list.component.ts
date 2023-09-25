@@ -2,6 +2,9 @@ import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarDetails } from "../../shared/module/cars-details.model";
 
+/**
+ * Represents the Cars List component that displays a list of cars.
+ */
 @Component({
   selector: "app-cars-list",
   templateUrl: "./cars-list.component.html",
@@ -14,6 +17,11 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   showcarList: boolean = false;
 
+  /** Available options for the number of items per page. */
+  tableSizes: any = [5, 10, 15, 20];
+
+  /** The name of the car brand to filter by. */
+  brandsName: string = "";
   /**
    * The car brand name selected in car-brands component.
    */
@@ -37,14 +45,14 @@ export class CarsListComponent implements OnInit, OnDestroy {
   carModelDetails: CarDetails[] = [];
 
   /**
-   * Creates an instance of CarsListComponent.
-   * @param carsData - The CardService instance used to fetch car data.
+   * Constructs the CarsListComponent.
+   *
+   * @param carsData - The service responsible for fetching car data.
    */
   constructor(private carsDataService: CarsListService) {}
 
   /**
-   * Lifecycle hook called after the component has been initialized.
-   * It triggers the initial data fetch.
+   * Lifecycle hook: Initializes the component.
    */
   ngOnInit(): void {
     if (this.selectedCarBrand.length == 0)
@@ -65,12 +73,22 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   onTableDataChange(event: any) {
     this.page = event;
-    this.getCarModels(this.selectedCarBrand);
+    //this.getData();
   }
 
   /**
-   * Lifecycle hook called when the component is about to be destroyed.
-   * Unsubscribes from the dataSubscription to avoid memory leaks.
+   * Event handler for changes in the number of items per page.
+   *
+   * @param event - The change event for the select element.
+   */
+  onTableSizeChange(event: any) {
+    this.tableSizes = event.target.value;
+    this.page = 1;
+    //this.getData();
+  }
+
+  /**
+   * Lifecycle hook: Cleans up resources when the component is destroyed.
    */
   ngOnDestroy() {}
 }

@@ -19,14 +19,7 @@ import { NgxPaginationModule } from "ngx-pagination";
     HomeComponent,
     CarsdataCardComponent,
   ],
-  imports: [
-    CommonModule,
-    HomeRoutingModule,
-    MaterialModule,
-    NgOptimizedImage,
-    MatChipsModule,
-    NgxPaginationModule,
-  ],
+    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatChipsModule, NgxPaginationModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}
