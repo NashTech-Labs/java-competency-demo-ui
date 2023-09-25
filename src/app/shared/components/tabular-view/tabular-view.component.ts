@@ -14,16 +14,24 @@ import { ActionColumnComponent } from '../action-column/action-column.component'
 })
 export class TabularViewComponent {
 
-  tableRows: any;
   tableHeaders: ColDef[] = [];
-  selectedColumns: string[] = [];
-  columnIds: string[] = [];
   isLoading = false;
-
+  carColumnDef: (ColDef | ColGroupDef)[] = [];
+  updatedCarHeaders: any[] = [];
+  allTableHeaders: any[] = [];
   carDataSubscription$!: Subscription;
   carData: string[] = [];
-
-  carColumnDef: ColDef [] = [];
+  public defaultColDef: ColDef = {
+    flex: 1,
+    minWidth: 150,
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    resizable: true,
+    suppressMenu: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true
+  };
 
   public autoGroupColumnDef: ColDef = {
     minWidth: 200,
@@ -41,30 +49,9 @@ export class TabularViewComponent {
     this.getCarData();
   }
 
-  // Add this property for pagination
   pagination: boolean = true;
-
-  // Add this property for setting the number of rows per page
   paginationPageSize: number = 10;
 
-
-  onColumnSelectionChange(event: any, matSelect: MatSelect) {
-    const newSelectedColumns = event.value;
-     console.log(event.value);
-    if (newSelectedColumns.length >= 2) {
-      this.columnIds = newSelectedColumns;
-      const columnIds = this.tableHeaders
-          .filter((header) => header.colId !== undefined)
-          .map((header) => header.colId as string);
-      this.agGrid.columnApi.setColumnsVisible(columnIds, false);
-      this.agGrid.columnApi.setColumnsVisible(this.columnIds, true);
-    } else {
-      const columnsToKeep = this.tableHeaders
-          .filter((header) => this.columnIds.includes(header.colId as string))
-          .map((header) => header.colId as string);
-      matSelect.writeValue(columnsToKeep);
-    }
-  }
 
   getCarData() {
     this.isLoading = true;
@@ -87,54 +74,32 @@ export class TabularViewComponent {
           this.carData = res.map(item => {
             return { ...item, ...this.carColumnDef };
           });
+
+          this.updatedCarHeaders = this.carColumnDef;
+          this.allTableHeaders = this.carColumnDef;
+
         }
         
         this.isLoading = false;
       });
     }
-
-
-  onCellClicked( data: any, column : string | undefined): void {
-    let value;
-    if(data.hasOwnProperty('day-of-week')){
-      value = {day:data['day-of-week']};
-    }
-    else if(data.hasOwnProperty('hour-of-day')){
-      value = {hour:data['hour-of-day']};
-    }
-    else if(data.hasOwnProperty('site-code')){
-      value = {'site-code':data['site-code']};
-    }
-
-    if(column === 'bulkEventCount'){
-      this.router.navigate(['/dashboard/bulk-shrink-events'],{ queryParams: {
-          ...value,
-          bulkEvent: data['bulk-event-count'],
-        }});
-    }else if(column === 'sweetheartCount' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          sweetheart: data['sweetheart-count'],
-        }});
-    } else if(column === 'totalShrinkEvents' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          totalShrinkItem: data['shrink-event-count'],
-        }});
-    }
-    else if(column === 'siteId' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          totalShrinkItem: data['siteId'],
-        }});
-    }
-    else if(column === 'BulkID' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          'date-and-time': data['Event Time'],
-          'exit-door-id': data['Exit Door ID'],
-          'event-id': data['Event ID'],
-        }});
-    }
+  setHeadersForBulkShrink(event: any){
+    this.updatedCarHeaders = [];
+    this.updatedCarHeaders = this.setTableHeaders(event, this.allTableHeaders);
+    this.carColumnDef = this.updatedCarHeaders;
   }
+
+  setTableHeaders(event: any, tableHeaders: ColDef[]): ColDef<any>[]{
+    let updatedHeaders: ColDef<any>[] = [];
+    if(event.length > 0){
+      tableHeaders.forEach((item:ColDef) => {
+        if(event.includes(item.colId)){
+          updatedHeaders.push(item);
+        }
+      });
+    }
+    return updatedHeaders;
+  }
+
 
 }

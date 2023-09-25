@@ -41,7 +41,6 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   }
 
   addToCart(productId: string, quantity: number, userId: string): void {
-    // Call the API to add to the cart
     this.httpClient.post<any>('http://localhost:8081/cart/add', {
       productId: productId,
       quantity: quantity,

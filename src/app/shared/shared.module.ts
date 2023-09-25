@@ -6,9 +6,10 @@ import { AgGridModule } from "ag-grid-angular";
 import {MatSelectModule} from "@angular/material/select";
 import {FormsModule} from "@angular/forms";
 import {ActionColumnComponent} from "./components/action-column/action-column.component";
+import {TableHeadersDropdownComponent} from "./components/table-headers-dropdown/table-headers-dropdown.component";
 
 @NgModule({
-  declarations: [TabularViewComponent,ActionColumnComponent],
+  declarations: [TabularViewComponent,ActionColumnComponent,TableHeadersDropdownComponent],
     imports: [CommonModule, MaterialModule, AgGridModule, MatSelectModule, FormsModule],
   exports: [TabularViewComponent,ActionColumnComponent],
 })

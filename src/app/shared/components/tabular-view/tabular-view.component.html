@@ -1,26 +1,38 @@
 <div class="mx-5">
-    <section class="d-flex justify-content-start flex-wrap mb-3 mt-2">
-        <mat-form-field appearance="outline">
-            <mat-select multiple #matSelect (selectionChange)="onColumnSelectionChange($event, matSelect)" [(value)]="columnIds">
-                <mat-option *ngFor="let header of carColumnDef" [value]="header.colId" [disabled]="columnIds.length <= 2 && columnIds.includes(header.colId || '')">
-                    {{ header.headerName }}
-                </mat-option>
-            </mat-select>
-        </mat-form-field>
-    </section>
+    <mat-card class="px-2 py-1 mx-4">
+    <div class="d-flex mx-5 justify-content-end">
+        <div class="me-4">
+            <app-table-headers-dropdown
+                    [tableHeaders]="carColumnDef"
+                    [allTableHeaders]="allTableHeaders"
+                    (updatedHeaders)="setHeadersForBulkShrink($event)">
+            </app-table-headers-dropdown>
+        </div>
+    </div>
+    <ng-container *ngIf="!isLoading; else showLoading">
 
     <ag-grid-angular
             class="ag-theme-alpine table-view"
             [style.height]="(tableHeaders.length > 7) ? '580px' : '565px'"
             [columnDefs]="carColumnDef"
             [rowData]="carData"
+            [defaultColDef]="defaultColDef"
             [pagination]="pagination"
             [paginationPageSize]="paginationPageSize"
             [suppressDragLeaveHidesColumns]="true"
             [overlayLoadingTemplate]="overlayLoadingTemplate"
             [overlayNoRowsTemplate]="overlayNoRowsTemplate"
             [autoGroupColumnDef]="autoGroupColumnDef"
-            (cellClicked)="onCellClicked($event.data, $event.colDef.colId)"
     ></ag-grid-angular>
+        </ng-container>
+
+            <ng-template #showLoading>
+                <div class="spinner mt-5" data-testid="mabl-bulk-shrink-loader">
+                    <div class="spinner-border text-primary" role="status">
+                        <span class="sr-only"></span>
+                    </div>
+                </div>
+            </ng-template>
+    </mat-card>
 </div>
 
