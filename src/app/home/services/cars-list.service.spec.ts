@@ -32,7 +32,7 @@ describe("CarsListService", () => {
         const pageNumber = 1;
         const mockResponse = [{id: 1, name: "Car A"}];
 
-        service.getData(pageNumber).subscribe((data) => {
+        service.getData().subscribe((data) => {
             expect(data).toEqual(mockResponse);
         });
 

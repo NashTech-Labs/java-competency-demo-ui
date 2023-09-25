@@ -22,15 +22,15 @@ export class PaginationComponent {
    * Increases the current page count in the CarsListComponent.
    * Calls the nextPage() method in the CarsListComponent to advance to the next page.
    */
-  increaseCount() {
-    this.carsData.nextPage(); // Call the nextPage() method in the CarsListComponent.
-  }
-
-  /**
-   * Decreases the current page count in the CarsListComponent.
-   * Calls the previousPage() method in the CarsListComponent to go back to the previous page.
-   */
-  decreaseCount() {
-    this.carsData.previousPage(); // Call the previousPage() method in the CarsListComponent.
-  }
+  // increaseCount() {
+  //   this.carsData.nextPage(); // Call the nextPage() method in the CarsListComponent.
+  // }
+  //
+  // /**
+  //  * Decreases the current page count in the CarsListComponent.
+  //  * Calls the previousPage() method in the CarsListComponent to go back to the previous page.
+  //  */
+  // decreaseCount() {
+  //   this.carsData.previousPage(); // Call the previousPage() method in the CarsListComponent.
+  // }
 }

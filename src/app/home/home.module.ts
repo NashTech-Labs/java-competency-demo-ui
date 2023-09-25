@@ -10,6 +10,7 @@ import { HomeRoutingModule } from "./home-routing.module";
 import { CarsdataCardComponent } from "./cars-list/carsdata-card/carsdata-card.component";
 import { PaginationComponent } from "./pagination/pagination.component";
 import {MatChipsModule} from "@angular/material/chips";
+import {NgxPaginationModule} from "ngx-pagination";
 
 @NgModule({
   declarations: [
@@ -21,7 +22,7 @@ import {MatChipsModule} from "@angular/material/chips";
     CarsdataCardComponent,
     PaginationComponent,
   ],
-    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatChipsModule],
+    imports: [CommonModule, HomeRoutingModule, MaterialModule, NgOptimizedImage, MatChipsModule, NgxPaginationModule],
   exports: [HomeComponent],
 })
 export class HomeModule {}
