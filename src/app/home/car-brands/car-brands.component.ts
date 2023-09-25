@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
+import { ActivatedRoute } from "@angular/router";
 
 /**
  * Component to display car brands and handle brand selection.
