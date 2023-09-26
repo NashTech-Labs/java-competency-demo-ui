@@ -36,16 +36,17 @@
           [carColor]="car.color"
         ></app-carsdata-card>
       </div>
+
+      <div class="text-center my-5">
+        <pagination-controls
+          class="twik"
+          *ngIf="showcarList"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)"
+        />
+      </div>
     </div>
-    <div class="text-center my-5">
-      <pagination-controls
-        class="twik"
-        *ngIf="showcarList"
-        previousLabel="Prev"
-        nextLabel="Next"
-        (pageChange)="onTableDataChange($event)"
-      />
-    </div>
+    <div class="col"></div>
   </div>
-  <div class="col"></div>
 </div>

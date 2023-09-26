@@ -21,7 +21,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   tableSizes: any = [5, 10, 15, 20];
 
   /** The name of the car brand to filter by. */
-  brandsName: string = "";
+  // brandsName: string = "";
   /**
    * The car brand name selected in car-brands component.
    */
@@ -73,7 +73,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   onTableDataChange(event: any) {
     this.page = event;
-    //this.getData();
+    this.getCarModels(this.selectedCarBrand);
   }
 
   /**
@@ -84,7 +84,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   onTableSizeChange(event: any) {
     this.tableSizes = event.target.value;
     this.page = 1;
-    //this.getData();
+    this.getCarModels(this.selectedCarBrand);
   }
 
   /**

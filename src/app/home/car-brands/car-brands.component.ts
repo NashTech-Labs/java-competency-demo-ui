@@ -47,6 +47,7 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
   getCarBrands(): void {
     this.carsService.getCarBrands().subscribe((brands) => {
       this.carBrands = brands;
+      this.brandLoader = true;
     });
   }
 
