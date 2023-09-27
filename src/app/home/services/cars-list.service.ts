@@ -6,7 +6,7 @@ import { CarDetails, CarBrand } from "../../shared/module/cars-details.model";
  * Service responsible for handling data related to the cars list.
  */
 @Injectable({
-    providedIn: "root",
+  providedIn: "root",
 })
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
@@ -14,19 +14,18 @@ export class CarsListService {
   private brandsUrlGCP = "http://35.193.88.251/v1/data/brands";
   private brandsUrlGCPSSE = "http://35.193.88.251/v1/data/brands-sse";
   private eventSource!: EventSource;
-  carModelDetails: CarDetails[] = [];
+  carBrands: CarBrand[] = [];
 
   // /**
   //  * Observable to get the brands' names.
   //  */
   getBrandsName = this.brandsName.asObservable();
 
-    /**
-     * Creates an instance of CarsListService.
-     * @param {HttpClient} http - The HttpClient service to make HTTP requests.
-     */
-    constructor(private http: HttpClient) {
-    }
+  /**
+   * Creates an instance of CarsListService.
+   * @param {HttpClient} http - The HttpClient service to make HTTP requests.
+   */
+  constructor(private http: HttpClient) {}
 
   /**
    * Method to fetch data from the mock API based on the provided page number.
@@ -38,13 +37,13 @@ export class CarsListService {
     return this.http.get(url);
   }
 
-    /**
-     * Sets the brands' names.
-     * @param {string} brandsName - The brands' names to set.
-     */
-    setBrandsName(brandsName: string): void {
-        this.brandsName.next(brandsName);
-    }
+  /**
+   * Sets the brands' names.
+   * @param {string} brandsName - The brands' names to set.
+   */
+  setBrandsName(brandsName: string): void {
+    this.brandsName.next(brandsName);
+  }
 
   /**
    * Gets the brand names from the mock API.
@@ -60,27 +59,21 @@ export class CarsListService {
     );
   }
 
-  subscribeToCarData(): Observable<CarDetails> {
+  subscribeToCarData(): Observable<CarBrand> {
     const url = this.brandsUrlGCPSSE; // Replace with your actual URL
 
     this.eventSource = new EventSource(url);
 
-    return new Observable<CarDetails>((observer) => {
+    return new Observable<CarBrand>((observer) => {
       this.eventSource.onmessage = (event) => {
         const carData = JSON.parse(event.data);
 
-        const carDetails: CarDetails = {
-          carId: carData.carId,
+        const carBrands: CarBrand = {
           brand: carData.brand,
-          model: carData.model,
-          year: carData.year,
-          color: carData.color,
-          mileage: carData.mileage,
-          price: carData.price, // Format price as needed
         };
 
-        this.carModelDetails.push(carDetails);
-        observer.next(carDetails);
+        this.carBrands.push(carBrands);
+        observer.next(carBrands);
       };
 
       this.eventSource.onerror = (error) => {

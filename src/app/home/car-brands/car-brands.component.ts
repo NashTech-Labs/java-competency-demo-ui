@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
+import { Subscription } from "rxjs";
 
 /**
  * Component to display car brands and handle brand selection.
@@ -12,7 +13,7 @@ import { CarBrand } from "../../shared/module/cars-details.model";
 })
 export class CarBrandsComponent implements OnInit, OnDestroy {
   carBrands: CarBrand[] = [];
-
+  sseSubscription!: Subscription;
   /**
    * Flag to control the visibility of the brand loader (spinner).
    */
@@ -33,7 +34,8 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
    * Lifecycle hook. Called when the component is initialized.
    */
   ngOnInit(): void {
-    this.getCarBrands();
+    this.getBrandsSSE();
+    //this.getCarBrands();
   }
 
   /**
@@ -51,5 +53,24 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy() {}
+  getBrandsSSE(): void {
+    this.sseSubscription = this.carsService.subscribeToCarData().subscribe(
+      (carDetails: CarBrand) => {
+        // Handle SSE data here
+        // console.log("Received SSE data:", carDetails);
+        this.carBrands.push(carDetails); // Add to your list of car details
+        this.brandLoader = true;
+        console.log("this.carBrands ", JSON.stringify(this.carBrands));
+      },
+      (error) => {
+        // Handle SSE error
+        console.error("Error occurred:", error);
+      },
+    );
+  }
+  ngOnDestroy() {
+    if (this.sseSubscription) {
+      this.sseSubscription.unsubscribe();
+    }
+  }
 }

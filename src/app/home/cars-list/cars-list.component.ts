@@ -18,10 +18,8 @@ export class CarsListComponent implements OnInit, OnDestroy {
   showcarList: boolean = false;
 
   /** Available options for the number of items per page. */
-  tableSizes: any = [5, 10, 15, 20];
+  //tableSizes: any = [5, 10, 15, 20];
 
-  /** The name of the car brand to filter by. */
-  // brandsName: string = "";
   /**
    * The car brand name selected in car-brands component.
    */
@@ -63,6 +61,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
   private getCarModels(brandName: string) {
     this.carsDataService.getCarModels(brandName).subscribe((carDetails) => {
       this.carModelDetails = carDetails;
+      this.showcarList = true;
     });
   }
 
@@ -81,11 +80,11 @@ export class CarsListComponent implements OnInit, OnDestroy {
    *
    * @param event - The change event for the select element.
    */
-  onTableSizeChange(event: any) {
-    this.tableSizes = event.target.value;
-    this.page = 1;
-    this.getCarModels(this.selectedCarBrand);
-  }
+  // onTableSizeChange(event: any) {
+  //   this.tableSizes = event.target.value;
+  //   this.page = 1;
+  //   this.getCarModels(this.selectedCarBrand);
+  // }
 
   /**
    * Lifecycle hook: Cleans up resources when the component is destroyed.
