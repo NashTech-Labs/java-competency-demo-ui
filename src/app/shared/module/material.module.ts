@@ -91,7 +91,9 @@ import {FlexLayoutModule} from "@angular/flex-layout";
       MatSliderModule,
       MatRadioModule,
       MatTooltipModule,
-      MatTreeModule
+      MatTreeModule,
+    FlexLayoutModule,
+    MatProgressSpinnerModule,
   ]
 })
 export class MaterialModule { }
