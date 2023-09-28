@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
-import { Subscription } from "rxjs";
+import { ActivatedRoute } from "@angular/router";
+//import { Subscription } from "rxjs";
 
 /**
  * Component to display car brands and handle brand selection.
@@ -13,7 +14,8 @@ import { Subscription } from "rxjs";
 })
 export class CarBrandsComponent implements OnInit, OnDestroy {
   carBrands: CarBrand[] = [];
-  sseSubscription!: Subscription;
+  selectedCloud: string = "";
+  // sseSubscription!: Subscription;
   /**
    * Flag to control the visibility of the brand loader (spinner).
    */
@@ -28,14 +30,17 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
    * @param route
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
-  constructor(private carsService: CarsListService) {}
+  constructor(
+    private carsService: CarsListService,
+    private route: ActivatedRoute,
+  ) {}
 
   /**
    * Lifecycle hook. Called when the component is initialized.
    */
   ngOnInit(): void {
-    this.getBrandsSSE();
-    //this.getCarBrands();
+    this.selectedCloud = this.route.snapshot.url[0].path;
+    this.getCarBrands(this.selectedCloud);
   }
 
   /**
@@ -46,31 +51,31 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
     this.carsService.setBrandsName(name);
   }
 
-  getCarBrands(): void {
-    this.carsService.getCarBrands().subscribe((brands) => {
+  getCarBrands(selectedCloud: string): void {
+    this.carsService.getCarBrands(selectedCloud).subscribe((brands) => {
       this.carBrands = brands;
       this.brandLoader = true;
     });
   }
 
-  getBrandsSSE(): void {
-    this.sseSubscription = this.carsService.subscribeToCarData().subscribe(
-      (carDetails: CarBrand) => {
-        // Handle SSE data here
-        // console.log("Received SSE data:", carDetails);
-        this.carBrands.push(carDetails); // Add to your list of car details
-        this.brandLoader = true;
-        console.log("this.carBrands ", JSON.stringify(this.carBrands));
-      },
-      (error) => {
-        // Handle SSE error
-        console.error("Error occurred:", error);
-      },
-    );
-  }
+  // getBrandsSSE(): void {
+  //   this.sseSubscription = this.carsService.subscribeToCarData().subscribe(
+  //     (carDetails: CarBrand) => {
+  //       // Handle SSE data here
+  //       // console.log("Received SSE data:", carDetails);
+  //       this.carBrands.push(carDetails); // Add to your list of car details
+  //       this.brandLoader = true;
+  //       console.log("this.carBrands ", JSON.stringify(this.carBrands));
+  //     },
+  //     (error) => {
+  //       // Handle SSE error
+  //       console.error("Error occurred:", error);
+  //     },
+  //   );
+  // }
   ngOnDestroy() {
-    if (this.sseSubscription) {
-      this.sseSubscription.unsubscribe();
-    }
+    // if (this.sseSubscription) {
+    //   this.sseSubscription.unsubscribe();
+    // }
   }
 }

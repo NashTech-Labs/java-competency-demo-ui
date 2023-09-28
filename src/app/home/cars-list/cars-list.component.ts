@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarDetails } from "../../shared/module/cars-details.model";
-
+import { ActivatedRoute } from "@angular/router";
 /**
  * Represents the Cars List component that displays a list of cars.
  */
@@ -12,6 +12,7 @@ import { CarDetails } from "../../shared/module/cars-details.model";
 })
 export class CarsListComponent implements OnInit, OnDestroy {
   @Input("brandName") brandName = "";
+
   /**
    * Determines if the car list should be shown.
    */
@@ -19,7 +20,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
 
   /** Available options for the number of items per page. */
   //tableSizes: any = [5, 10, 15, 20];
-
+  selectedCloud: string = "";
   /**
    * The car brand name selected in car-brands component.
    */
@@ -47,22 +48,28 @@ export class CarsListComponent implements OnInit, OnDestroy {
    *
    * @param carsData - The service responsible for fetching car data.
    */
-  constructor(private carsDataService: CarsListService) {}
+  constructor(
+    private carsDataService: CarsListService,
+    private route: ActivatedRoute,
+  ) {}
 
   /**
    * Lifecycle hook: Initializes the component.
    */
   ngOnInit(): void {
+    this.selectedCloud = this.route.snapshot.url[0].path;
     if (this.selectedCarBrand.length == 0)
       this.selectedCarBrand = this.brandName;
-    this.getCarModels(this.selectedCarBrand);
+    this.getCarModels(this.selectedCloud, this.selectedCarBrand);
   }
 
-  private getCarModels(brandName: string) {
-    this.carsDataService.getCarModels(brandName).subscribe((carDetails) => {
-      this.carModelDetails = carDetails;
-      this.showcarList = true;
-    });
+  private getCarModels(selectedCloud: string, brandName: string) {
+    this.carsDataService
+      .getCarModels(selectedCloud, brandName)
+      .subscribe((carDetails) => {
+        this.carModelDetails = carDetails;
+        this.showcarList = true;
+      });
   }
 
   /**
@@ -72,7 +79,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   onTableDataChange(event: any) {
     this.page = event;
-    this.getCarModels(this.selectedCarBrand);
+    this.getCarModels(this.selectedCloud, this.selectedCarBrand);
   }
 
   /**
