@@ -1,51 +1,51 @@
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col" [style.display]="showcarList ? 'none' : 'block'">-->
-<!--      <div class="d-flex align-items-center justify-content-center min-vh-100">-->
-<!--        <mat-spinner color="warn"></mat-spinner>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div class="container">
+  <div class="row">
+    <div class="col" [style.display]="showcarList ? 'none' : 'block'">
+      <div class="d-flex align-items-center justify-content-center min-vh-100">
+        <mat-spinner color="warn"></mat-spinner>
+      </div>
+    </div>
+  </div>
+</div>
 
 <div class="container" id="cars-list">
   <div class="row">
     <div class="col"></div>
     <div class="col-sm-7 carsPage">
       <!-- Car brands Name -->
-      <h1>{{ brandsName }} Car Models</h1>
-
-        <div *ngFor="let car of cars | paginate:{
-       itemsPerPage: tableSize,
-        currentPage: page,
-         totalItems: count
-       }; let i=index">
-
-      <!-- Car models -->
-      <app-carsdata-card
-        [carCompanyName]="car.brand_name"
-        [carModel]="car.model"
-        [carPrice]="car.price"
-        [carMileage]="car.mileage"
-        [manufacturingYear]="car.year"
-        [carLocation]="car.location"
-        [carColor]="car.color"
-      ></app-carsdata-card>
-
-        </div>
-      <div class="text-center my-5">
-
-
-        <pagination-controls
-                class="twik"
-                *ngIf="showcarList"
-                previousLabel="Prev"
-                nextLabel="Next"
-                (pageChange)="onTableDataChange($event)"
-        />
-
+      <h1>{{ selectedCarBrand }} Car Models</h1>
+      <div
+        *ngFor="
+          let car of carModelDetails
+            | paginate
+              : {
+                  itemsPerPage: tableSize,
+                  currentPage: page,
+                  totalItems: count
+                };
+          let i = index
+        "
+      >
+        <!-- Car models -->
+        <app-carsdata-card
+          [carCompanyName]="car.brand"
+          [carModel]="car.model"
+          [carPrice]="car.price"
+          [carMileage]="car.mileage"
+          [manufacturingYear]="car.year"
+          [carColor]="car.color"
+        ></app-carsdata-card>
       </div>
 
+      <div class="text-center my-5">
+        <pagination-controls
+          class="twik"
+          *ngIf="showcarList"
+          previousLabel="Prev"
+          nextLabel="Next"
+          (pageChange)="onTableDataChange($event)"
+        />
+      </div>
     </div>
     <div class="col"></div>
   </div>

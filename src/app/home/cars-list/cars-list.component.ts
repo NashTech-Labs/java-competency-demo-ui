@@ -1,7 +1,7 @@
-import { Component, OnDestroy, OnInit } from "@angular/core";
-import { Subscription } from "rxjs";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
-
+import { CarDetails } from "../../shared/module/cars-details.model";
+import { ActivatedRoute } from "@angular/router";
 /**
  * Represents the Cars List component that displays a list of cars.
  */
@@ -11,13 +11,24 @@ import { CarsListService } from "../services/cars-list.service";
   styleUrls: ["./cars-list.component.scss"],
 })
 export class CarsListComponent implements OnInit, OnDestroy {
-  /** The title of the component. */
-  title = 'pagination';
+  @Input("brandName") brandName = "";
 
-  /** The list of cars to display. */
-  cars: any;
+  /**
+   * Determines if the car list should be shown.
+   */
+  showcarList: boolean = false;
 
-  /** The current page number for pagination. */
+  /** Available options for the number of items per page. */
+  //tableSizes: any = [5, 10, 15, 20];
+  selectedCloud: string = "";
+  /**
+   * The car brand name selected in car-brands component.
+   */
+  selectedCarBrand: string = "";
+
+  /**
+   * The current page number for paginated data.
+   */
   page: number = 1;
 
   /** The total count of items in the list. */
@@ -26,42 +37,39 @@ export class CarsListComponent implements OnInit, OnDestroy {
   /** The number of items to display per page. */
   tableSize: number = 10;
 
-  /** Available options for the number of items per page. */
-  tableSizes: any = [5, 10, 15, 20];
-
-  /** The name of the car brand to filter by. */
-  brandsName: string = "";
-
-  /** Indicates whether to show the car list. */
-  showcarList: boolean = false;
-
-  /** Subscription to data updates. */
-  private dataSubscription!: Subscription;
+  /**
+   * An array of cars fetched from the CarService based on the current page number.
+   * The cars are of type 'Car', which conforms to the Car interface.
+   */
+  carModelDetails: CarDetails[] = [];
 
   /**
    * Constructs the CarsListComponent.
    *
    * @param carsData - The service responsible for fetching car data.
    */
-  constructor(private carsData: CarsListService) {}
+  constructor(
+    private carsDataService: CarsListService,
+    private route: ActivatedRoute,
+  ) {}
 
   /**
    * Lifecycle hook: Initializes the component.
    */
-  ngOnInit() {
-    this.carsData.getBrandsName.subscribe((msg) => (this.brandsName = msg));
-    this.getData();
+  ngOnInit(): void {
+    this.selectedCloud = this.route.snapshot.url[0].path;
+    if (this.selectedCarBrand.length == 0)
+      this.selectedCarBrand = this.brandName;
+    this.getCarModels(this.selectedCloud, this.selectedCarBrand);
   }
 
-  /**
-   * Fetches the list of cars from the service and updates the component's data.
-   */
-  getData(): void {
-    this.carsData.getData().subscribe((data) => {
-      this.cars = data;
-      console.log(this.cars);
-      this.showcarList = true;
-    });
+  private getCarModels(selectedCloud: string, brandName: string) {
+    this.carsDataService
+      .getCarModels(selectedCloud, brandName)
+      .subscribe((carDetails) => {
+        this.carModelDetails = carDetails;
+        this.showcarList = true;
+      });
   }
 
   /**
@@ -71,7 +79,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    */
   onTableDataChange(event: any) {
     this.page = event;
-    this.getData();
+    this.getCarModels(this.selectedCloud, this.selectedCarBrand);
   }
 
   /**
@@ -79,18 +87,14 @@ export class CarsListComponent implements OnInit, OnDestroy {
    *
    * @param event - The change event for the select element.
    */
-  onTableSizeChange(event: any) {
-    this.tableSizes = event.target.value;
-    this.page = 1;
-    this.getData();
-  }
+  // onTableSizeChange(event: any) {
+  //   this.tableSizes = event.target.value;
+  //   this.page = 1;
+  //   this.getCarModels(this.selectedCarBrand);
+  // }
 
   /**
    * Lifecycle hook: Cleans up resources when the component is destroyed.
    */
-  ngOnDestroy(): void {
-    if (this.dataSubscription) {
-      this.dataSubscription.unsubscribe();
-    }
-  }
+  ngOnDestroy() {}
 }
