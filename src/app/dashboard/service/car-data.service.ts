@@ -10,7 +10,8 @@ export class CarDataService {
   }
 
   brandsurl: string = "assets/data/brands.json";
-  url = "https://my.api.mockaroo.com/car_schema.json?key=e579fe10";
+ // url = "https://my.api.mockaroo.com/car_schema.json?key=e579fe10";
+  url =  "assets/data/cardata.json";
   getData(): Observable<any[]> {
     return this.http.get<any[]>(this.url);
   }
