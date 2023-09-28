@@ -2,7 +2,6 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
 import { ActivatedRoute } from "@angular/router";
-//import { Subscription } from "rxjs";
 
 /**
  * Component to display car brands and handle brand selection.
