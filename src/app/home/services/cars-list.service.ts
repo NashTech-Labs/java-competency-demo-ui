@@ -6,7 +6,7 @@ import { CarDetails, CarBrand } from "../../shared/module/cars-details.model";
  * Service responsible for handling data related to the cars list.
  */
 @Injectable({
-    providedIn: "root",
+  providedIn: "root",
 })
 export class CarsListService {
   private brandsName = new BehaviorSubject<string>("");
@@ -23,12 +23,11 @@ export class CarsListService {
   //  */
   getBrandsName = this.brandsName.asObservable();
 
-    /**
-     * Creates an instance of CarsListService.
-     * @param {HttpClient} http - The HttpClient service to make HTTP requests.
-     */
-    constructor(private http: HttpClient) {
-    }
+  /**
+   * Creates an instance of CarsListService.
+   * @param {HttpClient} http - The HttpClient service to make HTTP requests.
+   */
+  constructor(private http: HttpClient) {}
 
   /**
    * Method to fetch data from the mock API based on the provided page number.
@@ -40,13 +39,13 @@ export class CarsListService {
     return this.http.get(url);
   }
 
-    /**
-     * Sets the brands' names.
-     * @param {string} brandsName - The brands' names to set.
-     */
-    setBrandsName(brandsName: string): void {
-        this.brandsName.next(brandsName);
-    }
+  /**
+   * Sets the brands' names.
+   * @param {string} brandsName - The brands' names to set.
+   */
+  setBrandsName(brandsName: string): void {
+    this.brandsName.next(brandsName);
+  }
 
   /**
    * Gets the brand names from the mock API.
