@@ -43,8 +43,9 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
   }
 
   /**
-   * Sends the selected car brand name to the CarsListComponent.
-   * @param {string} name - The name of the selected car brand.
+   * Handles the click event when a brand name is selected.
+   *
+   * @param name The selected brand name.
    */
   onBrandClick(name: string) {
     this.carsService.setBrandsName(name);
