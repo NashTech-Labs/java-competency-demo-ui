@@ -23,6 +23,7 @@ export class TabularViewComponent {
   carData: any[] = [];
   filteredCarData : any [] = [];
   carBrands : string[] = [];
+  carBrandsData: any[]=[];
   selectedCarBrands: string[] = [];
   carBrandControl = new FormControl();
   public defaultColDef: ColDef = {
@@ -85,6 +86,7 @@ export class TabularViewComponent {
 
           this.filteredCarData = this.carData;
 
+          this.setTableDataForSelectedBrands();
           this.updatedCarHeaders = this.carColumnDef;
           this.allTableHeaders = this.carColumnDef;
         }
@@ -95,13 +97,17 @@ export class TabularViewComponent {
 
   getCarBrands() {
     this.isLoading = true;
+
     this.shrinkService.getBrands().subscribe(
         (brands: string[]) => {
-          this.carBrands = brands;
-          //this.selectedCarBrands = this.carBrands.slice(0, 2);
+          this.carBrandsData = [...brands];
+          this.carBrandsData.forEach((item :any) => {
+            this.carBrands.push(item.brand);
+          });
+
+          this.selectedCarBrands = this.carBrands.slice(0, 2);
           this.carBrandControl.setValue(this.selectedCarBrands);
-          this.setTableDataForSelectedBrands();
-          this.getCarData(); // Fetch car data
+          this.getCarData();
           this.isLoading = false;
         },
         (error) => {
