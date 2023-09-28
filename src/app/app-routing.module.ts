@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from "./home/page-not-found/page-not-found.comp
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "dashboard",
+    redirectTo: "home/gcp",
     pathMatch: "full",
   },
   {
@@ -24,7 +24,12 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

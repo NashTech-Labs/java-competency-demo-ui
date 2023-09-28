@@ -1,44 +1,45 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
+import { CarBrand } from "../../shared/module/cars-details.model";
+import { ActivatedRoute } from "@angular/router";
 
 /**
- * Represents the CarBrandsComponent that displays a list of car brands.
- * This component fetches brand names from the CarsListService and allows the user to select a brand.
+ * Component to display car brands and handle brand selection.
  */
 @Component({
   selector: "app-car-brands",
   templateUrl: "./car-brands.component.html",
   styleUrls: ["./car-brands.component.scss"],
 })
-export class CarBrandsComponent implements OnInit {
+export class CarBrandsComponent implements OnInit, OnDestroy {
+  carBrands: CarBrand[] = [];
+  selectedCloud: string = "";
+  // sseSubscription!: Subscription;
   /**
-   * Observable that holds the brand names fetched from the CarsListService.
+   * Flag to control the visibility of the brand loader (spinner).
    */
-  data$ = this.carsService.getBrandName();
+  brandLoader: boolean = false;
 
   /**
-   * Holds the selected brand name.
-   */
-  brandsName: string = "";
-
-  /**
+   * Constructor of the component.
+   *
+   * @param route The activated route to access route parameters.
+   * @param carsService The service to fetch car brand data.
    * Creates an instance of CarBrandsComponent.
+   * @param route
    * @param {CarsListService} carsService - The CarsListService to interact with data related to car brands.
    */
   constructor(
     private carsService: CarsListService,
-  ) {
-    // Subscribe to getBrandsName to update brandsName when it changes in the service.
-    this.carsService.getBrandsName.subscribe(
-      (name) => (this.brandsName = name),
-    );
-  }
+    private route: ActivatedRoute,
+  ) {}
 
   /**
-   * Lifecycle hook called after the component is initialized.
+   * Lifecycle hook. Called when the component is initialized.
    */
   ngOnInit(): void {
-    // why Empty ?
+    this.selectedCloud = this.route.snapshot.url[0].path;
+    this.getCarBrands(this.selectedCloud);
   }
 
   /**
@@ -47,5 +48,33 @@ export class CarBrandsComponent implements OnInit {
    */
   onBrandClick(name: string) {
     this.carsService.setBrandsName(name);
+  }
+
+  getCarBrands(selectedCloud: string): void {
+    this.carsService.getCarBrands(selectedCloud).subscribe((brands) => {
+      this.carBrands = brands;
+      this.brandLoader = true;
+    });
+  }
+
+  // getBrandsSSE(): void {
+  //   this.sseSubscription = this.carsService.subscribeToCarData().subscribe(
+  //     (carDetails: CarBrand) => {
+  //       // Handle SSE data here
+  //       // console.log("Received SSE data:", carDetails);
+  //       this.carBrands.push(carDetails); // Add to your list of car details
+  //       this.brandLoader = true;
+  //       console.log("this.carBrands ", JSON.stringify(this.carBrands));
+  //     },
+  //     (error) => {
+  //       // Handle SSE error
+  //       console.error("Error occurred:", error);
+  //     },
+  //   );
+  // }
+  ngOnDestroy() {
+    // if (this.sseSubscription) {
+    //   this.sseSubscription.unsubscribe();
+    // }
   }
 }

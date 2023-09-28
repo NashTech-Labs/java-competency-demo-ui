@@ -1,10 +1,13 @@
-export interface CarsDetails {
-  brand_id: number;
-  brand_name: string;
+export interface CarDetails {
+  carId: number;
+  brand: string;
   model: string;
   year: number;
   color: string;
   mileage: number;
   price: string;
-  location: string;
+}
+
+export interface CarBrand {
+  brand: string;
 }
