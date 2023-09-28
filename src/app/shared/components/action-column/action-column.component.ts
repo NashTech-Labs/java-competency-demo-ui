@@ -16,17 +16,6 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
               private snackBar : MatSnackBar) {
   }
 
-  selectedAction: string ='Organized Crime';
-  bulkEventActions = [
-    { icon: "assets/svg/OC.svg", name: "Organized Crime" },
-    { icon: "assets/svg/ET.svg", name: "External Theft" },
-    { icon: "assets/svg/EMP.svg", name: "Employee" },
-    { icon: "assets/svg/OS.svg", name: "Omni Sale" },
-    { icon: "assets/svg/NaLE.svg", name: "Transfer" },
-    { icon: "assets/svg/Transfer.svg", name: "Others" },
-    { icon: "assets/svg/Others.svg", name: "Not a loss Event" },
-    { icon: "assets/svg/Mixed.svg", name: "Mixed" },
-  ];
   public bulkEventCellValue!: any;
   eventId!: string;
   updatedValue!: string;
@@ -40,14 +29,10 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
     return true;
   }
 
-  addToCart(productId: string, quantity: number, userId: string): void {
-    this.httpClient.post<any>('http://localhost:8081/cart/add', {
-      productId: productId,
-      quantity: quantity,
-      userId: userId
-    }).subscribe(response => {
+  addToCart(): void {
+    const url = 'http://localhost:8081/cart/add?productId=prod1&quantity=2&userId=user1';
+    this.httpClient.post<any>(url, null).subscribe(response => {
       if (response.success) {
-        console.log("response is" , response);
         this.cartService.incrementCartItemCount();
       } else {
         console.error('Failed to add to cart:', response.message);

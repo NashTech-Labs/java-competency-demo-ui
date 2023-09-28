@@ -1,6 +1,17 @@
 <div class="mx-5">
     <mat-card class="px-2 py-1 mx-4">
-    <div class="d-flex mx-5 justify-content-end">
+    <div class="d-flex mx-5 justify-content-around">
+        <div class="me-4">
+            <mat-form-field appearance="fill">
+                <mat-label>Car Brands</mat-label>
+                <mat-select
+                        [formControl]="carBrandControl"
+                        [multiple]="true"
+                        (selectionChange)="onCarBrandSelectionChange($event)">
+                    <mat-option *ngFor="let brand of carBrands" [value]="brand">{{ brand }}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
         <div class="me-4">
             <app-table-headers-dropdown
                     [tableHeaders]="carColumnDef"
