@@ -2,10 +2,10 @@ import {Component, ViewChild} from '@angular/core';
 import {ColDef, ColGroupDef} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {Router} from "@angular/router";
-import {MatSelect} from "@angular/material/select";
-import {ShrinkAnalyzerService} from "../../../dashboard/service/shrink-analyzer.service";
+import {CarDataService} from "../../../dashboard/service/car-data.service";
 import { Subscription } from 'rxjs';
 import { ActionColumnComponent } from '../action-column/action-column.component';
+import {FormControl} from "@angular/forms";
 
 @Component({
   selector: 'app-tabular-view',
@@ -14,16 +14,29 @@ import { ActionColumnComponent } from '../action-column/action-column.component'
 })
 export class TabularViewComponent {
 
-  tableRows: any;
   tableHeaders: ColDef[] = [];
-  selectedColumns: string[] = [];
-  columnIds: string[] = [];
   isLoading = false;
-
+  carColumnDef: (ColDef | ColGroupDef)[] = [];
+  updatedCarHeaders: any[] = [];
+  allTableHeaders: any[] = [];
   carDataSubscription$!: Subscription;
-  carData: string[] = [];
-
-  carColumnDef: ColDef [] = [];
+  carData: any[] = [];
+  filteredCarData : any [] = [];
+  carBrands : string[] = [];
+  carBrandsData: any[]=[];
+  selectedCarBrands: string[] = [];
+  carBrandControl = new FormControl();
+  public defaultColDef: ColDef = {
+    flex: 1,
+    minWidth: 150,
+    sortable: true,
+    filter: true,
+    floatingFilter: true,
+    resizable: true,
+    suppressMenu: true,
+    wrapHeaderText: true,
+    autoHeaderHeight: true
+  };
 
   public autoGroupColumnDef: ColDef = {
     minWidth: 200,
@@ -35,36 +48,15 @@ export class TabularViewComponent {
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
-  constructor(private router: Router, private shrinkService:ShrinkAnalyzerService){}
+  constructor(private router: Router, private shrinkService:CarDataService){}
 
   ngOnInit() {
-    this.getCarData();
+    this.getCarBrands();
   }
 
-  // Add this property for pagination
   pagination: boolean = true;
-
-  // Add this property for setting the number of rows per page
   paginationPageSize: number = 10;
 
-
-  onColumnSelectionChange(event: any, matSelect: MatSelect) {
-    const newSelectedColumns = event.value;
-     console.log(event.value);
-    if (newSelectedColumns.length >= 2) {
-      this.columnIds = newSelectedColumns;
-      const columnIds = this.tableHeaders
-          .filter((header) => header.colId !== undefined)
-          .map((header) => header.colId as string);
-      this.agGrid.columnApi.setColumnsVisible(columnIds, false);
-      this.agGrid.columnApi.setColumnsVisible(this.columnIds, true);
-    } else {
-      const columnsToKeep = this.tableHeaders
-          .filter((header) => this.columnIds.includes(header.colId as string))
-          .map((header) => header.colId as string);
-      matSelect.writeValue(columnsToKeep);
-    }
-  }
 
   getCarData() {
     this.isLoading = true;
@@ -87,54 +79,77 @@ export class TabularViewComponent {
           this.carData = res.map(item => {
             return { ...item, ...this.carColumnDef };
           });
+
+          console.log("data is " , JSON.stringify(this.carData));
+
+          this.carData = res;
+
+          this.filteredCarData = this.carData;
+
+          this.setTableDataForSelectedBrands();
+          this.updatedCarHeaders = this.carColumnDef;
+          this.allTableHeaders = this.carColumnDef;
         }
-        
         this.isLoading = false;
       });
     }
 
 
-  onCellClicked( data: any, column : string | undefined): void {
-    let value;
-    if(data.hasOwnProperty('day-of-week')){
-      value = {day:data['day-of-week']};
-    }
-    else if(data.hasOwnProperty('hour-of-day')){
-      value = {hour:data['hour-of-day']};
-    }
-    else if(data.hasOwnProperty('site-code')){
-      value = {'site-code':data['site-code']};
-    }
+  getCarBrands() {
+    this.isLoading = true;
 
-    if(column === 'bulkEventCount'){
-      this.router.navigate(['/dashboard/bulk-shrink-events'],{ queryParams: {
-          ...value,
-          bulkEvent: data['bulk-event-count'],
-        }});
-    }else if(column === 'sweetheartCount' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          sweetheart: data['sweetheart-count'],
-        }});
-    } else if(column === 'totalShrinkEvents' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          totalShrinkItem: data['shrink-event-count'],
-        }});
+    this.shrinkService.getBrands().subscribe(
+        (brands: string[]) => {
+          this.carBrandsData = [...brands];
+          this.carBrandsData.forEach((item :any) => {
+            this.carBrands.push(item.brand);
+          });
+
+          this.selectedCarBrands = this.carBrands.slice(0, 2);
+          this.carBrandControl.setValue(this.selectedCarBrands);
+          this.getCarData();
+          this.isLoading = false;
+        },
+        (error) => {
+          console.error('Error fetching car brands', error);
+          this.isLoading = false;
+        }
+    );
+  }
+  setHeadersForBulkShrink(event: any){
+    this.updatedCarHeaders = [];
+    this.updatedCarHeaders = this.setTableHeaders(event, this.allTableHeaders);
+    this.carColumnDef = this.updatedCarHeaders;
+  }
+
+  setTableHeaders(event: any, tableHeaders: ColDef[]): ColDef<any>[]{
+    let updatedHeaders: ColDef<any>[] = [];
+    if(event.length > 0){
+      tableHeaders.forEach((item:ColDef) => {
+        if(event.includes(item.colId)){
+          updatedHeaders.push(item);
+        }
+      });
     }
-    else if(column === 'siteId' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          ...value,
-          totalShrinkItem: data['siteId'],
-        }});
-    }
-    else if(column === 'BulkID' ){
-      this.router.navigate(['/dashboard/rfid-exit-read'],{ queryParams: {
-          'date-and-time': data['Event Time'],
-          'exit-door-id': data['Exit Door ID'],
-          'event-id': data['Event ID'],
-        }});
-    }
+    return updatedHeaders;
+  }
+
+  setTableDataForSelectedBrands() {
+    console.log("selected car brands" + this.selectedCarBrands);
+     this.selectedCarBrands = this.carBrandControl.value;
+      if (this.selectedCarBrands.length >0){
+        this.carData = this.filteredCarData.filter(item =>
+            this.selectedCarBrands.includes(item.brand_name)
+        );
+      }
+      else {
+        this.getCarData();
+      }
+  }
+
+  onCarBrandSelectionChange(event: any) {
+    this.selectedCarBrands = event.value;
+    this.setTableDataForSelectedBrands();
   }
 
 }

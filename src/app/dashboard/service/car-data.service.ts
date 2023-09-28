@@ -5,14 +5,18 @@ import {Observable} from "rxjs";
 @Injectable({
   providedIn: 'root'
 })
-export class ShrinkAnalyzerService {
-
+export class CarDataService {
     constructor(private http: HttpClient) {
   }
 
-  url = "https://my.api.mockaroo.com/car_schema.json?key=e579fe10";
+  brandsurl: string = "http://35.193.88.251/v1/data/brands";
+  url =  "assets/data/cardata.json";
   getData(): Observable<any[]> {
     return this.http.get<any[]>(this.url);
   }
 
+  getBrands() : Observable<string []> {
+    return this.http.get<string[]>(this.brandsurl);
+
+  }
 }
