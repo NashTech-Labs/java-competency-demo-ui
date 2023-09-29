@@ -15,3 +15,9 @@
   height: 12px;
   line-height: 12px; /* Adjust the line-height if needed */
 }
+
+.add-data-button {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
