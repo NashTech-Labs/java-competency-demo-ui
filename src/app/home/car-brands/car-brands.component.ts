@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
+import { CarDetailsService } from "../../shared/services/car-details.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
 import { ActivatedRoute } from "@angular/router";
 
@@ -31,6 +32,7 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
    */
   constructor(
     private carsService: CarsListService,
+    private carsDataService: CarDetailsService,
     private route: ActivatedRoute,
   ) {}
 
@@ -51,7 +53,7 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
   }
 
   getCarBrands(selectedCloud: string): void {
-    this.carsService.getCarBrands(selectedCloud).subscribe((brands) => {
+    this.carsDataService.getCarBrands(selectedCloud).subscribe((brands) => {
       this.carBrands = brands;
       this.brandLoader = true;
     });

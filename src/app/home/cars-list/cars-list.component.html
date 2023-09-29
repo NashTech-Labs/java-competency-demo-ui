@@ -11,7 +11,7 @@
 <div class="container" id="cars-list">
   <div class="row">
     <div class="col"></div>
-    <div class="col-sm-7 carsPage">
+    <div  *ngIf="showcarList" class="col-sm-7 carsPage">
       <!-- Car brands Name -->
       <h1>{{ selectedCarBrand }} Car Models</h1>
       <div
@@ -40,7 +40,6 @@
       <div class="text-center my-5">
         <pagination-controls
           class="twik"
-          *ngIf="showcarList"
           previousLabel="Prev"
           nextLabel="Next"
           (pageChange)="onTableDataChange($event)"
