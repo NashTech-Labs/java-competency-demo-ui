@@ -6,7 +6,6 @@
                 <mat-label>Car Brands</mat-label>
                 <mat-select
                         [formControl]="carBrandControl"
-                        [multiple]="true"
                         (selectionChange)="onCarBrandSelectionChange($event)">
                     <mat-option *ngFor="let brand of carBrands" [value]="brand">{{ brand }}</mat-option>
                 </mat-select>

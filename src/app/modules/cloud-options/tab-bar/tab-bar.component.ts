@@ -13,8 +13,12 @@ export class TabBarComponent {
     queryParams: 'subset',
     fragment: 'ignored'
   };
-  shrinkTabs:{id:number , tabName:string , url: string}[] = [
+  selectedTabId = 0;
+  isLoading = false;
+
+  subTabs:{id:number , tabName:string , url: string}[] = [
     {id:0, tabName: 'Azure', url: '/dashboard' },
     {id:1, tabName: 'GCP', url: '/gcp' },
   ];
+
 }

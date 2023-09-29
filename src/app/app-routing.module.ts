@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from "./home/page-not-found/page-not-found.comp
 const routes: Routes = [
   {
     path: "",
-    redirectTo: "home/gcp",
+    redirectTo: "home/dashboard",
     pathMatch: "full",
   },
   {

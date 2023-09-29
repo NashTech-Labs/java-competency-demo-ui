@@ -2,10 +2,11 @@ import {Component, ViewChild} from '@angular/core';
 import {ColDef, ColGroupDef} from "ag-grid-community";
 import {AgGridAngular} from "ag-grid-angular";
 import {Router} from "@angular/router";
-import {CarDataService} from "../../../dashboard/service/car-data.service";
 import { Subscription } from 'rxjs';
 import { ActionColumnComponent } from '../action-column/action-column.component';
 import {FormControl} from "@angular/forms";
+import {CarDetailsService} from "../../services/car-details.service";
+import {CarBrand} from "../../module/cars-details.model";
 
 @Component({
   selector: 'app-tabular-view',
@@ -24,8 +25,9 @@ export class TabularViewComponent {
   filteredCarData : any [] = [];
   carBrands : string[] = [];
   carBrandsData: any[]=[];
-  selectedCarBrands: string[] = [];
+  selectedCarBrand!: string;
   carBrandControl = new FormControl();
+  selectedTab! : string;
   public defaultColDef: ColDef = {
     flex: 1,
     minWidth: 150,
@@ -48,9 +50,14 @@ export class TabularViewComponent {
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
-  constructor(private router: Router, private shrinkService:CarDataService){}
+  constructor(private router: Router, private carDetailsService:CarDetailsService){}
 
   ngOnInit() {
+    if (this.router.url.includes('/dashboard')){
+      this.selectedTab = 'azure';}
+    else{
+      this.selectedTab = 'gcp'
+    }
     this.getCarBrands();
   }
 
@@ -58,56 +65,52 @@ export class TabularViewComponent {
   paginationPageSize: number = 10;
 
 
-  getCarData() {
+  getCarData(selectedCarBrands : string) {
     this.isLoading = true;
-    this.carDataSubscription$ = this.shrinkService
-      .getData()
-      .subscribe((res) => {
-        if (res) {
-          this.carColumnDef = [
-            {field: 'brand_id', headerName:('Brand_Id'),  colId: 'brand_id',minWidth:180, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'brand_name', headerName: ('Brand_Name'), colId: 'brand_name', minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'model', headerName: ('Model'), colId: 'model', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'year', headerName: ('Year'), colId: 'year', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'color', headerName: ('Color'), colId: 'color',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'mileage', headerName: ('Mileage'), colId: 'mileage', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'price', headerName: ('Price'), colId: 'price',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'location', headerName: ('Location'), colId: 'location', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
-            {field: 'Action', headerName: ('Action'), colId: 'Action',cellRenderer: ActionColumnComponent, floatingFilter: false}
-          ]
+    this.carDataSubscription$ = this.carDetailsService
+        .getCarModels(this.selectedTab,selectedCarBrands)
+        .subscribe((res) => {
+          if (res) {
+            this.carColumnDef = [
+              {field: 'carId', headerName:('Brand_Id'),  colId: 'carId',minWidth:180, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'brand', headerName: ('Brand_Name'), colId: 'brand', minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'model', headerName: ('Model'), colId: 'model', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'year', headerName: ('Year'), colId: 'year', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'color', headerName: ('Color'), colId: 'color',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'price', headerName: ('Price'), colId: 'price',minWidth:210, filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'mileage', headerName: ('Mileage'), colId: 'mileage', filter: 'agTextColumnFilter', suppressMenu: true, unSortIcon: true},
+              {field: 'Action', headerName: ('Action'), colId: 'Action',cellRenderer: ActionColumnComponent, floatingFilter: false}
+            ]
 
-          this.carData = res.map(item => {
-            return { ...item, ...this.carColumnDef };
-          });
+            this.carData = res.map(item => {
+              return { ...item, ...this.carColumnDef };
+            });
 
-          console.log("data is " , JSON.stringify(this.carData));
+            console.log("data is " , this.carData);
 
-          this.carData = res;
+            this.carData = res;
+            this.filteredCarData = this.carData;
 
-          this.filteredCarData = this.carData;
-
-          this.setTableDataForSelectedBrands();
-          this.updatedCarHeaders = this.carColumnDef;
-          this.allTableHeaders = this.carColumnDef;
-        }
-        this.isLoading = false;
-      });
-    }
+            this.updatedCarHeaders = this.carColumnDef;
+            this.allTableHeaders = this.carColumnDef;
+          }
+          this.isLoading = false;
+        });
+  }
 
 
   getCarBrands() {
     this.isLoading = true;
 
-    this.shrinkService.getBrands().subscribe(
-        (brands: string[]) => {
+    this.carDetailsService.getCarBrands(this.selectedTab).subscribe(
+        (brands: CarBrand[]) => {
           this.carBrandsData = [...brands];
           this.carBrandsData.forEach((item :any) => {
             this.carBrands.push(item.brand);
           });
-
-          this.selectedCarBrands = this.carBrands.slice(0, 2);
-          this.carBrandControl.setValue(this.selectedCarBrands);
-          this.getCarData();
+          const firstSelectedBrand = this.carBrands[0];
+          this.carBrandControl.setValue(firstSelectedBrand);
+          this.getCarData(firstSelectedBrand);
           this.isLoading = false;
         },
         (error) => {
@@ -135,20 +138,14 @@ export class TabularViewComponent {
   }
 
   setTableDataForSelectedBrands() {
-    console.log("selected car brands" + this.selectedCarBrands);
-     this.selectedCarBrands = this.carBrandControl.value;
-      if (this.selectedCarBrands.length >0){
-        this.carData = this.filteredCarData.filter(item =>
-            this.selectedCarBrands.includes(item.brand_name)
-        );
-      }
-      else {
-        this.getCarData();
-      }
+    console.log("selected car brand " + this.selectedCarBrand);
+    console.log("here car data is  " + this.carData);
+    this.selectedCarBrand = this.carBrandControl.value;
+    this.getCarData(this.selectedCarBrand);
   }
 
   onCarBrandSelectionChange(event: any) {
-    this.selectedCarBrands = event.value;
+    this.selectedCarBrand = event.value;
     this.setTableDataForSelectedBrands();
   }
 

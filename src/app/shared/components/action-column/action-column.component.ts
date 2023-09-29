@@ -17,8 +17,6 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   }
 
   public bulkEventCellValue!: any;
-  eventId!: string;
-  updatedValue!: string;
 
   agInit(params: ICellRendererParams): void {
     this.bulkEventCellValue = params;
