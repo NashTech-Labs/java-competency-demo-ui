@@ -6,6 +6,7 @@ import {CarDataService} from "../../../dashboard/service/car-data.service";
 import { Subscription } from 'rxjs';
 import { ActionColumnComponent } from '../action-column/action-column.component';
 import {FormControl} from "@angular/forms";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-tabular-view',
@@ -48,7 +49,7 @@ export class TabularViewComponent {
 
   @ViewChild(AgGridAngular) agGrid!: AgGridAngular;
 
-  constructor(private router: Router, private shrinkService:CarDataService){}
+  constructor(private router: Router, private shrinkService:CarDataService, private httpClient: HttpClient){}
 
   ngOnInit() {
     this.getCarBrands();
@@ -93,6 +94,22 @@ export class TabularViewComponent {
         this.isLoading = false;
       });
     }
+
+  addData() {
+    const apiUrl = 'http://35.193.88.251/v1/data';  // Replace with your actual API endpoint URL
+    this.httpClient.post(apiUrl, {})
+        .subscribe(
+            (response) => {
+              console.log('POST request successful:', response);
+              // Handle any success actions or notifications here
+            },
+            (error) => {
+              console.error('Error making POST request:', error);
+              // Handle any error actions or notifications here
+            }
+        );
+  }
+
 
 
   getCarBrands() {
