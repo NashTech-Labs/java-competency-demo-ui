@@ -23,7 +23,6 @@ import { NgxPaginationModule } from "ngx-pagination";
     HomeRoutingModule,
     MaterialModule,
     NgOptimizedImage,
-    // MatChipsModule,
     NgxPaginationModule,
   ],
   exports: [HomeComponent],

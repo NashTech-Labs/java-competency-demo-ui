@@ -85,12 +85,17 @@ import { PageNotFoundComponent } from &quot;./home/page-not-found/page-not-found
 const routes: Routes &#x3D; [
   {
     path: &quot;&quot;,
-    redirectTo: &quot;home/azure&quot;,
+    redirectTo: &quot;home/gcp&quot;,
     pathMatch: &quot;full&quot;,
   },
   {
     path: &quot;home&quot;,
     loadChildren: () &#x3D;&gt; &quot;import(\&quot;./home/home.module\&quot;).then((m) &#x3D;&gt; m.HomeModule)&quot;,
+  },
+  {
+    path: &quot;dashboard&quot;,
+    loadChildren: () &#x3D;&gt;
+      &quot;import(\&quot;./dashboard/dashboard.module\&quot;).then((m) &#x3D;&gt; m.DashboardModule)&quot;,
   },
   {
     path: &quot;**&quot;,
@@ -99,7 +104,12 @@ const routes: Routes &#x3D; [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes, { useHash: true })],
+  imports: [
+    RouterModule.forRoot(routes, {
+      bindToComponentInputs: true,
+      useHash: true,
+    }),
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}

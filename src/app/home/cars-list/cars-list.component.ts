@@ -1,6 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
-import { CarsListService } from "../services/cars-list.service";
 import { CarDetails } from "../../shared/module/cars-details.model";
+import { CarDetailsService } from "../../shared/services/car-details.service";
 import { ActivatedRoute } from "@angular/router";
 /**
  * Represents the Cars List component that displays a list of cars.
@@ -49,7 +49,7 @@ export class CarsListComponent implements OnInit, OnDestroy {
    * @param carsData - The service responsible for fetching car data.
    */
   constructor(
-    private carsDataService: CarsListService,
+    private carsDataService: CarDetailsService,
     private route: ActivatedRoute,
   ) {}
 
