@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { catchError, Observable, of, throwError } from "rxjs";
 import { CarBrand, CarDetails } from "../module/cars-details.model";
 
 @Injectable({
@@ -11,6 +11,7 @@ export class CarDetailsService {
   private brandsUrlAzure = "http://52.149.205.209/v1/data/brands";
   private carModelsUrlAzure = "http://52.149.205.209/v1/data/cars/";
   private carModelsUrlGCP = "http://35.193.88.251/v1/data/cars/";
+  private addBulkDataGCP: string = "http://35.193.88.251/v1/data";
   //private brandsUrlGCPSSE = "http://35.193.88.251/v1/data/brands-sse";
   //private eventSource!: EventSource;
   //carBrands: CarBrand[] = [];
@@ -33,6 +34,15 @@ export class CarDetailsService {
       return this.http.get<CarDetails[]>(
         this.carModelsUrlAzure.concat(carBrandName),
       );
+  }
+
+  addBulkData(): Observable<any> {
+    return this.http.post<any>(this.addBulkDataGCP, null).pipe(
+      catchError((err) => {
+        console.error("There was an error!", err);
+        return of();
+      }),
+    );
   }
 
   // getCarModelsAzure(carBrandName: string): Observable<CarDetails[]> {

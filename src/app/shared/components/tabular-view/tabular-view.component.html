@@ -19,6 +19,9 @@
                     (updatedHeaders)="setHeadersForBulkShrink($event)">
             </app-table-headers-dropdown>
         </div>
+        <div class="add-data-button">
+            <a mat-raised-button (click)="addBulkData()" target="_blank" class="custom-button">Add Bulk Data</a>
+        </div>
     </div>
     <ng-container *ngIf="!isLoading; else showLoading">
 
