@@ -1,6 +1,7 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { constants } from "../constants/constants";
 import { AvailableCloudOptions } from "../shared/module/cloud-item-details.model";
+import { Router } from "@angular/router";
 
 /**
  * Represents the HomeComponent, the landing page of the application.
@@ -10,7 +11,8 @@ import { AvailableCloudOptions } from "../shared/module/cloud-item-details.model
   templateUrl: "./home.component.html",
   styleUrls: ["./home.component.scss"],
 })
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+  isHeaderVisible: boolean = true;
   Title: string = "Java UI Demo";
   Description: string = "A Reactive Application";
 
@@ -38,4 +40,11 @@ export class HomeComponent {
       isSelected: true,
     },
   ];
+  constructor(private router: Router) {}
+
+  ngOnInit() {
+    if (this.router.url.includes("dashboard")) {
+      this.isHeaderVisible = false;
+    }
+  }
 }

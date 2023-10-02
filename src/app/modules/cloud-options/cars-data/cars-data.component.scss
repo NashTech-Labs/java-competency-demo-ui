@@ -1,0 +1,18 @@
+:host
+  ::ng-deep
+  .mdc-checkbox
+  .mdc-checkbox__native-control:enabled:checked
+  ~ .mdc-checkbox__background {
+  border-color: #ffffff;
+  background-color: #00539e;
+}
+
+.mat-select {
+  float: right;
+}
+
+.add-data-button {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
