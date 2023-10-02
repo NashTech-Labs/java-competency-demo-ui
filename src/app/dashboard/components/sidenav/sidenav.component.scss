@@ -5,51 +5,53 @@
 #sidenav {
   width: 270px;
   background: #076599;
+
+  &.menu-close {
+    width: 80px;
+  }
+
+  &.menu-open {
+    width: 270px;
+  }
 }
 
-#sidenav.menu-close {
-  width: 80px
-}
-#sidenav.menu-open {
-  width: 270px
-}
 :host ::ng-deep .mdc-list-item__primary-text {
   color: #ffffff !important;
 }
-.nav-item{
+.nav-item {
   padding-top: 27px;
   padding-bottom: 27px;
 }
-.nav-title{
+.nav-title {
   font-family: Montserrat;
   font-size: 14px;
   letter-spacing: 0px;
   font-weight: 400;
 }
-.active{
-  background-color: #003F78;
-  .nav-title{
-    color: #F8F8F8;
+.active {
+  background-color: #003f78;
+  .nav-title {
+    color: #f8f8f8;
     font-weight: 500;
   }
 }
-.footer{
+.footer {
   position: absolute;
   bottom: 15px;
   right: 21px;
   color: #ffffff;
   cursor: pointer;
 }
-#toolbarMenu{
+#toolbarMenu {
   height: 40px;
   width: 40px;
   font-size: 30px;
 }
-.nav-icon{
+.nav-icon {
   height: 30px;
   width: 30px;
   background: #ffffff;
-  color: #00539E;
+  color: #00539e;
   font-size: 14px;
   font-weight: 500;
   border-radius: 50%;
@@ -59,10 +61,10 @@
   padding: 4px;
 }
 
-#mysidenav{
+#mysidenav {
   border-radius: 5px;
   border: none;
   padding: 10px;
-  background: #FFF;
-  box-shadow: 0 0 12px 0 #00000024
+  background: #fff;
+  box-shadow: 0 0 12px 0 #00000024;
 }

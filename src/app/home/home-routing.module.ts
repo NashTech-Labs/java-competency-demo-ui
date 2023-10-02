@@ -26,7 +26,7 @@ const routes: Routes = [
       },
       {
         path: "",
-        redirectTo: "/home/azure",
+        redirectTo: "gcp",
         pathMatch: "full",
       },
     ],
