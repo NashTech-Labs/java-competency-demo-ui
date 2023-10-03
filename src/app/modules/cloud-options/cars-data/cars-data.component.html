@@ -35,7 +35,7 @@
         >
       </div>
     </div>
-    <ng-container *ngIf="!isLoading; else showLoading">
+    <ng-container *ngIf = "carData && carData.length > 0; else showLoading">
       <app-tabular-view [tableRows]="carData" [tableHeaders]="carColumnDef">
       </app-tabular-view>
     </ng-container>
