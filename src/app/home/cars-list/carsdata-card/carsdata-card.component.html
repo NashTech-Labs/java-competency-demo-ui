@@ -1,5 +1,5 @@
 <div class="carsdata-card-container">
-  <mat-card class="example-card my-5">
+  <mat-card  [ngClass]="{'example-card-new': !isNewUI, 'example-card': isNewUI}">
     <mat-card-header>
       <mat-card-title class="card-title">{{ carCompanyName }} {{ carModel }}</mat-card-title>
       <mat-card-subtitle class="card-title">{{ carPrice }}</mat-card-subtitle>

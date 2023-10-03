@@ -15,7 +15,7 @@
     </mat-toolbar>
   </header>
 
-  <div class="my-5" id="sub-header">
+  <div [ngClass]="{'chips': !isHeaderVisible, 'my-5': isHeaderVisible}" id="sub-header">
     <mat-chip-listbox aria-label="Cloud Selection">
       <mat-chip-option
         *ngFor="let cloudItem of cloudOptions"
