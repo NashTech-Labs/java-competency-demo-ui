@@ -5,7 +5,7 @@
 </div>
 
 
-<div class="content container">
+<div [ngClass]="{'contentNewUI': !isNewUI, 'content': isNewUI, 'container' : true}">
   <div fxLayout="row wrap" fxLayoutGap="16px grid">
     <div
       fxFlex="25%"
