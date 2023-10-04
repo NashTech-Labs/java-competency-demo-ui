@@ -15,7 +15,7 @@
     >
       <mat-card class="mat-elevation-z4">
         <mat-card-header>
-          <button routerLink="./carList/{{carBrand.brand}}"  (click)="onBrandClick(carBrand.brand)">
+          <button   [style.color]="!isNewUI ? '#076599' : '#d73b1e'" routerLink="./carList/{{carBrand.brand}}"  (click)="onBrandClick(carBrand.brand)">
             <p>{{ carBrand["brand"] }}</p>
           </button>
         </mat-card-header>

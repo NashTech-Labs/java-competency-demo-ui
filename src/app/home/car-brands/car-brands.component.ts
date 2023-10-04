@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from "@angular/core";
 import { CarsListService } from "../services/cars-list.service";
 import { CarDetailsService } from "../../shared/services/car-details.service";
 import { CarBrand } from "../../shared/module/cars-details.model";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 
 /**
  * Component to display car brands and handle brand selection.
@@ -20,6 +20,7 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
    * Flag to control the visibility of the brand loader (spinner).
    */
   brandLoader: boolean = false;
+  isNewUI: boolean = true;
 
   /**
    * Constructor of the component.
@@ -34,12 +35,16 @@ export class CarBrandsComponent implements OnInit, OnDestroy {
     private carsService: CarsListService,
     private carsDataService: CarDetailsService,
     private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   /**
    * Lifecycle hook. Called when the component is initialized.
    */
   ngOnInit(): void {
+    if (this.router.url.includes("dashboard")) {
+      this.isNewUI = false;
+    }
     this.selectedCloud = this.route.snapshot.url[0].path;
     this.getCarBrands(this.selectedCloud);
   }
