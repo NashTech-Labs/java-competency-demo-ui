@@ -61,6 +61,7 @@ export class SidenavComponent {
    */
   checkRouteActive(url: string): boolean {
     let routerUrl = this.router.url;
+
     if (routerUrl.includes("?")) {
       routerUrl = this.router.url.substring(0, routerUrl.indexOf("?"));
     }
@@ -70,12 +71,21 @@ export class SidenavComponent {
         this.previousUrl.indexOf("?"),
       );
     }
+
+    console.log("url is " + url + "routerUrl" + routerUrl )
+
     if (url === routerUrl) {
       return true;
     }
     if (url === "/dashboard" && routerUrl.includes("/dashboard/gcp")) {
       return true;
     }
+
+    if (url === "/dashboard/home" && (routerUrl.includes("/dashboard/home/gcp") ||
+        routerUrl.includes("/dashboard/home/azure"))) {
+      return true;
+    }
+
     if (
       this.router.url === "/dashboard/api-error" &&
       this.previousUrl !== undefined
