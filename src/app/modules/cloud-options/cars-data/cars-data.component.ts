@@ -8,6 +8,8 @@ import { CarBrand } from "../../../shared/module/cars-details.model";
 import { Router } from "@angular/router";
 import { FormControl } from "@angular/forms";
 import { ActionColumnComponent } from "../../../shared/components/action-column/action-column.component";
+import { ConfirmationDialogComponent } from "../../../dashboard/components/confirmation-dialog/confirmation-dialog.component";
+import { MatDialog } from "@angular/material/dialog";
 
 @Component({
   selector: "app-cars-data",
@@ -30,6 +32,7 @@ export class CarsDataComponent implements OnInit {
     public commonService: CommonService,
     private carsDataService: CarDetailsService,
     private router: Router,
+    public dialog: MatDialog,
   ) {}
 
   ngOnInit(): void {
@@ -147,8 +150,18 @@ export class CarsDataComponent implements OnInit {
   }
 
   addBulkData() {
-    this.carsDataService
-      .addBulkData()
-      .subscribe((data) => console.log("Bulk data uploaded successfully."));
+    this.carsDataService.addBulkData(this.selectedCloud).subscribe((data) => {
+      console.log("Bulk data uploaded successfully.");
+      this.openDialog();
+      this.getCarBrands(this.selectedCloud);
+    });
+  }
+
+  openDialog() {
+    this.dialog.open(ConfirmationDialogComponent, {
+      data: {
+        selectedCloud: this.selectedCloud,
+      },
+    });
   }
 }
