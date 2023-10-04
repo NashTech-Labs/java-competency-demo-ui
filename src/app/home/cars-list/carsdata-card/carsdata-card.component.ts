@@ -1,11 +1,17 @@
-import { Component, Input } from "@angular/core";
+import {Component, Input, OnInit} from "@angular/core";
+import {Router} from "@angular/router";
 
 @Component({
   selector: "app-carsdata-card",
   templateUrl: "./carsdata-card.component.html",
   styleUrls: ["./carsdata-card.component.scss"],
 })
-export class CarsdataCardComponent {
+export class CarsdataCardComponent implements OnInit{
+
+  isNewUI: boolean = true;
+  constructor(private router: Router) {}
+
+
   /**
    * Holds the name of the car's manufacturing company.
    * This property is passed as an input to the component and displayed in the template.
@@ -47,4 +53,10 @@ export class CarsdataCardComponent {
    * This property is passed as an input to the component and displayed in the template.
    */
   @Input() carColor: string = "";
+
+  ngOnInit() {
+    if (this.router.url.includes("dashboard")) {
+      this.isNewUI = false;
+    }
+  }
 }

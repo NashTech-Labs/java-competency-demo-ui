@@ -1,7 +1,7 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { CarDetails } from "../../shared/module/cars-details.model";
 import { CarDetailsService } from "../../shared/services/car-details.service";
-import { ActivatedRoute } from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 /**
  * Represents the Cars List component that displays a list of cars.
  */
@@ -12,6 +12,8 @@ import { ActivatedRoute } from "@angular/router";
 })
 export class CarsListComponent implements OnInit, OnDestroy {
   @Input("brandName") brandName = "";
+
+  isNewUI: boolean = true;
 
   /**
    * Determines if the car list should be shown.
@@ -51,12 +53,16 @@ export class CarsListComponent implements OnInit, OnDestroy {
   constructor(
     private carsDataService: CarDetailsService,
     private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   /**
    * Lifecycle hook: Initializes the component.
    */
   ngOnInit(): void {
+    if (this.router.url.includes("dashboard")) {
+      this.isNewUI = false;
+    }
     this.selectedCloud = this.route.snapshot.url[0].path;
     if (this.selectedCarBrand.length == 0)
       this.selectedCarBrand = this.brandName;
