@@ -72,8 +72,6 @@ export class SidenavComponent {
       );
     }
 
-    console.log("url is " + url + "routerUrl" + routerUrl )
-
     if (url === routerUrl) {
       return true;
     }
@@ -81,8 +79,11 @@ export class SidenavComponent {
       return true;
     }
 
-    if (url === "/dashboard/home" && (routerUrl.includes("/dashboard/home/gcp") ||
-        routerUrl.includes("/dashboard/home/azure"))) {
+    if (
+      url === "/dashboard/home" &&
+      (routerUrl.includes("/dashboard/home/gcp") ||
+        routerUrl.includes("/dashboard/home/azure"))
+    ) {
       return true;
     }
 
