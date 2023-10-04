@@ -150,11 +150,14 @@ export class CarsDataComponent implements OnInit {
   }
 
   addBulkData() {
-    this.carsDataService.addBulkData(this.selectedCloud).subscribe((data) => {
-      console.log("Bulk data uploaded successfully.");
-      this.openDialog();
-      this.getCarBrands(this.selectedCloud);
-    });
+    this.carsDataService
+      .addBulkData(this.selectedCloud)
+      .subscribe(async (data) => {
+        console.log("Bulk data uploaded successfully.");
+        this.openDialog();
+        await new Promise((f) => setTimeout(f, 3000));
+        this.getCarBrands(this.selectedCloud);
+      });
   }
 
   openDialog() {

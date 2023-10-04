@@ -8,7 +8,5 @@ import { CarsDataComponent } from "../../../modules/cloud-options/cars-data/cars
   styleUrls: ["./confirmation-dialog.component.scss"],
 })
 export class ConfirmationDialogComponent {
-  constructor(
-    @Inject(MAT_DIALOG_DATA) public selectedCloud: CarsDataComponent,
-  ) {}
+  constructor(@Inject(MAT_DIALOG_DATA) public data: CarsDataComponent) {}
 }
