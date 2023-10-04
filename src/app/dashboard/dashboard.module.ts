@@ -7,6 +7,7 @@ import { SidenavComponent } from "./components/sidenav/sidenav.component";
 import { MaterialModule } from "../shared/module/material.module";
 import { ApiErrorComponent } from "./components/api-error/api-error.component";
 import { ServerErrorComponent } from "./components/server-error/server-error.component";
+import { ConfirmationDialogComponent } from './components/confirmation-dialog/confirmation-dialog.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -14,6 +15,7 @@ import { ServerErrorComponent } from "./components/server-error/server-error.com
     SidenavComponent,
     ApiErrorComponent,
     ServerErrorComponent,
+    ConfirmationDialogComponent,
   ],
   exports: [HeaderComponent, ApiErrorComponent],
   imports: [CommonModule, DashboardRoutingModule, MaterialModule],
