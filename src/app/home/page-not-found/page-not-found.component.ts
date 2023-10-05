@@ -10,6 +10,6 @@ export class PageNotFoundComponent {
   constructor(private router: Router) {}
 
   goToDashboard() {
-    this.router.navigate(["/home/azure"]);
+    this.router.navigate(["/dashboard"]);
   }
 }

@@ -1,1 +1,13 @@
-<p>header works!</p>
+<header>
+    <mat-toolbar class="mainToolbar">
+        {{title}}
+    <span class="toolbar-spacer"></span>
+    <div class="demo-section">
+      <div class="cart-icon-container">
+        <mat-icon [matBadge]="(cartService.cartItemCount$ | async) || 0"  matBadgeColor="warn">shopping_cart</mat-icon>
+      </div>
+      <span class="cdk-visually-hidden">{{ cartItemCount }}
+      </span>
+    </div>
+  </mat-toolbar>
+</header>
