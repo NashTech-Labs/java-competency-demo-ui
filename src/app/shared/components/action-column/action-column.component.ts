@@ -34,7 +34,6 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
 
   addToCart(): void {
     const url = this.addToCartUrl+`?productId=${this.carId}&quantity=1&userId=user1`;
-    console.log("url is" + url);
     this.httpClient.post<any>(url, null).subscribe((response) => {
       if (response != null) {
         this.cartService.incrementCartItemCount();
