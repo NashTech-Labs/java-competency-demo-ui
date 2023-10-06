@@ -18,11 +18,13 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   ) {}
 
   public bulkEventCellValue!: any;
-  eventId!: string;
-  updatedValue!: string;
+
+  private addToCartUrl : string = "http://localhost:8080/cart/add";
+  public carId!: string;
 
   agInit(params: ICellRendererParams): void {
     this.bulkEventCellValue = params;
+    this.carId = params.data.carId;
   }
 
   refresh(params: ICellRendererParams) {
@@ -31,20 +33,15 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   }
 
   addToCart(): void {
-    const url =
-      "http://localhost:8081/cart/add?productId=prod1&quantity=2&userId=user1";
+    const url = this.addToCartUrl+`?productId=${this.carId}&quantity=1&userId=user1`;
+
     this.httpClient.post<any>(url, null).subscribe((response) => {
-      if (response.success) {
+      if (response != null) {
         this.cartService.incrementCartItemCount();
       } else {
-        console.error("Failed to add to cart:", response.message);
+        console.error("Failed to add to cart:");
       }
     });
-  }
-
-  addToCartTest() {
-    this.cartService.incrementCartItemCount();
-    this.showSnackBar("Item has been added to the cart");
   }
 
   private showSnackBar(message: string) {
