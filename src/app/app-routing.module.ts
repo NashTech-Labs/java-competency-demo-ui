@@ -18,6 +18,11 @@ const routes: Routes = [
       import("./dashboard/dashboard.module").then((m) => m.DashboardModule),
   },
   {
+    path: "cart",
+    loadChildren: () =>
+      import("../app/modules/cart/cart.module").then((m) => m.CartModule),
+  },
+  {
     path: "**",
     component: PageNotFoundComponent,
   },
