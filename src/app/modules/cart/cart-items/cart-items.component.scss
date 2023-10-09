@@ -7,6 +7,7 @@
     width: 800px;
     margin: 1rem;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: rgba(173, 216, 230, 0.3);
 
     .mat-card-header {
       display: flex;
@@ -27,6 +28,8 @@
 
     button {
       width: 100%;
+      background-color: #076599; /* Blue button color */
+      color: white;
     }
   }
 }
