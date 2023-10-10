@@ -1,6 +1,5 @@
 import { Component } from "@angular/core";
-import { constants } from "src/app/constants/constants";
-import { CartService } from "../../service/cart.service";
+import { CartService} from "../../../shared/services/cart.service";
 
 /**
  * Header for the dashboard.
@@ -20,6 +19,8 @@ export class HeaderComponent {
   title: string = "Java UI Demo";
   /** The number of items in the shopping cart. */
   cartItemCount: number = 0;
-  /** The URL for the NashTech logo. */
-  nashTechLogoUrl: string = constants.nashTechLogoUrl;
+  getCartItems () {
+    this.cartService.getCartItems();
+  }
+
 }

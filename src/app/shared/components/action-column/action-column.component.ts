@@ -1,7 +1,7 @@
 import { Component } from "@angular/core";
 import { ICellRendererAngularComp } from "ag-grid-angular";
 import { ICellRendererParams } from "ag-grid-community";
-import { CartService } from "../../../dashboard/service/cart.service";
+import { CartService} from "../../services/cart.service";
 import { HttpClient } from "@angular/common/http";
 import { MatSnackBar } from "@angular/material/snack-bar";
 
@@ -19,7 +19,7 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
 
   public bulkEventCellValue!: any;
 
-  private addToCartUrl : string = "http://localhost:8080/cart/add";
+  private addToCartUrl : string = "http://localhost:9094/cart/add";
   public carId!: string;
 
   agInit(params: ICellRendererParams): void {
@@ -33,11 +33,12 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   }
 
   addToCart(): void {
-    const url = this.addToCartUrl+`?productId=${this.carId}&quantity=1&userId=user1`;
+    const url = this.addToCartUrl+`?productId=${this.carId}&quantity=1&userId=1652`;
 
     this.httpClient.post<any>(url, null).subscribe((response) => {
       if (response != null) {
         this.cartService.incrementCartItemCount();
+        this.showSnackBar("Item has been added to the cart");
       } else {
         console.error("Failed to add to cart:");
       }
