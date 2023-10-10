@@ -9,7 +9,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AgGridModule } from "ag-grid-angular";
 import { MaterialModule } from "./shared/module/material.module";
-import {CartService} from "./dashboard/service/cart.service";
+import {CartService} from "./shared/services/cart.service";
 
 @NgModule({
   declarations: [AppComponent],
