@@ -32,11 +32,13 @@
       }
 
       .quantity-button{
-        width: 20px;
+        width: 5px;
+        height: 5px;
+        margin: 1rem;
       }
     }
 
-    button {
+    .place-order-button{
       width: 140px;
       background-color: #076599;
       color: white;
