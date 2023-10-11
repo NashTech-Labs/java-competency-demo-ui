@@ -5,5 +5,5 @@ export interface CartItem {
   color: string;
   quantity: string;
   tax: string;
-  price: string;
+  basePrice: string;
 }
