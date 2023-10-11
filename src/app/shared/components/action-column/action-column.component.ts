@@ -18,8 +18,6 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   ) {}
 
   public bulkEventCellValue!: any;
-
-  private addToCartUrl : string = "http://localhost:9094/cart/add";
   public carId!: string;
 
   agInit(params: ICellRendererParams): void {
@@ -33,9 +31,7 @@ export class ActionColumnComponent implements ICellRendererAngularComp {
   }
 
   addToCart(): void {
-    const url = this.addToCartUrl+`?productId=${this.carId}&quantity=1&userId=1652`;
-
-    this.httpClient.post<any>(url, null).subscribe((response) => {
+    this.cartService.addToCart(this.carId).subscribe((response) => {
       if (response != null) {
         this.cartService.incrementCartItemCount();
         this.showSnackBar("Item has been added to the cart");
