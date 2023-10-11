@@ -18,7 +18,7 @@
         </div>
         <div class="item-info">
           <h3>Price</h3>
-          <h3>{{ cartItem.price }}</h3>
+          <h3>{{ cartItem.basePrice }}</h3>
         </div>
         <div class="item-info">
           <h3>Quantity</h3>
@@ -30,6 +30,6 @@
         </div>
       </div>
     </mat-card-content>
-    <button mat-raised-button class="place-order-button">Place Order</button>
+    <button mat-raised-button class="place-order-button"  (click)="placeOrder(cartItem.productId, Number(cartItem.quantity))">Place Order</button>
   </mat-card>
 </div>
