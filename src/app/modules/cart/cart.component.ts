@@ -23,4 +23,9 @@ export class CartComponent {
   trackByFn(index: number, item: CartItem) {
     return item.model; // Assuming you have a unique identifier like 'id'
   }
+
+  orderPlaced(cartItem : CartItem){
+    this.cartItems = this.cartItems.filter(item => cartItem !== item);
+  }
+
 }

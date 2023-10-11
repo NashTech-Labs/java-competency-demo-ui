@@ -1,5 +1,5 @@
 <app-header></app-header>
 <div *ngFor="let item of cartItems; trackBy: trackByFn">
-  <app-cart-items [cartItem]="item"
+  <app-cart-items [cartItem]="item" (OrderPlaced)= "orderPlaced($event)"
   ></app-cart-items>
 </div>

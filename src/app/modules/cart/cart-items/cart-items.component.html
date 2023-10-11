@@ -1,15 +1,23 @@
 <div>
   <mat-card>
     <mat-card-header>
-      <mat-card-title class="card-title"
-        >{{ cartItem.brand }} {{ cartItem.model }}</mat-card-title
-      >
+      <mat-card-title class="card-title">
+        {{ cartItem.brand }} {{ cartItem.model }}
+      </mat-card-title>
       <mat-card-subtitle class="card-title">{{ cartItem.price }}</mat-card-subtitle>
     </mat-card-header>
     <br />
     <mat-card-content>
-      <div>Color: {{ cartItem.color }} Quantity: {{ cartItem.quantity }} Tax: {{ cartItem.tax }}</div>
+      <div>
+        Color: {{ cartItem.color }} Quantity: {{ cartItem.quantity }} Tax: {{ cartItem.tax }}
+      </div>
     </mat-card-content>
-    <button mat-raised-button color="accent">Add To Cart</button>
+    <button
+            mat-raised-button
+            color="accent"
+            (click)="placeOrder(cartItem.productId, Number(cartItem.quantity))"
+    >
+      Add To Cart
+    </button>
   </mat-card>
 </div>
