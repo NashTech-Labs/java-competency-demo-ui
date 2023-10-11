@@ -45,6 +45,36 @@ export class CartItemsComponent {
       }
     });
   }
+  increaseQuantity(cartItem: CartItem) {
+    this.cartService.addToCart(cartItem.productId).subscribe(
+        (response) => {
+          cartItem.quantity += 1;
+          this.cartService.incrementCartItemCount();
+          this.snackBar.open('Quantity updated successfully', 'Close', { duration: 2000 });
+        },
+        (error) => {
+          console.error('Error updating quantity:', error);
+        }
+    );
+  }
+
+    decreaseQuantity(cartItem: CartItem) {
+        this.cartService.removeFromCart(cartItem.productId, 1, '1652').subscribe(
+            (response) => {
+                if (Number(cartItem.quantity) == 1) {
+                    this.OrderPlaced.emit(this.cartItem);
+                    this.removeFromDatabase(cartItem.productId, 1, '1652');
+                } else {
+                    (cartItem as any).quantity -= 1;
+                    this.cartService.decrementCartItemCount(1);
+                }
+                this.snackBar.open('Item removed from cart', 'Close', { duration: 2000 });
+            },
+            (error) => {
+                console.error('Error removing item from cart:', error);
+            }
+        );
+    }
 
   protected readonly Number = Number;
 }

@@ -14,6 +14,7 @@ export class CartService {
   private getCartItemUrl : string =  "http://localhost:9094/cart/get";
   private placeOrderUrl =  "http://localhost:9090/orders";
   private removeFromCartUrl :string = "http://localhost:9094/cart/remove";
+  private addToCartUrl : string = "http://localhost:9094/cart/add";
 
   constructor(private httpClient: HttpClient) {
     const initialCount = parseInt(localStorage.getItem('cartCount') || '0', 10);
@@ -55,6 +56,11 @@ export class CartService {
 
   removeFromCart(productId: string, quantity: number, userId: string): Observable<any> {
     const url = this.removeFromCartUrl+`?productId=${productId}&quantity=${quantity}&userId=1652`;
+    return this.httpClient.post<any>(url, null);
+  }
+
+  addToCart(carId : string): Observable <any> {
+    const url = this.addToCartUrl + `?productId=${carId}&quantity=1&userId=1652`;
     return this.httpClient.post<any>(url, null);
   }
 
