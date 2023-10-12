@@ -8,11 +8,11 @@ import { CarBrand, CarDetails } from "../module/cars-details.model";
 })
 export class CarDetailsService {
   private brandsUrlGCP = "http://35.193.88.251/v1/data/brands";
-  private brandsUrlAzure = "http://20.124.63.217/v1/data/brands";
-  private carModelsUrlAzure = "http://20.124.63.217/v1/data/cars/";
+  private brandsUrlAzure = "http://40.88.227.104/v1/data/brands";
+  private carModelsUrlAzure = "http://40.88.227.104/v1/data/cars/";
   private carModelsUrlGCP = "http://35.193.88.251/v1/data/cars/";
   private addBulkDataGCP: string = "http://35.193.88.251/v1/data";
-  private addBulkDataAzure: string = "http://20.124.63.217/v1/data";
+  private addBulkDataAzure: string = "http://40.88.227.104/v1/data";
   //private brandsUrlGCPSSE = "http://35.193.88.251/v1/data/brands-sse";
   //private eventSource!: EventSource;
   //carBrands: CarBrand[] = [];
