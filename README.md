@@ -33,3 +33,31 @@ docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui
 
 2) Run from local
 docker run --env API_URL="https://webapi-dev.appname.com" -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui:latest
+
+## Application Functionality
+
+This Angular application primarily deals with car-related operations. It loads car brands and models from the following URLs: 
+These are available on GCP and Azure both.
+
+- Private brands URL (GCP): "http://35.193.88.251/v1/data/brands"
+- Private brands URL (Azure): "http://40.88.227.104/v1/data/brands"
+- Car models URL (Azure): "http://40.88.227.104/v1/data/cars/"
+- Car models URL (GCP): "http://35.193.88.251/v1/data/cars/"
+
+### Adding Items to the Cart
+When a user adds an item to the cart, a backend application named "CartApplication," written in Spring Boot, handles the process. The `/add` endpoint is called, and in the backend,
+it checks whether the product is available in the inventory database. If the product is found, it is added to the SQL database, which is maintained by the CartApplication.
+
+### Removing Items from the Cart
+To remove an item from the cart, the `/remove` endpoint of the CartApplication is called. Item will be removed from the database as well.
+
+### Placing an Order
+User can increase and decrease the quantity of the particular item while placing the order.
+To place an order, the `/order` endpoint of the OrderApplication is called. When an order is successfully placed, a message is received, and the corresponding item is removed from the cart database.
+
+### Endpoints
+- Get Cart Items: `http://localhost:9094/cart/get`
+- Place Order: `http://localhost:9090/orders`
+- Remove from Cart: `http://localhost:9094/cart/remove`
+- Add to Cart: `http://localhost:9094/cart/add`
+
