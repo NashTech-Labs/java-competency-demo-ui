@@ -1,5 +1,12 @@
 <app-header></app-header>
-<div *ngFor="let item of cartItems; trackBy: trackByFn">
-  <app-cart-items [cartItem]="item" (OrderPlaced)= "orderPlaced($event)"
-  ></app-cart-items>
+
+<div class="cart-items-container">
+
+  <ng-container *ngIf="cartItems.length == 0" class = "centered-content">
+    <img src="assets/images/emptyCart.png" alt="No items in cart">
+  </ng-container>
+
+  <div *ngFor="let cartItem of cartItems; trackBy: trackByFn">
+    <app-cart-items [cartItem]="cartItem" (OrderPlaced)="orderPlaced($event)"></app-cart-items>
+  </div>
 </div>
