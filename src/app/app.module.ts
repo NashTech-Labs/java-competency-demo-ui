@@ -9,7 +9,6 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { HttpClientModule } from "@angular/common/http";
 import { AgGridModule } from "ag-grid-angular";
 import { MaterialModule } from "./shared/module/material.module";
-import {CartService} from "./shared/services/cart.service";
 
 @NgModule({
   declarations: [AppComponent],
@@ -24,7 +23,7 @@ import {CartService} from "./shared/services/cart.service";
     AgGridModule,
     MaterialModule,
   ],
-  providers: [DatePipe, CartService],
+  providers: [DatePipe],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
