@@ -10,7 +10,7 @@
 :host ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
   height: 35px;
   padding: 4px 8px;
-  width: 230px;
+  width: 100%;
 }
 
 :host ::ng-deep .mdc-text-field--no-label:not(.mdc-text-field--outlined):not(.mdc-text-field--textarea) .mat-mdc-form-field-infix {
@@ -25,6 +25,9 @@
 
 mat-card{
   margin-top: 10px;
+  box-shadow: 0 4px 8px #0002 ;
+  border-radius:  8px;
+  background-color: #fff;
 }
 
 .mat-select {
@@ -36,6 +39,7 @@ mat-card{
   display: flex;
   justify-content: flex-end;
   margin-top: 10px;
+  width: fit-content;
 }
 
 .spinner {
