@@ -159,17 +159,24 @@ export class CarsDataComponent implements OnInit {
       .addBulkData(this.selectedCloud)
       .subscribe(async (data) => {
         console.log("Bulk data uploaded successfully.");
+        await new Promise((f) => setTimeout(f, 2000));
         this.openDialog();
-        await new Promise((f) => setTimeout(f, 3000));
-        this.getCarBrands(this.selectedCloud);
       });
   }
 
   openDialog() {
-    this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         selectedCloud: this.selectedCloud,
       },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      this.router
+        .navigateByUrl("/home", { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate(["/dashboard"]);
+        });
     });
   }
 }
