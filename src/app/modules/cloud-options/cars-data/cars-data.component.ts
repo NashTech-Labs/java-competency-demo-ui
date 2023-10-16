@@ -28,6 +28,7 @@ export class CarsDataComponent implements OnInit {
   carBrandControl = new FormControl();
   selectedCarBrand!: string;
   carData: any[] = [];
+  isCarsDataVisible: boolean = true;
   constructor(
     public commonService: CommonService,
     private carsDataService: CarDetailsService,
@@ -54,10 +55,14 @@ export class CarsDataComponent implements OnInit {
     this.isLoading = true;
     this.carsDataService.getCarBrands(selectedCloud).subscribe((brands) => {
       this.carBrands = brands;
-      const preSelectedBrand = this.carBrands[0].brand;
-      this.carBrandControl.setValue(preSelectedBrand);
-      this.getCarModels(selectedCloud, preSelectedBrand);
-      this.isLoading = false;
+      if (this.carBrands.length === 0) this.isCarsDataVisible = false;
+      else {
+        const preSelectedBrand = this.carBrands[0].brand;
+        this.carBrandControl.setValue(preSelectedBrand);
+        this.getCarModels(selectedCloud, preSelectedBrand);
+        this.isLoading = false;
+        this.isCarsDataVisible = true;
+      }
     });
   }
 
