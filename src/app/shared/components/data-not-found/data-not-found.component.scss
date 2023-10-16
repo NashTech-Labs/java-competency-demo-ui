@@ -2,7 +2,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 400px;
+  margin: 1rem;
 }
 
 .centered-content {
@@ -12,14 +13,10 @@
 
 .oops {
   font-weight: bold;
-  color: red;
+  color: #076599;
   font-size: 50px;
   font-family: Arial, sans-serif;
   line-height: 1.2;
-}
-
-.red {
-  color: red;
 }
 
 .generate,
@@ -29,8 +26,6 @@
 }
 
 .generate-button {
-  background-color: red;
-  color: white;
   font-weight: bold;
   font-size: 18px;
   padding: 10px 20px;
