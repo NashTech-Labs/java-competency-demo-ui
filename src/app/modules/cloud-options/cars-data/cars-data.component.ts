@@ -77,7 +77,7 @@ export class CarsDataComponent implements OnInit {
               field: "carId",
               headerName: "Car Id",
               colId: "carId",
-              minWidth: 180,
+              minWidth: 100,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -86,7 +86,7 @@ export class CarsDataComponent implements OnInit {
               field: "brand",
               headerName: "Brand",
               colId: "brand",
-              minWidth: 210,
+              minWidth: 170,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -103,6 +103,7 @@ export class CarsDataComponent implements OnInit {
               field: "year",
               headerName: "Year",
               colId: "year",
+              minWidth: 100,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -111,7 +112,7 @@ export class CarsDataComponent implements OnInit {
               field: "color",
               headerName: "Color",
               colId: "color",
-              minWidth: 210,
+              minWidth: 150,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -120,7 +121,7 @@ export class CarsDataComponent implements OnInit {
               field: "price",
               headerName: "Price",
               colId: "price",
-              minWidth: 210,
+              minWidth: 130,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -175,7 +176,7 @@ export class CarsDataComponent implements OnInit {
       this.router
         .navigateByUrl("/home", { skipLocationChange: true })
         .then(() => {
-          this.router.navigate(["/dashboard"]);
+          this.router.navigate(["/dashboard/",this.selectedCloud]);
         });
     });
   }
