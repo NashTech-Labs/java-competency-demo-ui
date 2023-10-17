@@ -173,10 +173,12 @@ export class CarsDataComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(() => {
+      const url: string =
+        this.selectedCloud === "gcp" ? "/dashboard/gcp" : "/dashboard";
       this.router
         .navigateByUrl("/home", { skipLocationChange: true })
         .then(() => {
-          this.router.navigate(["/dashboard/",this.selectedCloud]);
+          this.router.navigate([url]);
         });
     });
   }
