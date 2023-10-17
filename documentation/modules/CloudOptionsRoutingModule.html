@@ -81,11 +81,22 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { RouterModule, Routes } from &quot;@angular/router&quot;;
 import { CloudOptionsComponent } from &quot;./cloud-options.component&quot;;
+import { CarsDataComponent } from &quot;./cars-data/cars-data.component&quot;;
 
 const routes: Routes &#x3D; [
   {
     path: &quot;&quot;,
     component: CloudOptionsComponent,
+    children: [
+      {
+        path: &quot;&quot;,
+        component: CarsDataComponent,
+      },
+      {
+        path: &quot;gcp&quot;,
+        component: CarsDataComponent,
+      },
+    ],
   },
 ];
 

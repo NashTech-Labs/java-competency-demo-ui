@@ -40,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li class="breadcrumb-item">Injectables</li>
-  <li class="breadcrumb-item" >CarsListService</li>
+  <li class="breadcrumb-item" >CommonService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,17 +64,10 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/home/services/cars-list.service.ts</code>
+            <code>src/app/shared/services/common.service.ts</code>
         </p>
 
 
-            <p class="comment">
-                <h3>Description</h3>
-            </p>
-            <p class="comment">
-                <p>Service responsible for handling data related to the cars list.</p>
-
-            </p>
 
 
 
@@ -82,21 +75,6 @@
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#brandsName" >brandsName</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -107,7 +85,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#setBrandsName" >setBrandsName</a>
+                                <a href="#setTableHeaders" >setTableHeaders</a>
                             </li>
                         </ul>
                     </td>
@@ -132,16 +110,10 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/home/services/cars-list.service.ts:10</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="7" class="link-to-prism">src/app/shared/services/common.service.ts:7</a></div>
                             </td>
                         </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Creates an instance of CarsListService.</p>
-</div>
-                    </td>
-                </tr>
             </tbody>
         </table>
 </section>
@@ -155,32 +127,30 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="setBrandsName"></a>
+                    <a name="setTableHeaders"></a>
                     <span class="name">
-                        <span ><b>setBrandsName</b></span>
-                        <a href="#setBrandsName"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>setTableHeaders</b></span>
+                        <a href="#setTableHeaders"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setBrandsName(brandsName: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>setTableHeaders(event: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, tableHeaders: ColDef[])</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="22"
-                            class="link-to-prism">src/app/home/services/cars-list.service.ts:22</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="9"
+                            class="link-to-prism">src/app/shared/services/common.service.ts:9</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Sets the brands&#39; names.</p>
-</div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
@@ -191,14 +161,13 @@
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>brandsName</td>
+                                    <td>event</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
                                     </td>
 
                                     <td>
@@ -206,12 +175,18 @@
                                     </td>
 
 
+                                </tr>
+                                <tr>
+                                    <td>tableHeaders</td>
                                     <td>
-                                        <ul>
-<li>The brands&#39; names to set.</li>
-</ul>
-
+                                            <code>ColDef[]</code>
                                     </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
                                 </tr>
                             </tbody>
                         </table>
@@ -219,7 +194,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+                        <b>Returns : </b>    <code>ColDef[]</code>
 
                     </div>
                     <div class="io-description">
@@ -230,66 +205,29 @@
         </tbody>
     </table>
 </section>
-            <section data-compodoc="block-properties">
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="brandsName"></a>
-                    <span class="name">
-                            <span class="modifier">Private</span>
-                        <span ><b>brandsName</b></span>
-                        <a href="#brandsName"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Default value : </i><code>new BehaviorSubject&lt;string&gt;(&quot;&quot;)</code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="10" class="link-to-prism">src/app/home/services/cars-list.service.ts:10</a></div>
-                        </td>
-                    </tr>
-
-
-        </tbody>
-    </table>
-</section>
 
     </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &quot;@angular/core&quot;;
-import { BehaviorSubject } from &quot;rxjs&quot;;
-/**
- * Service responsible for handling data related to the cars list.
- */
+import { ColDef } from &quot;ag-grid-community&quot;;
+
 @Injectable({
   providedIn: &quot;root&quot;,
 })
-export class CarsListService {
-  private brandsName &#x3D; new BehaviorSubject&lt;string&gt;(&quot;&quot;);
-
-  /**
-   * Creates an instance of CarsListService.
-   * @param {HttpClient} http - The HttpClient service to make HTTP requests.
-   */
+export class CommonService {
   constructor() {}
-
-  /**
-   * Sets the brands&#x27; names.
-   * @param {string} brandsName - The brands&#x27; names to set.
-   */
-  setBrandsName(brandsName: string): void {
-    this.brandsName.next(brandsName);
+  setTableHeaders(event: any, tableHeaders: ColDef[]): ColDef&lt;any&gt;[] {
+    let updatedHeaders: ColDef&lt;any&gt;[] &#x3D; [];
+    if (event.length &gt; 0) {
+      tableHeaders.forEach((item: ColDef) &#x3D;&gt; {
+        if (event.includes(item.colId)) {
+          updatedHeaders.push(item);
+        }
+      });
+    }
+    return updatedHeaders;
   }
 }
 </code></pre>
@@ -335,7 +273,7 @@ export class CarsListService {
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
-            var COMPODOC_CURRENT_PAGE_URL = 'CarsListService.html';
+            var COMPODOC_CURRENT_PAGE_URL = 'CommonService.html';
             var MAX_SEARCH_RESULTS = 15;
        </script>
 
