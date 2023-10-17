@@ -1,4 +1,34 @@
+
+
+  <div class="d-flex flex-wrap justify-content-end mx-5">
+    <button mat-icon-button (click)="toggleSettingsDropdown()">
+      <mat-icon >settings</mat-icon>
+    </button>
+  </div>
+
+<div *ngIf="showSettingsDropdown" class="custom-dropdown">
+  <div *ngFor="let header of allTableHeaders">
+    <label>
+      <input
+              type="checkbox"
+              [value]="header.colId"
+              [ngModel]="newSelectedTableHeaders.includes(header.colId)"
+      (ngModelChange)="toggleColumnSelection(header.colId)"
+              [disabled]="
+        newSelectedTableHeaders.length <= 2 &&
+        newSelectedTableHeaders.includes(header.colId || '')
+      "
+      />
+      {{ header.headerName }}
+    </label>
+  </div>
+</div>
+
+
+<!--
 <mat-form-field data-testid="mabl-table-headers-dropdown" appearance="fill">
+
+
   <mat-select
     multiple
     #matSelect
@@ -15,5 +45,9 @@
     >
       {{ header.headerName }}
     </mat-option>
-  </mat-select>
-</mat-form-field>
+  </mat-select>-->
+
+
+<!--</mat-form-field>-->
+
+

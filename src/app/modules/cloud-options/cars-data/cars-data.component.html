@@ -14,22 +14,23 @@
             >
           </mat-select>
         </mat-form-field>
-      <div class="me-4">
-        <app-table-headers-dropdown
-          [tableHeaders]="carColumnDef"
-          [allTableHeaders]="allTableHeaders"
-          (updatedHeaders)="setHeadersForCarsData($event)"
-        >
-        </app-table-headers-dropdown>
-      </div>
-      <div class="add-data-button">
+
+      <div class="add-data-button d-flex justify-content-end">
         <a
           mat-raised-button
           (click)="addBulkData()"
           target="_blank"
-          class="custom-button"
           >Add Bulk Data</a
         >
+      </div>
+
+      <div class="view-settings-button">
+        <app-table-headers-dropdown
+                [tableHeaders]="carColumnDef"
+                [allTableHeaders]="allTableHeaders"
+                (updatedHeaders)="setHeadersForCarsData($event)"
+        >
+        </app-table-headers-dropdown>
       </div>
     </div>
     <ng-container *ngIf="carData && carData.length > 0; else showLoading">
