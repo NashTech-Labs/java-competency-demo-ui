@@ -1,6 +1,6 @@
 <div class="search-container">
 
-    <button [matMenuTriggerFor]="menu" class="dropdown-button" #dropdownButton>Category</button>
+    <button [matMenuTriggerFor]="menu" class="dropdown-button" #dropdownButton>{{ selectedCategory }}</button>
 
     <input type="text" class="search-bar" placeholder="Search..." [(ngModel)]="searchTerm" (input)="filterItems()">
 
