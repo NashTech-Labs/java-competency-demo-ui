@@ -692,23 +692,21 @@ export class TableHeadersDropdownComponent {
       &lt;mat-icon &gt;settings&lt;/mat-icon&gt;
     &lt;/button&gt;
   &lt;/div&gt;
-
-&lt;div *ngIf&#x3D;&quot;showSettingsDropdown&quot; class&#x3D;&quot;custom-dropdown&quot;&gt;
-  &lt;div *ngFor&#x3D;&quot;let header of allTableHeaders&quot;&gt;
-    &lt;label&gt;
-      &lt;input
-              type&#x3D;&quot;checkbox&quot;
-              [value]&#x3D;&quot;header.colId&quot;
-              [ngModel]&#x3D;&quot;newSelectedTableHeaders.includes(header.colId)&quot;
-      (ngModelChange)&#x3D;&quot;toggleColumnSelection(header.colId)&quot;
-              [disabled]&#x3D;&quot;
-        newSelectedTableHeaders.length &lt;&#x3D; 2 &amp;&amp;
-        newSelectedTableHeaders.includes(header.colId || &#x27;&#x27;)
-      &quot;
-      /&gt;
-      {{ header.headerName }}
-    &lt;/label&gt;
-  &lt;/div&gt;
+  &lt;div *ngIf&#x3D;&quot;showSettingsDropdown&quot; class&#x3D;&quot;custom-dropdown&quot;&gt;
+    &lt;div *ngFor&#x3D;&quot;let header of allTableHeaders&quot;&gt;
+      &lt;label class&#x3D;&quot;settings-checkbox&quot;&gt;
+        &lt;mat-checkbox
+                [ngModel]&#x3D;&quot;newSelectedTableHeaders.includes(header.colId)&quot;
+                (ngModelChange)&#x3D;&quot;toggleColumnSelection(header.colId)&quot;
+                [disabled]&#x3D;&quot;
+newSelectedTableHeaders.length &lt;&#x3D; 2 &amp;&amp;
+newSelectedTableHeaders.includes(header.colId || &#x27;&#x27;)
+&quot;
+        &gt;
+          {{ header.headerName }}
+        &lt;/mat-checkbox&gt;
+      &lt;/label&gt;
+    &lt;/div&gt;
 &lt;/div&gt;
 
 
@@ -803,7 +801,7 @@ export class TableHeadersDropdownComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div>  <div class="d-flex flex-wrap justify-content-end mx-5">    <button mat-icon-button (click)="toggleSettingsDropdown()">      <mat-icon >settings</mat-icon>    </button>  </div><div *ngIf="showSettingsDropdown" class="custom-dropdown">  <div *ngFor="let header of allTableHeaders">    <label>      <input              type="checkbox"              [value]="header.colId"              [ngModel]="newSelectedTableHeaders.includes(header.colId)"      (ngModelChange)="toggleColumnSelection(header.colId)"              [disabled]="        newSelectedTableHeaders.length <= 2 &&        newSelectedTableHeaders.includes(header.colId || \'\')      "      />      {{ header.headerName }}    </label>  </div></div><!--<mat-form-field data-testid="mabl-table-headers-dropdown" appearance="fill">  <mat-select    multiple    #matSelect    (selectionChange)="onColumnSelectionChange($event)"    [(value)]="newSelectedTableHeaders"  >    <mat-option      *ngFor="let header of allTableHeaders"      [value]="header.colId"      [disabled]="        newSelectedTableHeaders.length <= 2 &&        newSelectedTableHeaders.includes(header.colId || \'\')      "    >      {{ header.headerName }}    </mat-option>  </mat-select>--><!--</mat-form-field>--></div>'
+        var COMPONENT_TEMPLATE = '<div>  <div class="d-flex flex-wrap justify-content-end mx-5">    <button mat-icon-button (click)="toggleSettingsDropdown()">      <mat-icon >settings</mat-icon>    </button>  </div>  <div *ngIf="showSettingsDropdown" class="custom-dropdown">    <div *ngFor="let header of allTableHeaders">      <label class="settings-checkbox">        <mat-checkbox                [ngModel]="newSelectedTableHeaders.includes(header.colId)"                (ngModelChange)="toggleColumnSelection(header.colId)"                [disabled]="newSelectedTableHeaders.length <= 2 &&newSelectedTableHeaders.includes(header.colId || \'\')"        >          {{ header.headerName }}        </mat-checkbox>      </label>    </div></div><!--<mat-form-field data-testid="mabl-table-headers-dropdown" appearance="fill">  <mat-select    multiple    #matSelect    (selectionChange)="onColumnSelectionChange($event)"    [(value)]="newSelectedTableHeaders"  >    <mat-option      *ngFor="let header of allTableHeaders"      [value]="header.colId"      [disabled]="        newSelectedTableHeaders.length <= 2 &&        newSelectedTableHeaders.includes(header.colId || \'\')      "    >      {{ header.headerName }}    </mat-option>  </mat-select>--><!--</mat-form-field>--></div>'
     var COMPONENTS = [{'name': 'ActionColumnComponent', 'selector': 'app-action-column'},{'name': 'ApiErrorComponent', 'selector': 'app-api-error'},{'name': 'AppComponent', 'selector': 'app-root'},{'name': 'CarBrandsComponent', 'selector': 'app-car-brands'},{'name': 'CarsdataCardComponent', 'selector': 'app-carsdata-card'},{'name': 'CarsDataComponent', 'selector': 'app-cars-data'},{'name': 'CarsListComponent', 'selector': 'app-cars-list'},{'name': 'CartComponent', 'selector': 'app-cart'},{'name': 'CartItemsComponent', 'selector': 'app-cart-items'},{'name': 'CloudOptionsComponent', 'selector': 'app-cloud-options'},{'name': 'ConfirmationDialogComponent', 'selector': 'app-confirmation-dialog'},{'name': 'DashboardComponent', 'selector': 'app-dashboard'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'DataNotFoundComponent', 'selector': 'app-data-not-found'},{'name': 'HeaderComponent', 'selector': 'app-header'},{'name': 'HomeComponent', 'selector': 'app-home'},{'name': 'PageNotFoundComponent', 'selector': 'app-page-not-found'},{'name': 'ServerErrorComponent', 'selector': 'app-server-error'},{'name': 'SidenavComponent', 'selector': 'app-sidenav'},{'name': 'TabBarComponent', 'selector': 'app-tab-bar'},{'name': 'TableHeadersDropdownComponent', 'selector': 'app-table-headers-dropdown'},{'name': 'TabularViewComponent', 'selector': 'app-tabular-view'}];
     var DIRECTIVES = [];
     var ACTUAL_COMPONENT = {'name': 'TableHeadersDropdownComponent'};
