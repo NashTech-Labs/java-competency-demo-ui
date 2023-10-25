@@ -85,7 +85,7 @@ import { PageNotFoundComponent } from &quot;./home/page-not-found/page-not-found
 const routes: Routes &#x3D; [
   {
     path: &quot;&quot;,
-    redirectTo: &quot;home/gcp&quot;,
+    redirectTo: &quot;dashboard&quot;,
     pathMatch: &quot;full&quot;,
   },
   {
@@ -96,6 +96,11 @@ const routes: Routes &#x3D; [
     path: &quot;dashboard&quot;,
     loadChildren: () &#x3D;&gt;
       &quot;import(\&quot;./dashboard/dashboard.module\&quot;).then((m) &#x3D;&gt; m.DashboardModule)&quot;,
+  },
+  {
+    path: &quot;cart&quot;,
+    loadChildren: () &#x3D;&gt;
+      &quot;import(\&quot;../app/modules/cart/cart.module\&quot;).then((m) &#x3D;&gt; m.CartModule)&quot;,
   },
   {
     path: &quot;**&quot;,

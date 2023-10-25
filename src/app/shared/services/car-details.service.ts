@@ -21,7 +21,14 @@ export class CarDetailsService {
   getCarBrands(selectedCloud: string): Observable<CarBrand[]> {
     const url =
       selectedCloud === "gcp" ? this.brandsUrlGCP : this.brandsUrlAzure;
-    return this.http.get<CarBrand[]>(url);
+    return this.http.get<CarBrand[]>(url).pipe(
+      catchError((error) => {
+        if (error.status === 404 || error.status === 500) {
+          console.log("No data in the database");
+        }
+        return of([]);
+      }),
+    );
   }
   getCarModels(
     selectedCloud: string,

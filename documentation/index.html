@@ -54,6 +54,30 @@ docker build -t us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui
 docker run --env API_URL=&quot;<a href="https://webapi-dev.appname.com">https://webapi-dev.appname.com</a>&quot; -dp 8080:80 us-east1-docker.pkg.dev/shoppertrak-repo/java-competency-demo-ui:latest</p>
 </li>
 </ol>
+<h2>Application Functionality</h2>
+<p>This Angular application primarily deals with car-related operations. It loads car brands and models from the following URLs: 
+These are available on GCP and Azure both.</p>
+<ul>
+<li>Private brands URL (GCP): &quot;<a href="http://35.193.88.251/v1/data/brands">http://35.193.88.251/v1/data/brands</a>&quot;</li>
+<li>Private brands URL (Azure): &quot;<a href="http://40.88.227.104/v1/data/brands">http://40.88.227.104/v1/data/brands</a>&quot;</li>
+<li>Car models URL (Azure): &quot;<a href="http://40.88.227.104/v1/data/cars/">http://40.88.227.104/v1/data/cars/</a>&quot;</li>
+<li>Car models URL (GCP): &quot;<a href="http://35.193.88.251/v1/data/cars/">http://35.193.88.251/v1/data/cars/</a>&quot;</li>
+</ul>
+<h3>Adding Items to the Cart</h3>
+<p>When a user adds an item to the cart, a backend application named &quot;CartApplication,&quot; written in Spring Boot, handles the process. The <code>/add</code> endpoint is called, and in the backend,
+it checks whether the product is available in the inventory database. If the product is found, it is added to the SQL database, which is maintained by the CartApplication.</p>
+<h3>Removing Items from the Cart</h3>
+<p>To remove an item from the cart, the <code>/remove</code> endpoint of the CartApplication is called. Item will be removed from the database as well.</p>
+<h3>Placing an Order</h3>
+<p>User can increase and decrease the quantity of the particular item while placing the order.
+To place an order, the <code>/order</code> endpoint of the OrderApplication is called. When an order is successfully placed, a message is received, and the corresponding item is removed from the cart database.</p>
+<h3>Endpoints</h3>
+<ul>
+<li>Get Cart Items: <code>http://localhost:9094/cart/get</code></li>
+<li>Place Order: <code>http://localhost:9090/orders</code></li>
+<li>Remove from Cart: <code>http://localhost:9094/cart/remove</code></li>
+<li>Add to Cart: <code>http://localhost:9094/cart/add</code></li>
+</ul>
 
 
 

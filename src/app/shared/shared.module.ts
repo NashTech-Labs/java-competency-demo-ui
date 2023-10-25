@@ -6,12 +6,14 @@ import { AgGridModule } from "ag-grid-angular";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { ActionColumnComponent } from "./components/action-column/action-column.component";
 import { TableHeadersDropdownComponent } from "./components/table-headers-dropdown/table-headers-dropdown.component";
+import { DataNotFoundComponent } from "./components/data-not-found/data-not-found.component";
 
 @NgModule({
   declarations: [
     TabularViewComponent,
     ActionColumnComponent,
     TableHeadersDropdownComponent,
+    DataNotFoundComponent,
   ],
   imports: [
     CommonModule,
@@ -26,6 +28,7 @@ import { TableHeadersDropdownComponent } from "./components/table-headers-dropdo
     TableHeadersDropdownComponent,
     FormsModule,
     ReactiveFormsModule,
+    DataNotFoundComponent,
   ],
 })
 export class SharedModule {}

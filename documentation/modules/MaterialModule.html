@@ -78,10 +78,12 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MatCardModule } from &quot;@angular/material/card&quot;;
+import { NgModule } from &quot;@angular/core&quot;;
 import { CommonModule } from &quot;@angular/common&quot;;
 import { MatButtonModule } from &quot;@angular/material/button&quot;;
 import { MatIconModule } from &quot;@angular/material/icon&quot;;
+import { MatBadgeModule } from &quot;@angular/material/badge&quot;;
 import { MatMenuModule } from &quot;@angular/material/menu&quot;;
 import { MatTabsModule } from &quot;@angular/material/tabs&quot;;
 import { MatToolbarModule } from &quot;@angular/material/toolbar&quot;;
@@ -90,11 +92,22 @@ import { MatFormFieldModule } from &quot;@angular/material/form-field&quot;;
 import { MatInputModule } from &quot;@angular/material/input&quot;;
 import { MatSidenavModule } from &quot;@angular/material/sidenav&quot;;
 import { MatListModule } from &quot;@angular/material/list&quot;;
-import { MatLineModule } from &quot;@angular/material/core&quot;;
-import { MatCardModule } from &quot;@angular/material/card&quot;;
-import { FlexLayoutModule } from &quot;@angular/flex-layout&quot;;
-import { MatProgressSpinnerModule } from &quot;@angular/material/progress-spinner&quot;;
+import { MatLineModule, MatNativeDateModule } from &quot;@angular/material/core&quot;;
+import { MatSlideToggleModule } from &quot;@angular/material/slide-toggle&quot;;
+import { MatDatepickerModule } from &quot;@angular/material/datepicker&quot;;
+import { MatSelectModule } from &quot;@angular/material/select&quot;;
+import { MatButtonToggleModule } from &quot;@angular/material/button-toggle&quot;;
+import { MatCheckboxModule } from &quot;@angular/material/checkbox&quot;;
+import { MatSnackBarModule } from &quot;@angular/material/snack-bar&quot;;
+import { MatSliderModule } from &quot;@angular/material/slider&quot;;
+import { MatAutocompleteModule } from &quot;@angular/material/autocomplete&quot;;
 import { MatChipsModule } from &quot;@angular/material/chips&quot;;
+import { MatRadioModule } from &quot;@angular/material/radio&quot;;
+import { MatTooltipModule } from &quot;@angular/material/tooltip&quot;;
+import { MatTreeModule } from &quot;@angular/material/tree&quot;;
+import { MatProgressSpinnerModule } from &quot;@angular/material/progress-spinner&quot;;
+import { FlexLayoutModule } from &quot;@angular/flex-layout&quot;;
+
 @NgModule({
   declarations: [],
   imports: [
@@ -104,7 +117,18 @@ import { MatChipsModule } from &quot;@angular/material/chips&quot;;
     MatListModule,
     MatLineModule,
     MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatMenuModule,
+    MatDialogModule,
+    MatFormFieldModule,
+    MatInputModule,
     MatCardModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatButtonModule,
+    MatBadgeModule,
     MatToolbarModule,
     MatIconModule,
     MatMenuModule,
@@ -114,14 +138,19 @@ import { MatChipsModule } from &quot;@angular/material/chips&quot;;
     FlexLayoutModule,
     MatProgressSpinnerModule,
     MatChipsModule,
+    MatSnackBarModule,
+    MatSliderModule,
+    MatRadioModule,
+    MatTooltipModule,
+    MatTreeModule,
   ],
   exports: [
     CommonModule,
     MatTabsModule,
+    MatBadgeModule,
     MatSidenavModule,
     MatListModule,
     MatLineModule,
-    MatCardModule,
     MatButtonModule,
     MatToolbarModule,
     MatIconModule,
@@ -129,9 +158,22 @@ import { MatChipsModule } from &quot;@angular/material/chips&quot;;
     MatDialogModule,
     MatFormFieldModule,
     MatInputModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatNativeDateModule,
+    MatSelectModule,
+    MatButtonToggleModule,
+    MatCheckboxModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatSliderModule,
+    MatRadioModule,
+    MatTooltipModule,
+    MatTreeModule,
     FlexLayoutModule,
     MatProgressSpinnerModule,
-    MatChipsModule,
   ],
 })
 export class MaterialModule {}
