@@ -1,3 +1,13 @@
 <app-header></app-header>
 <p>car-search-result works!</p>
-
+<div *ngFor="let car of carsData">
+  <app-carsdata-card
+    [carCompanyName]="car.brand_name"
+    [carModel]="car.model"
+    [carPrice]="car.price"
+    [carMileage]="car.mileage"
+    [manufacturingYear]="car.year"
+    [carColor]="car.color"
+  >
+  </app-carsdata-card>
+</div>
