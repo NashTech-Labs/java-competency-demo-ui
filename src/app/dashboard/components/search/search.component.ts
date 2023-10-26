@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-search',
@@ -14,6 +15,8 @@ export class SearchComponent {
   searchTerm: string = '';
   selectedCategory: string = 'All';
 
+  constructor(private router : Router) {
+  }
   ngOnInit() {
 
     this.filteredItems = this.items.filter(item => item !== this.selectedCategory);
@@ -28,5 +31,9 @@ export class SearchComponent {
     console.log('Clicked:', item);
     this.selectedCategory = item;
     this.filteredItems = this.items.filter(item => item !== this.selectedCategory);
+  }
+
+  searchButtonClicked(){
+    this.router.navigate(['/search-result'])
   }
 }
