@@ -27,7 +27,7 @@ export class HeaderComponent {
   isCartUIVisible: boolean = false;
 
   ngOnInit() {
-    if (this.router.url.includes("cart")) this.isCartUIVisible = true;
+    if (this.router.url.includes("cart")||this.router.url.includes("search")) this.isCartUIVisible = true;
   }
   getCartItems() {
     this.cartService.getCartItems();
