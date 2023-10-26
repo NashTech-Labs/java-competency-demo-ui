@@ -1,6 +1,6 @@
 <app-header></app-header>
 <p>car-search-result works!</p>
-<div *ngFor="let car of carsData">
+<div class="search-result-cards d-flex align-content-center justify-content-center flex-wrap" *ngFor="let car of carsData">
   <app-carsdata-card
     [carCompanyName]="car.brand_name"
     [carModel]="car.model"
