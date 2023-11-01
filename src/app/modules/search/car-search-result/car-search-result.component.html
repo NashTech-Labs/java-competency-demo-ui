@@ -1,13 +1,23 @@
 <app-header></app-header>
-<div class="search-result-cards d-flex align-content-center justify-content-center flex-wrap" *ngFor="let car of carsData">
+<div class="search-result-cards d-flex justify-content-center" *ngFor="let car of carsData | paginate
+              : {
+                  itemsPerPage: itemsPerPage,
+                  currentPage: page,
+                  totalItems: carsData.length
+                };
+          let i = index">
   <app-carsdata-card
-    [carCompanyName]="car.brand_name"
-    [carModel]="car.model"
-    [carPrice]="car.price"
-    [carMileage]="car.mileage"
-    [manufacturingYear]="car.year"
-    [carColor]="car.color"
-  >
-  </app-carsdata-card>
+          [carCompanyName]="car.brand_name"
+          [carModel]="car.model"
+          [carPrice]="car.price"
+          [carMileage]="car.mileage"
+          [manufacturingYear]="car.year"
+          [carColor]="car.color"
+  ></app-carsdata-card>
   <button class="add-to-cart-button" (click)="addToCart()">Add to Cart</button>
+</div>
+<div class="paginate">
+  <pagination-controls (pageChange)="page = $event"
+  previousLabel="Prev"
+  nextLabel="Next"></pagination-controls>
 </div>

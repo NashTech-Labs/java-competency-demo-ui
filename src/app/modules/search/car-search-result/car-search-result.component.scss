@@ -1,11 +1,10 @@
 .search-result-cards{
-  margin-left: -200px;
 }
 
 .add-to-cart-button{
   height: fit-content;
   width: fit-content;
-  margin-top: 100px;
+  margin-top: 120px;
   margin-left: 20px;
   background-color: #076599;
   color: white;
@@ -13,3 +12,9 @@
   border-radius: 5px;
   flex-grow: 0.05;
   }
+
+.paginate{
+  margin-right: 60px;
+  display: flex;
+  justify-content: center;
+}

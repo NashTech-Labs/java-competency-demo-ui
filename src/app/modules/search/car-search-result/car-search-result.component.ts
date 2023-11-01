@@ -16,6 +16,8 @@ export class CarSearchResultComponent {
   ) {
   }
   carsData: CarDetails1[] = [];
+  page: number = 1;
+  itemsPerPage: number = 5;
   ngOnInit() {
     this.carsData = BrandsList;
   }
