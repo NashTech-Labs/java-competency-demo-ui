@@ -16,7 +16,7 @@
   ></app-carsdata-card>
   <button class="add-to-cart-button" (click)="addToCart()">Add to Cart</button>
 </div>
-<div class="paginate">
+<div class="paginate" *ngIf="carsData.length > 5">
   <pagination-controls (pageChange)="page = $event"
   previousLabel="Prev"
   nextLabel="Next"></pagination-controls>
