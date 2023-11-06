@@ -23,9 +23,7 @@ export class SearchComponent {
     this.filteredItems = this.items.filter(item => item !== this.selectedCategory);
   }
   filterItems() {
-    this.filteredItems = this.items.filter(item =>
-        item.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+    console.log('Search for :  ', this.searchTerm);
   }
   menuItemClicked(item: string) {
     console.log('Clicked:', item);
