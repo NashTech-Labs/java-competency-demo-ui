@@ -56,7 +56,11 @@ export class CarSearchResultComponent {
     if (this.selectedCategory === 'Id') {
       this.cartService.searchCarsById(this.searchTerm).subscribe((response) => {
         console.log(response);
-        this.carsData = response;
+        if (!Array.isArray(response)) {
+          this.carsData = [response];
+        } else {
+          this.carsData = response;
+        }
       });
     } else if (this.selectedCategory === 'Brand') {
       this.cartService.searchCarsByBrand(this.searchTerm).subscribe((response) => {
