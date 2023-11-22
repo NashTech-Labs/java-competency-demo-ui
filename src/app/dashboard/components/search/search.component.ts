@@ -29,6 +29,7 @@ export class SearchComponent {
     console.log('Clicked:', item);
     this.selectedCategory = item;
     this.filteredItems = this.items.filter(item => item !== this.selectedCategory);
+    this.searchButtonClicked();
   }
 
   searchButtonClicked(){
