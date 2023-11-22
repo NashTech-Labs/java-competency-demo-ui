@@ -56,7 +56,7 @@ export class CarSearchResultComponent {
     if (this.selectedCategory === 'Id') {
       this.cartService.searchCarsById(this.searchTerm).subscribe((response) => {
         console.log(response);
-        if (!Array.isArray(response)) {
+        if (!Array.isArray(response) && response != null) {
           this.carsData = [response];
         } else {
           this.carsData = response;
