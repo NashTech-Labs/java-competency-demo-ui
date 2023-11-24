@@ -36,8 +36,8 @@ export class CarSearchResultComponent {
     this.bulkEventCellValue = params;
     this.carId = params.data.carId;
   }
-  addToCart(): void {
-    this.cartService.addToCart(this.carId).subscribe((response) => {
+  addToCart(carId : string): void {
+    this.cartService.addToCart(carId).subscribe((response) => {
       if (response != null) {
         this.cartService.incrementCartItemCount();
         this.showSnackBar("Item has been added to the cart");
@@ -87,7 +87,7 @@ export class CarSearchResultComponent {
 interface CarDetails1 {
   brand_id: number;
   brand_name: string;
-  carId : number;
+  carId : string;
   model: string;
   year: number;
   color: string;
