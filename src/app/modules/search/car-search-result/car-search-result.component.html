@@ -1,5 +1,12 @@
 <app-header></app-header>
-<div *ngIf="!carsData || carsData.length === 0" class = "centered-content">
+<!--<div *ngIf="isLoading">
+  <div class="spinner mt-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="sr-only"></span>
+    </div>
+  </div>
+</div>-->
+<div *ngIf="(!carsData || carsData.length === 0) && !isLoading" class = "centered-content">
   <img src="assets/images/noData.png" alt="No data" style="width: 30%; height: 30%">
 </div>
 <div *ngIf="carsData && carsData.length > 0">

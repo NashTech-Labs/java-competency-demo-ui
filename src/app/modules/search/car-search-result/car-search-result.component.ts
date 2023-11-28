@@ -21,6 +21,7 @@ export class CarSearchResultComponent {
   itemsPerPage: number = 5;
   selectedCategory: string = 'All';
   searchTerm: string = '';
+  isLoading: boolean = false;
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams) => {
       this.selectedCategory = queryParams['category'] || 'All';
@@ -53,6 +54,7 @@ export class CarSearchResultComponent {
   }
 
   getAllSearchedCars() {
+    this.isLoading = true;
     if (this.selectedCategory === 'Id') {
       this.cartService.searchCarsById(this.searchTerm).subscribe((response) => {
         console.log(response);
@@ -80,6 +82,7 @@ export class CarSearchResultComponent {
       this.cartService.searchAllCars().subscribe((response) => {
         this.carsData = response;
       });    }
+    this.isLoading = false;
   }
 }
 
