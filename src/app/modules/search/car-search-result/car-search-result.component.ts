@@ -21,12 +21,13 @@ export class CarSearchResultComponent {
   itemsPerPage: number = 5;
   selectedCategory: string = 'All';
   searchTerm: string = '';
-  isLoading: boolean = false;
+  isDataPresent = true;
   ngOnInit() {
     this.route.queryParams.subscribe((queryParams) => {
       this.selectedCategory = queryParams['category'] || 'All';
       this.searchTerm = queryParams['term'] || '';
-    this.getAllSearchedCars();
+      this.isDataPresent = true;
+      this.getAllSearchedCars();
   });
   }
 
@@ -54,35 +55,39 @@ export class CarSearchResultComponent {
   }
 
   getAllSearchedCars() {
-    this.isLoading = true;
+    let searchObservable;
     if (this.selectedCategory === 'Id') {
-      this.cartService.searchCarsById(this.searchTerm).subscribe((response) => {
-        console.log(response);
-        if (!Array.isArray(response) && response != null) {
-          this.carsData = [response];
-        } else {
-          this.carsData = response;
-        }
-      });
+      searchObservable = this.cartService.searchCarsById(this.searchTerm);
     } else if (this.selectedCategory === 'Brand') {
-      this.cartService.searchCarsByBrand(this.searchTerm).subscribe((response) => {
-        this.carsData = response;
-
-      });
+      searchObservable = this.cartService.searchCarsByBrand(this.searchTerm);
     } else if (this.selectedCategory === 'Price') {
-      this.cartService.searchCarsByPrice(this.searchTerm).subscribe((response) => {
-        this.carsData = response;
-      });
+      searchObservable = this.cartService.searchCarsByPrice(this.searchTerm);
     } else if (this.selectedCategory === 'Mileage') {
-      this.cartService.searchCarsByMileage(this.searchTerm).subscribe((response) => {
-        this.carsData = response;
-      });
+      searchObservable = this.cartService.searchCarsByMileage(this.searchTerm);
+    } else {
+      searchObservable = this.cartService.searchAllCars();
     }
-    else{
-      this.cartService.searchAllCars().subscribe((response) => {
-        this.carsData = response;
-      });    }
-    this.isLoading = false;
+
+    searchObservable
+        .subscribe(
+            (response) => {
+              if (!Array.isArray(response) && response != null) {
+                this.carsData = [response];
+              } else {
+                this.carsData = response;
+              }
+            },
+            (error) => {
+              this.handleErrorResponse(error);
+              this.isDataPresent = false;
+            }
+        );
+  }
+
+  private handleErrorResponse(error: any): void {
+    if (error.status === 500 || error.status === 404) {
+      this.isDataPresent = false;
+    }
   }
 }
 

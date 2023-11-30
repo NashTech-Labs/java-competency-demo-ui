@@ -1,15 +1,8 @@
 <app-header></app-header>
-<!--<div *ngIf="isLoading">
-  <div class="spinner mt-5">
-    <div class="spinner-border text-primary" role="status">
-      <span class="sr-only"></span>
-    </div>
-  </div>
-</div>-->
-<div *ngIf="(!carsData || carsData.length === 0) && !isLoading" class = "centered-content">
+<div *ngIf="!isDataPresent || carsData.length <=0" class = "centered-content">
   <img src="assets/images/noData.png" alt="No data" style="width: 30%; height: 30%">
 </div>
-<div *ngIf="carsData && carsData.length > 0">
+<div *ngIf="carsData && carsData.length > 0 && isDataPresent">
   <div class="search-result-cards d-flex justify-content-center" *ngFor="let car of carsData | paginate
     : {
         itemsPerPage: itemsPerPage,
