@@ -81,6 +81,8 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &quot;@angular/core&quot;;
 import { RouterModule, Routes } from &quot;@angular/router&quot;;
 import { DashboardComponent } from &quot;./dashboard.component&quot;;
+import { ApiErrorComponent } from &quot;./components/api-error/api-error.component&quot;;
+import { ServerErrorComponent } from &quot;./components/server-error/server-error.component&quot;;
 
 const routes: Routes &#x3D; [
   {
@@ -93,6 +95,19 @@ const routes: Routes &#x3D; [
           &quot;import(\&quot;../modules/cloud-options/cloud-options.module\&quot;).then(\
             (m) &#x3D;&gt; m.CloudOptionsModule,\
           )&quot;,
+      },
+      {
+        path: &quot;home&quot;,
+        loadChildren: () &#x3D;&gt;
+          &quot;import(\&quot;../home/home.module\&quot;).then((m) &#x3D;&gt; m.HomeModule)&quot;,
+      },
+      {
+        path: &quot;api-error&quot;,
+        component: ApiErrorComponent,
+      },
+      {
+        path: &quot;server-error&quot;,
+        component: ServerErrorComponent,
       },
     ],
   },

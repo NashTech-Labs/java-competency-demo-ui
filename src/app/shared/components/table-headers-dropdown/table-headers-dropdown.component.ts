@@ -12,6 +12,7 @@ export class TableHeadersDropdownComponent {
   @Output() updatedHeaders: EventEmitter<string[]> = new EventEmitter<string[]>();
   newSelectedTableHeaders!: any[];
   allNewTableHeaders!: any[];
+  showSettingsDropdown = false;
 
   ngOnInit(){
     this.allNewTableHeaders = this.newSelectedTableHeaders;
@@ -27,6 +28,19 @@ export class TableHeadersDropdownComponent {
   onColumnSelectionChange(event: any){
     this.allNewTableHeaders = this.newSelectedTableHeaders;
     this.newSelectedTableHeaders = this.allNewTableHeaders.filter(item => event.value.includes(item));
+    this.updatedHeaders.emit(this.newSelectedTableHeaders);
+  }
+
+  toggleSettingsDropdown() {
+    this.showSettingsDropdown = !this.showSettingsDropdown;
+  }
+
+  toggleColumnSelection(columnId: string | undefined) {
+    if (this.newSelectedTableHeaders.includes(columnId)) {
+      this.newSelectedTableHeaders = this.newSelectedTableHeaders.filter(id => id !== columnId);
+    } else {
+      this.newSelectedTableHeaders.push(columnId);
+    }
     this.updatedHeaders.emit(this.newSelectedTableHeaders);
   }
 

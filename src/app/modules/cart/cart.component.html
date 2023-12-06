@@ -1,7 +1,7 @@
 <app-header></app-header>
 
   <div *ngIf="cartItems.length == 0" class = "centered-content">
-    <img src="assets/images/emptyCart.png" alt="No items in cart">
+    <img src="assets/images/emptyCart.png" alt="No items in cart" style="width: 30%; height: 30%" >
   </div>
 
   <div *ngFor="let cartItem of cartItems; trackBy: trackByFn">

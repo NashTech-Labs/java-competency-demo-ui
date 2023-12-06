@@ -28,6 +28,7 @@ export class CarsDataComponent implements OnInit {
   carBrandControl = new FormControl();
   selectedCarBrand!: string;
   carData: any[] = [];
+  isCarsDataVisible: boolean = true;
   constructor(
     public commonService: CommonService,
     private carsDataService: CarDetailsService,
@@ -54,10 +55,14 @@ export class CarsDataComponent implements OnInit {
     this.isLoading = true;
     this.carsDataService.getCarBrands(selectedCloud).subscribe((brands) => {
       this.carBrands = brands;
-      const preSelectedBrand = this.carBrands[0].brand;
-      this.carBrandControl.setValue(preSelectedBrand);
-      this.getCarModels(selectedCloud, preSelectedBrand);
-      this.isLoading = false;
+      if (this.carBrands.length === 0) this.isCarsDataVisible = false;
+      else {
+        const preSelectedBrand = this.carBrands[0].brand;
+        this.carBrandControl.setValue(preSelectedBrand);
+        this.getCarModels(selectedCloud, preSelectedBrand);
+        this.isLoading = false;
+        this.isCarsDataVisible = true;
+      }
     });
   }
 
@@ -72,7 +77,7 @@ export class CarsDataComponent implements OnInit {
               field: "carId",
               headerName: "Car Id",
               colId: "carId",
-              minWidth: 180,
+              minWidth: 100,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -81,7 +86,7 @@ export class CarsDataComponent implements OnInit {
               field: "brand",
               headerName: "Brand",
               colId: "brand",
-              minWidth: 210,
+              minWidth: 170,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -98,6 +103,7 @@ export class CarsDataComponent implements OnInit {
               field: "year",
               headerName: "Year",
               colId: "year",
+              minWidth: 100,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -106,7 +112,7 @@ export class CarsDataComponent implements OnInit {
               field: "color",
               headerName: "Color",
               colId: "color",
-              minWidth: 210,
+              minWidth: 150,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -115,7 +121,7 @@ export class CarsDataComponent implements OnInit {
               field: "price",
               headerName: "Price",
               colId: "price",
-              minWidth: 210,
+              minWidth: 130,
               filter: "agTextColumnFilter",
               suppressMenu: true,
               unSortIcon: true,
@@ -154,17 +160,26 @@ export class CarsDataComponent implements OnInit {
       .addBulkData(this.selectedCloud)
       .subscribe(async (data) => {
         console.log("Bulk data uploaded successfully.");
+        await new Promise((f) => setTimeout(f, 2000));
         this.openDialog();
-        await new Promise((f) => setTimeout(f, 3000));
-        this.getCarBrands(this.selectedCloud);
       });
   }
 
   openDialog() {
-    this.dialog.open(ConfirmationDialogComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       data: {
         selectedCloud: this.selectedCloud,
       },
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      const url: string =
+        this.selectedCloud === "gcp" ? "/dashboard/gcp" : "/dashboard";
+      this.router
+        .navigateByUrl("/home", { skipLocationChange: true })
+        .then(() => {
+          this.router.navigate([url]);
+        });
     });
   }
 }
